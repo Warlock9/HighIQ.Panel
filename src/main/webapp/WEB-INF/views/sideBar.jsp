@@ -22,7 +22,9 @@
 					href="dashboard" aria-expanded="false"><i
 						class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
 				</li>
-				
+				<li class="sidebar-item"><a href="contactList"
+								class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
+									class="hide-menu"> Manage Contacts </span></a></li>
 				
 
 

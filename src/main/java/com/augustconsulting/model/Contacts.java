@@ -1,5 +1,7 @@
 package com.augustconsulting.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -63,11 +65,11 @@ public class Contacts{
 	
 	@NotNull
 	@Column(name="CreatedDate" ,length=15)
-	private String createdDate;
+	private Date createdDate;
 	
 	@NotNull
 	@Column(name="UpdatedDate" ,length=15)
-	private String updatedDate;
+	private Date updatedDate;
 	
 	@NotNull
 	@Column(name="Status" ,length=5)
@@ -177,19 +179,20 @@ public class Contacts{
 		this.emailID = emailID;
 	}
 
-	public String getCreatedDate() {
+
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public String getUpdatedDate() {
+	public Date getUpdatedDate() {
 		return updatedDate;
 	}
 
-	public void setUpdatedDate(String updatedDate) {
+	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 

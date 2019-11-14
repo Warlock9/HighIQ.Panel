@@ -1,5 +1,7 @@
 package com.augustconsulting.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -29,6 +31,12 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 		ss.saveOrUpdate(contacts);
 
 	}
+	
+	@Override
+	public Contacts getAllcontactDetails(Long contactId) {
+		// TODO Auto-generated method stub
+		return  sessionFactory.getCurrentSession().get(Contacts.class, contactId);
+	}
 
 	@Override
 	public void updateContactSites(ContactSites contactSites) {
@@ -38,6 +46,13 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 		ss.saveOrUpdate(contactSites);
 		ss.flush();
 		ss.clear();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Contacts> getAllcontactDetails() {
+		// TODO Auto-generated method stub
+		 	return (List<Contacts>) sessionFactory.getCurrentSession().createCriteria(Contacts.class).list();
 	}
 
 }

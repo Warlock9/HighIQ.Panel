@@ -35,10 +35,10 @@ public class ManageContactsController {
 
 	@GetMapping("/contactList")
 
-	public String viewVendorCustomerDetails(Model model, HttpServletRequest request, HttpServletResponse response)
+	public String viewCustomerDetails(Model model, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
+		 model.addAttribute("customerDetailList", manageContactService.getAllcontactDetails());
 		return new String(landingPageViewList);
 	}
 

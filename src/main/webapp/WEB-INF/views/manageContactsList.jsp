@@ -204,50 +204,61 @@
 															class="checkmark"></span>
 													</label>
 													</th> -->
-													<th><b>Contact Type</b></th>
-													<th><b>Contact ID</b></th>
-													<th><b>Bot ID</b></th>
-													<th><b>Contact First Name</b></th>
-													<th><b>Contact Middle Name</b></th>
-													<th><b>Contact Last Name</b></th>
-													<th><b>Contact Company Number</b></th>
-													<th><b>Contact Company</b></th>
-													<th><b>Contact Mail ID</b></th>
-													<th><b>Contact Phone</b></th>
+													<th><b>Client Company Name</b></th>
+													<th><b>Address Line 1</b></th>
+													<th><b>Address Line 2</b></th>
+													<th><b>Address Line 3</b></th>
+													<th><b>Address Line 4</b></th>
+													<th><b>City</b></th>
+													<th><b>State</b></th>
+													<th><b>Zip Code</b></th>
+													<th><b>Country</b></th>
+													<th><b>Contact Person</b></th>
+													<th><b>Contact Number</b></th>
+													<th><b>Email ID</b></th>
+													<th><b>Created Date</b></th>
+													<th><b>Updated Date</b></th>
+													<th><b>Status</b></th>
+													
 													<th><b></b></th>
 														
 												
 												</tr>
 											</thead>
 											<tbody>
-											<%-- 	<c:forEach items="${manageContactsList}" var="cd"
+											 	<c:forEach items="${customerDetailList}" var="cd"
 													varStatus="rowCounter">
 													<tr>
-														<td><label class="customcheckbox"> <input
+														<%-- <td><label class="customcheckbox"> <input
 																type="checkbox" class="listCheckbox hidCheckBox"
-																name="checkBoxId[]" value="${cd.id}"> <span
+																name="checkBoxId[]" value="${cd.clientId}"> <span
 																class="checkmark"></span>
-														</label></td>
-														<td>${cd.contactType}</td>
-														<td><a href="contactDetails?contactId=${cd.contactId}" target="_blank">${cd.contactId}</a></td>	
-														<td>${cd.botId}</td>	
-														<td>${cd.contactFirstName}</td>	
-														<td>${cd.contactMiddleName}</td>
-														<td>${cd.contactlastName}</td>												
-														<td>${cd.contactCompanyNumber}</td>
-														<td>${cd.contactCompany}</td>
-														<td>${cd.contactEmailId}</td>
-														<td>${cd.contactPhone}</td>
+														</label></td> --%>
+														<td>${cd.clientCompanyName}</td>
+														<td>${cd.addressLine1}</td>	
+														<td>${cd.addressLine2}</td>	
+														<td>${cd.addressLine3}</td>	
+														<td>${cd.addressLine4}</td>
+														<td>${cd.city}</td>												
+														<td>${cd.state}</td>
+														<td>${cd.zipCode}</td>
+														<td>${cd.country}</td>
+														<td>${cd.contactPerson}</td>
+														<td>${cd.contactNumber}</td>
+														<td>${cd.emailID}</td>
+														<td>${cd.createdDate}</td>
+														<td>${cd.updatedDate}</td>
+														<td>${cd.status}</td>
 														
 													<td>
 														<button type="button" class="btn btn-danger btn-sm"
 															data-toggle="modal"
-															data-target="#updateDeleteModal${cd.contactId}">Delete</button>
+															data-target="#updateDeleteModal${cd.clientId}">Delete</button>
 
 													</td>
 												</tr>
 												<!-- Start Of Modal  -->
-													<div class="modal fade" id="updateDeleteModal${cd.contactId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+													<div class="modal fade" id="updateDeleteModal${cd.clientId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
 						                                    <div class="modal-dialog" role="document ">
 						                                        <div class="modal-content">
 						                                            <div class="modal-header">
@@ -259,8 +270,8 @@
 						                                            <form action="deleteContactSiteList" method="POST">
 						                                            <div class="modal-body">
 																		<div class="card-body col-sm-12 text-center">Do you really want to delete...?</div>
-																		<input type="hidden" name="contactId" value="${cd.contactId}"/>
-																		<input type="hidden" name="contactCompanyNumber" value="${cd.contactCompanyNumber}"/>
+																		<input type="hidden" name="contactId" value="${cd.clientId}"/>
+																		<%-- <input type="hidden" name="contactCompanyNumber" value="${cd.contactCompanyNumber}"/> --%>
 																		<div class="card-body col-sm-12 text-center">						
 																			<button type="submit" name="action"
 																				value="delete" class="btn btn-sm btn-primary">Yes</button>
@@ -274,7 +285,7 @@
 						                                    </div>
 						                                </div>
 												<!-- End Of Modal -->
-												</c:forEach> --%>
+												</c:forEach>
 												
 											</tbody>
 										</table>

@@ -1,6 +1,7 @@
 package com.augustconsulting.service.impl;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,6 +85,18 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 			jse.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public Contacts getAllcontactDetails(Long contactId) {
+		// TODO Auto-generated method stub
+		return managecontactdao.getAllcontactDetails(contactId);
+	}
+
+	@Override
+	public List<Contacts> getAllcontactDetails() {
+		// TODO Auto-generated method stub
+		return managecontactdao.getAllcontactDetails();
 	}
 
 }

@@ -44,70 +44,21 @@ $(document)
 					return;
 				}
 			});
-			  
-		   
-			/*this is function is add  a field Customer Line */	
-			$('.btnAddCustomer').click(function(){
-				
-				var contactCompanynumber;
-				contactCompanynumber=$('.contactCompanyNumber').val();
-				
-				$.post("getOperatingIDSelectBox",{},function(res){
-					
-				  $.post("getBillToSideIDSelectBox",{contactCompanynumber:contactCompanynumber},function(res1){
-						
-				var id = $('myTable1 tr:last').attr('id');
-				var line="<tr>"
-				+"<td>"													
-					+"<select onchange='showBillToId()'>"
-						+"<option value=''>SELECT</option>"
-						+"<option value='BILL_TO'>BILL_TO</option>"
-						+"<option value='SHIP_TO'>SHIP_TO</option>"
-					+"</select>"																									
-				+"</td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true' style='display: none;'>"+contactCompanynumber+"</td>"
-				+"<td  contenteditable='true'>"+res1+"</td>"
-				+"<td contenteditable='true'></td>"+
-				+"<td contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td contenteditable='true'></td>"
-				+"<td contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'>"+res+"</td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-                +"<td><button type='button'class='btn btn-danger btn-sm btnDelete'>Delete</button>"
-                +"</td></tr>";
- 				
- 				$('.myTable1').append(line);
-					});
-				});
-			});
+		
 			
 			
 			/*this is function is add  a field Order VendorSite */		
-			$('.btnAddVendor').click(function(){
+			$('.btnAdd').click(function(){
 				
-				var contactCompanynumber;
-				contactCompanynumber=$('.contactCompanyNumber').val();
-				var contact_Id= document.getElementById("ContactID").value;
-				
-				$.post("getOperatingIDSelectBox",{},function(res1){
-					
 				var line="<tr>"
 				+"<td  contenteditable='true'></td>"
 				+"<td contenteditable='true'></td>"
-				+"<td style='display: none' contenteditable='true'>"+contactCompanynumber+"</td>"
+				+"<td style='display: none' contenteditable='true'></td>"
 				+"<td contenteditable='true'></td>"
-				+"<td  contenteditable='true'>"+res1+"</td>"
+				+"<td  contenteditable='true'></td>"
+				+"<td  contenteditable='true'></td>"
+				+"<td  contenteditable='true'></td>"
+				+"<td  contenteditable='true'></td>"
 				+"<td  contenteditable='true'></td>"
 				+"<td  contenteditable='true'></td>"
 				+"<td  contenteditable='true'></td>"
@@ -119,26 +70,10 @@ $(document)
                 +"<td><button type='button'class='btn btn-danger btn-sm btnDelete'>Delete</button>"
                 +"</td></tr>";  
  				
- 				$('.myTable2').append(line);
- 				//addDistributionOnAddLine(lineNumber,invoiceUniqueId,botId);
-				})  });
+ 				$('.myTable1').append(line);
+				});
 			
-		/*	$('.btnAddList').click(function(){
-				var line="<tr>"
-				+"<td  contenteditable='true'></td>"
-				+"<td contenteditable='true'></td>"
-				+"<td contenteditable='true'></td>"
-				+"<td contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-                +"</td></tr>";
- 				
- 				$('.myTable').append(line);
- 				//addDistributionOnAddLine(lineNumber,invoiceUniqueId,botId);
-			  });*/
+	
 			
 			
 		 
@@ -147,15 +82,15 @@ $(document)
 	$(".btn-update").click(function() {
 		
 			   /* getting value from contacts Header*/
-			  var contactType=  $('.contactType').val();
-		      var contactId=  $('.contactId').val();
-		      var contactFirstName=  $('.contactFirstName').val();
-		      var contactMiddleName=  $('.contactMiddleName').val();
-		      var contactlastName=  $('.contactlastName').val();
-		      var contactCompanyNumber=  $('.contactCompanyNumber').val();
-		      var contactEmailId=  $('.contactEmailId').val();
-		      var contactCompany=$('.contactCompany').val();
-		      var contactPhone=  $('.contactPhone').val();
+			  var clientId=  $('.clientId').val();
+		      var clientCompanyName=  $('.clientCompanyName').val();
+		      var addressLine1=  $('.addressLine1').val();
+		      var addressLine2=  $('.addressLine2').val();
+		      var addressLine3=  $('.addressLine3').val();
+		      var addressLine4=  $('.addressLine4').val();
+		      var contactCompany=  $('.contactCompany').val();
+		      var city=$('.city').val();
+		      var state=  $('.state').val();
 		      var botId=  $('.botId').val();// common fields
 		      var action='update'
 		      var arrayContactSites = [];

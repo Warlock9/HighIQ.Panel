@@ -6,16 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name="tbl_Contacts")
 public class Contacts{
 	
 	@Id
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ClientID ")
 	private Long clientId;
 	
+	@NotNull
 	@Column(name="ClientCompanyName" ,length=10)
 	private String clientCompanyName;
 	
@@ -31,33 +35,41 @@ public class Contacts{
 	@Column(name="AddressLine4" ,length=255)
 	private String addressLine4;
 	
+	@NotNull
 	@Column(name="City" ,length=100)
 	private String city;
 	
 	@Column(name="State" ,length=100)
 	private String state;
 	
+	@NotNull
 	@Column(name="ZipCode" ,length=20)
 	private String zipCode;
 	
 	@Column(name="Country" ,length=100)
 	private String country;
 	
+	@NotNull
 	@Column(name="ContactPerson" ,length=25)
 	private String contactPerson;
 	
+	@NotNull
 	@Column(name="ContactNumber" ,length=15)
 	private String contactNumber;
 	
+	@NotNull
 	@Column(name="EmailID" ,length=30)
 	private String emailID;
 	
+	@NotNull
 	@Column(name="CreatedDate" ,length=15)
 	private String createdDate;
 	
+	@NotNull
 	@Column(name="UpdatedDate" ,length=15)
 	private String updatedDate;
 	
+	@NotNull
 	@Column(name="Status" ,length=5)
 	private String status;
 

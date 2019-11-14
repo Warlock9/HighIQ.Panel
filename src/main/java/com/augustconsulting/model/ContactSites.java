@@ -4,119 +4,115 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "tbl_ContactSites")
-public class ContactSites implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class ContactSites implements Serializable {
 
 	@Id
-	@Column(name = "ContactCompanyNumber",length=200)
-	private String contactCompanyNumber;
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ClientSiteID")
+	private Long clientSiteId;
 
 	@Id
-	@Column(name = "SiteType",length=50)
-	private String siteType;
+	
+	@Column(name="ClientID", length = 10)
+	private String clientId;
+	
+	
+	@NotNull
+	@Column(name = "SiteName", length = 100)
+	private String siteName;
 
-	@Id
-	@Column(name = "SiteUseID",length=15)
-	private String siteUseId;
-
-	@Column(name = "BillToSiteUseID",length=15)
-	private String billToSiteUseId;
-
-	@Column(name = "LocationID",length=20)
-	private String locationId;
-
-	@Column(name = "AddressLine1",length=200)
+	
+	@NotNull
+	@Column(name = "AddressLine1", length = 255)
 	private String addressLine1;
 
-	@Column(name = "AddressLine2",length=200)
+	
+	@NotNull
+	@Column(name = "AddressLine2", length = 255)
 	private String addressLine2;
 
-	@Column(name = "AddressLine3",length=200)
+	@NotNull
+	@Column(name = "AddressLine3", length = 255)
 	private String addressLine3;
 
-	@Column(name = "AddressLine4",length=200)
+	
+	@NotNull
+	@Column(name = "AddressLine4", length = 255)
 	private String addressLine4;
-	
-	@Column(name = "AddressCity",length=100)
-	private String addressCity;
-	
-	@Column(name = "AddressState",length=100)
-	private String addressState;
-	
-	@Column(name = "AddressPostalCode",length=20)
-	private String addressPostalCode;
-	
-	@Column(name = "AddressCountry",length=60)
-	private String addressCountry;
-	
-	@Column(name = "DefaultPaymentTerms",length=100)
-	private String defaultPaymentTerms;
-	
-	@Column(name = "DefaultTransactionType",length=100)
-	private String defaultTransactionType;
-	
-	@Column(name = "DefaultWareHouse",length=100)
-	private String defaultWareHouse;
-	
-	@Column(name = "DefaultPriceList",length=100)
-	private String defaultPriceList;
-	
-	@Column(name = "DefaultFOBPoint",length=100)
-	private String defaultFOBPoint;
-	
-	@Column(name = "DefaultOrderLineType",length=100)
-	private String defaultOrderLineType;
-	
-	@Column(name="OperatingUnitID" ,length=50)
-	private String operatingUnit;
 
-	public String getContactCompanyNumber() {
-		return contactCompanyNumber;
+	@NotNull
+	@Column(name = "City", length = 100)
+	private String city;
+
+	@NotNull
+	@Column(name = "State", length = 100)
+	private String state;
+
+	@NotNull
+	@Column(name = "ZipCode", length = 20)
+	private String zipCode;
+
+	@NotNull
+	@Column(name = "Country", length = 100)
+	private String country;
+
+	
+	@NotNull
+	@Column(name = "ContactPerson", length = 25)
+	private String contactPerson;
+
+	@NotNull
+	@Column(name = "ContactNumber", length = 15)
+	private String contactNumber;
+
+	@NotNull
+	@Column(name = "EmailID", length = 30)
+	private String emailID;
+
+	@NotNull	
+	@Column(name = "CreatedDate", length = 15)
+	private String createdDate;
+
+	@NotNull
+	@Column(name = "UpdatedDate", length = 15)
+	private String updatedDate;
+
+	@NotNull
+	@Column(name = "Status", length = 5)
+	private String status;
+
+	public Long getClientSiteId() {
+		return clientSiteId;
 	}
 
-	public void setContactCompanyNumber(String contactCompanyNumber) {
-		this.contactCompanyNumber = contactCompanyNumber;
+	public void setClientSiteId(Long clientSiteId) {
+		this.clientSiteId = clientSiteId;
 	}
 
-	public String getSiteType() {
-		return siteType;
+	public String getClientId() {
+		return clientId;
 	}
 
-	public void setSiteType(String siteType) {
-		this.siteType = siteType;
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
 	}
 
-	public String getSiteUseId() {
-		return siteUseId;
+	public String getSiteName() {
+		return siteName;
 	}
 
-	public void setSiteUseId(String siteUseId) {
-		this.siteUseId = siteUseId;
-	}
-
-	public String getBillToSiteUseId() {
-		return billToSiteUseId;
-	}
-
-	public void setBillToSiteUseId(String billToSiteUseId) {
-		this.billToSiteUseId = billToSiteUseId;
-	}
-
-	public String getLocationId() {
-		return locationId;
-	}
-
-	public void setLocationId(String locationId) {
-		this.locationId = locationId;
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
 
 	public String getAddressLine1() {
@@ -151,115 +147,96 @@ public class ContactSites implements Serializable{
 		this.addressLine4 = addressLine4;
 	}
 
-	public String getAddressCity() {
-		return addressCity;
+	public String getCity() {
+		return city;
 	}
 
-	public void setAddressCity(String addressCity) {
-		this.addressCity = addressCity;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public String getAddressState() {
-		return addressState;
+	public String getState() {
+		return state;
 	}
 
-	public void setAddressState(String addressState) {
-		this.addressState = addressState;
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	public String getAddressPostalCode() {
-		return addressPostalCode;
+	public String getZipCode() {
+		return zipCode;
 	}
 
-	public void setAddressPostalCode(String addressPostalCode) {
-		this.addressPostalCode = addressPostalCode;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
-	public String getAddressCountry() {
-		return addressCountry;
+	public String getCountry() {
+		return country;
 	}
 
-	public void setAddressCountry(String addressCountry) {
-		this.addressCountry = addressCountry;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
-	public String getDefaultPaymentTerms() {
-		return defaultPaymentTerms;
+	public String getContactPerson() {
+		return contactPerson;
 	}
 
-	public void setDefaultPaymentTerms(String defaultPaymentTerms) {
-		this.defaultPaymentTerms = defaultPaymentTerms;
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
 	}
 
-	public String getDefaultTransactionType() {
-		return defaultTransactionType;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setDefaultTransactionType(String defaultTransactionType) {
-		this.defaultTransactionType = defaultTransactionType;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 
-	public String getDefaultWareHouse() {
-		return defaultWareHouse;
+	public String getEmailID() {
+		return emailID;
 	}
 
-	public void setDefaultWareHouse(String defaultWareHouse) {
-		this.defaultWareHouse = defaultWareHouse;
+	public void setEmailID(String emailID) {
+		this.emailID = emailID;
 	}
 
-	public String getDefaultPriceList() {
-		return defaultPriceList;
+	public String getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setDefaultPriceList(String defaultPriceList) {
-		this.defaultPriceList = defaultPriceList;
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public String getDefaultFOBPoint() {
-		return defaultFOBPoint;
+	public String getUpdatedDate() {
+		return updatedDate;
 	}
 
-	public void setDefaultFOBPoint(String defaultFOBPoint) {
-		this.defaultFOBPoint = defaultFOBPoint;
+	public void setUpdatedDate(String updatedDate) {
+		this.updatedDate = updatedDate;
 	}
 
-	public String getDefaultOrderLineType() {
-		return defaultOrderLineType;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setDefaultOrderLineType(String defaultOrderLineType) {
-		this.defaultOrderLineType = defaultOrderLineType;
-	}
-
-	public String getOperatingUnit() {
-		return operatingUnit;
-	}
-
-	public void setOperatingUnit(String operatingUnit) {
-		this.operatingUnit = operatingUnit;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "ContactSites [contactCompanyNumber=" + contactCompanyNumber + ", siteType=" + siteType + ", siteUseId="
-				+ siteUseId + ", billToSiteUseId=" + billToSiteUseId + ", locationId=" + locationId + ", addressLine1="
-				+ addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3 + ", addressLine4="
-				+ addressLine4 + ", addressCity=" + addressCity + ", addressState=" + addressState
-				+ ", addressPostalCode=" + addressPostalCode + ", addressCountry=" + addressCountry
-				+ ", defaultPaymentTerms=" + defaultPaymentTerms + ", defaultTransactionType=" + defaultTransactionType
-				+ ", defaultWareHouse=" + defaultWareHouse + ", defaultPriceList=" + defaultPriceList
-				+ ", defaultFOBPoint=" + defaultFOBPoint + ", defaultOrderLineType=" + defaultOrderLineType
-				+ ", operatingUnit=" + operatingUnit + "]";
+		return "ContactSites [clientSiteId=" + clientSiteId + ", clientId=" + clientId + ", siteName=" + siteName
+				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3
+				+ ", addressLine4=" + addressLine4 + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode
+				+ ", country=" + country + ", contactPerson=" + contactPerson + ", contactNumber=" + contactNumber
+				+ ", emailID=" + emailID + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", status="
+				+ status + "]";
 	}
+	
+	
 
-	
-
-
-	
-	
-	
 }

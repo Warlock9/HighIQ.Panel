@@ -220,14 +220,14 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach items="${manageContactsList}" var="cd"
+											<%-- 	<c:forEach items="${manageContactsList}" var="cd"
 													varStatus="rowCounter">
 													<tr>
-														<%-- <td><label class="customcheckbox"> <input
+														<td><label class="customcheckbox"> <input
 																type="checkbox" class="listCheckbox hidCheckBox"
 																name="checkBoxId[]" value="${cd.id}"> <span
 																class="checkmark"></span>
-														</label></td> --%>
+														</label></td>
 														<td>${cd.contactType}</td>
 														<td><a href="contactDetails?contactId=${cd.contactId}" target="_blank">${cd.contactId}</a></td>	
 														<td>${cd.botId}</td>	
@@ -274,118 +274,16 @@
 						                                    </div>
 						                                </div>
 												<!-- End Of Modal -->
-												</c:forEach>
+												</c:forEach> --%>
 												
 											</tbody>
 										</table>
-										<c:if test="${createAccess=='1'}">
+										<form target="_blank" class="form-horizontal" action="contactDetails">
 										
-										<button type="button" class="btn btn-success btnDelete1"
-														 data-toggle="modal"
-														data-target="#addNewContactModal">Add New Contact</button>
-														
-												<button type="button" data-toggle="modal" data-target="#uploadExcelModal" class="btn btn-info">Upload
-													Sheet</button>
-												<button type="button" data-toggle="modal" data-target="#downloadExcelModal" class="btn btn-info downloadSheet">Download
-													Template</button>
-											</c:if>
-										
-										
-										<!-- Start Of Modal  -->
-										<form target="_blank" class="form-horizontal" action="manageContactForNewContact">
-										<div class="modal fade" id="addNewContactModal"
-											tabindex="-1" role="dialog"
-											aria-labelledby="exampleModalLabel" aria-hidden="true ">
-											<div class="modal-dialog" role="document ">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-														<button type="button" class="close" data-dismiss="modal"
-															aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-
-													<div class="modal-body">
-														<div class="card-body col-sm-12 text-center">Select Contact Type?</div>
-														<div class="card-body col-sm-12 text-center">
-															<button id="closemodal" type="submit" name="action" value="Vendor"
-																class="btn btn-sm btn-primary" >Vendor</button>
-															<button  id="closemodal1" type="submit" name="action" value="Customer"
-																class="btn btn-sm btn-primary" >Customer</button>
-															<button type="button" class="btn btn-sm btn-secondary"
-																data-dismiss="modal">Cancel</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- End Of Modal -->
-										
-										<!-- Upload Start Of Modal  -->
+										<button type="submit" class="btn btn-success"
+														 >Add New Contact</button>
+												
 									</form>
-									<form  class="form-horizontal" action="saveproduct" method="post" enctype="multipart/form-data">
-										<div class="modal fade" id="uploadExcelModal"
-											tabindex="-1" role="dialog"
-											aria-labelledby="exampleModalLabel" aria-hidden="true ">
-											<div class="modal-dialog" role="document ">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-														<button type="button" class="close" data-dismiss="modal"
-															aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-
-													<div class="modal-body">
-														<div class="card-body col-sm-12 text-center">Select Contact Type?</div>
-														<div class="card-body col-sm-12 text-center">
-														   <input name="f1" type="file" style="display: none;" id="excelfileVendor">
-														   <input name="f2" type="file" style="display: none;" id="excelfileCustomer">
-														    <button type="button" class="btn btn-sm btn-primary uploadVendorSheetBtn">Vendor</button>
-															<button type="submit" class="submitVendor" style="display: none;" name="action" value="Vendor"></button>
-															<button type="submit" class="submitCustomer" style="display: none;" name="action" value="Customer"></button>
-															<button type="button" class="btn btn-sm btn-primary uploadCustomerSheetBtn">Customer</button>
-															<button type="button" class="btn btn-sm btn-secondary"
-																data-dismiss="modal">Cancel</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--Upload End Of Modal -->
-								
-									</form>
-									
-									<!-- download Start Of Modal  -->
-										<div class="modal fade" id="downloadExcelModal"
-											tabindex="-1" role="dialog"
-											aria-labelledby="exampleModalLabel" aria-hidden="true ">
-											<div class="modal-dialog" role="document ">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-														<button type="button" class="close" data-dismiss="modal"
-															aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-
-													<div class="modal-body">
-														<div class="card-body col-sm-12 text-center">Select Contact Type?</div>
-														<div class="card-body col-sm-12 text-center">
-														    <button type="button" class="btn btn-sm btn-primary downloadVendorSheetBtn">Vendor</button>
-															<button type="button" class="btn btn-sm btn-primary downloadCustomerSheetBtn">Customer</button>
-															<button type="button" class="btn btn-sm btn-secondary"
-																data-dismiss="modal">Cancel</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--download End Of Modal -->
-								
 								
 								</div>
 

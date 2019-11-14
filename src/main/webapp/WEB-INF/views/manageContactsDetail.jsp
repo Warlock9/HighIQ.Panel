@@ -204,8 +204,8 @@ overflow: hidden;
 			<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 				<a class="nav-item nav-link active" id="nav-about-tab"
 					data-toggle="tab" href="#nav-about" role="tab"
-					aria-controls="nav-about" aria-selected="true">Header
-					Information</a> <a class="nav-item nav-link" id="nav-profile-tab"
+					aria-controls="nav-about" aria-selected="true">Customer Details
+					</a> <a class="nav-item nav-link" id="nav-profile-tab"
 					data-toggle="tab" href="#nav-profile" role="tab"
 					aria-controls="nav-profile" aria-selected="false"> Site
 					Details</a>
@@ -224,9 +224,8 @@ Trail </a> -->
 	</div>
 </nav>
 
-<c:choose>
-	<c:when test="${Type=='Customer'}">
-		<%-- <form class="form-horizontal"> --%>
+
+		 <form class="form-horizontal">
 
 			<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 
@@ -238,7 +237,7 @@ Trail </a> -->
 						<div class="card">
 
 							<div class="card-body">
-								<h4 class="card-title">Contact Information</h4>
+								<h4 class="card-title">Customer Details</h4>
 								
 								 <div class="form-group row">
 									<!-- <label for="fname"
@@ -246,31 +245,29 @@ Trail </a> -->
 										ID</label> -->
 									<div class="col-sm-4">
 
-										<input type="text" class="form-control contactId"
-											id="ContactID" value="${contactDetails.contactId}" style="display:none;"
-											placeholder="Contact ID" />
+										<input type="text" class="form-control clientId"
+											id="clientId" value="" style="display:none;"
+											placeholder="Client Id" />
 
 									</div>
 
 								</div>
 								<div class="form-group row">
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Type </label>
+										class="col-sm-2 text-right control-label col-form-label">Client Company Name </label>
 									<div class="col-sm-4">
-										<input type="text" disabled class="form-control contactType"
-											id="ContactType" value="Customer"
-											placeholder="Contact Type">
+										<input type="text"  class="form-control clientCompanyName"
+											id="clientCompanyName" value=""
+											placeholder="Client Company Name">
 									</div>
 									
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										First Name</label>
+										class="col-sm-2 text-right control-label col-form-label">Address Line 1</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control contactFirstName"
-											id="ContactFirstName"
-											value="${contactDetails.contactFirstName}"
-											placeholder="Contact First Name">
+										<input type="text" class="form-control addressLine1"
+											id="addressLine1"
+											value=""
+											placeholder="Address Line 1">
 									</div>
 								
 								</div>
@@ -279,36 +276,33 @@ Trail </a> -->
 
 								<div class="form-group row">
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Middle Name</label>
+										class="col-sm-2 text-right control-label col-form-label">Address Line 2</label>
 									<div class="col-sm-4">
 										<input type="text"
-											class="form-control contactMiddleName"
-											id="ContactMiddleName"
-											value="${contactDetails.contactMiddleName}"
-											placeholder="Contact Middle Name">
+											class="form-control addressLine2"
+											id="addressLine2"
+											value=""
+											placeholder="Address Line 2">
 									</div>
 
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Last Name</label>
+										class="col-sm-2 text-right control-label col-form-label">Address Line 3</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control contactlastName"
-											id="ContactLastName"
-											value="${contactDetails.contactlastName}"
-											placeholder="Contact Last Name">
+										<input type="text" class="form-control addressLine3"
+											id="addressLine3"
+											value=""
+											placeholder="Address Line 3">
 									</div>
 								</div>
 
 								<div class="form-group row">
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Company Number</label>
+										class="col-sm-2 text-right control-label col-form-label">Address Line 4</label>
 									<div class="col-sm-4">
 										<input type="text"
-											class="form-control contactCompanyNumber" id="contactCompanyNumber"
-											value="${contactDetails.contactCompanyNumber}"
-											placeholder="Contact Company Number">
+											class="form-control addressLine4" id="addressLine4"
+											value=""
+											placeholder="Address Line 4">
 									</div>
 
 									<label for="fname"
@@ -317,7 +311,7 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text" class="form-control contactCompany"
 											id="ContactCompany"
-											value="${contactDetails.contactCompany}"
+											value=""
 											placeholder="Contact Company">
 									</div>
 
@@ -327,22 +321,20 @@ Trail </a> -->
 									</div>
                        	<div class="form-group row">
                  	           <label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Email ID </label>
+										class="col-sm-2 text-right control-label col-form-label">City </label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control contactEmailId"
-											id="ContactEmailID"
-											value="${contactDetails.contactEmailId}"
-											placeholder="Contact Email ID">
+										<input type="text" class="form-control city"
+											id="city"
+											value=""
+											placeholder="City">
 									</div>
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label ">Contact
-										Phone </label>
+										class="col-sm-2 text-right control-label col-form-label ">State</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control contactPhone"
-											id="ContactPhone"
-											value="${contactDetails.contactPhone}"
-											placeholder="Contact Phone">
+										<input type="text" class="form-control state"
+											id="state"
+											value=""
+											placeholder="State">
 									</div>
                  	         </div>
 
@@ -350,29 +342,24 @@ Trail </a> -->
 
 								<div class="form-group row">
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">
-										Bot ID</label>
+										class="col-sm-2 text-right control-label col-form-label ">Zip Code</label>
 									<div class="col-sm-4">
-										<%-- <input type="text" class="form-control botId" id=""
-											value="${contactDetails.botId}" placeholder="Bot ID"> --%>
-											<select class="form-control botId" >
-											<option value="">SELECT</option>
-											<c:forEach items="${botDetails}" var="botDetails">
-											<option value="${botDetails.botId}" <c:if test="${botDetails.botId == contactDetails.botId}">Selected</c:if>>${botDetails.botId}</option>
-											</c:forEach>
-											</select>
+										<input type="text" class="form-control zipCode"
+											id="zipCode"
+											value=""
+											placeholder="Zip Code">
 									</div>
 								
 
 									<label for="fname"
 										class="col-sm-2 text-right control-label col-form-label">
-										Default Payment Terms</label>
+										Country</label>
 									<div class="col-sm-4">
 										<input type="text"
-											class="form-control defaultPaymentTerms"
-											id="DefaultPaymentTerms"
-											value="${contactDetails.defaultPaymentTerms}"
-											placeholder="Default Payment Terms">
+											class="form-control country"
+											id="country"
+											value=""
+											placeholder="Country">
 									</div>
 						</div>
 
@@ -380,48 +367,62 @@ Trail </a> -->
 								<div class="form-group row">
 								
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Default
-										Transaction Type </label>
+										class="col-sm-2 text-right control-label col-form-label">Contact Person </label>
 									<div class="col-sm-4">
 										<input type="text"
-											class="form-control defaultTranscationType"
-											id="DefaultTransactionType"
-											value="${contactDetails.defaultTransactionType}"
-											placeholder="Default Transaction Type">
+											class="form-control contactPerson"
+											id="contactPerson"
+											value=""
+											placeholder="Contact Person">
 									</div>
 								
 									<label for="fname"
 										class="col-sm-2 text-right control-label col-form-label">
-										Default Ware House</label>
+										Contact Number</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control defaultWarehouse"
-											id="DefaultWareHouse"
-											value="${contactDetails.defaultWareHouse}"
-											placeholder="Default Ware House">
+										<input type="text" class="form-control contactNumber"
+											id="contactNumber"
+											value=""
+											placeholder="Contact Number">
 									</div>
 									</div>
 
 
 								<div class="form-group row">
 									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Default
-										Price List </label>
+										class="col-sm-2 text-right control-label col-form-label">EmailID</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control defaultPriceList"
-											id="DefaultPriceList"
-											value="${contactDetails.defaultPriceList}"
-											placeholder="Default Price List">
+										<input type="text" class="form-control emailID"
+											id="emailID"
+											value=""
+											placeholder="Email ID">
 									</div>
 									
 									<label for="fname"
 										class="col-sm-2 text-right control-label col-form-label">
-										Default FOB Point</label>
+										Updated Date</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control defaultFobPoint"
-											id="DefaultFOBPoint"
-											value="${contactDetails.defaultFobPoint}"
-											placeholder="Default FOB Point">
+										<input type="text" class="form-control updatedDate"
+											id="updatedDate"
+											value=""
+											placeholder="Updated Date">
 									</div>
+								</div>
+								
+								<div class="form-group row">
+									<label for="fname"
+										class="col-sm-2 text-right control-label col-form-label">Active Status</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control activeStatus"
+											id="activeStatus"
+											value=""
+											placeholder="Active Status">
+									</div>
+									
+									<label for="fname"
+										class="col-sm-2 text-right control-label col-form-label">
+										</label>
+									
 								</div>
 
 
@@ -444,26 +445,25 @@ Trail </a> -->
 
 										<thead>
 											<tr>
-												<th><b>Site Type</b></th>
-												<th><b>Site Use ID</b></th>
-												<th style="display: none;"><b>Contact Company Number</b></th>
-												<th><b>Bill To Site Use ID</b></th>
-												<th><b>Location ID</b></th>
-											<!-- 	<th>Operation Unit Id</th> -->
-												<th><b>Address Line1</b></th>
-												<th><b>Address Line2</b></th>
-												<th><b>Address Line3 </b></th>
-												<th><b>Address Line4</b></th>
-												<th><b>Address City</b></th>
-												<th><b>Address State</b></th>
-												<th><b>Address Postal Code</b></th>
-												<th><b>Address Country</b></th>
-												<th><b>Operation Unit</b></th>
-												<th><b>Default Payment Terms</b></th>
-												<th><b>Default Transaction Type</b></th>
-												<th><b>Default Ware House</b></th>
-												<th><b>Default Price List</b></th>
-												<th><b>Default FOB Point</b></th>
+												<th style="display: none"><b>Client Site ID </b></th>
+												<th style="display: none"><b>Client ID</b></th>
+												<th><b>Site Name</b></th>
+												<th><b>Address Line 1</b></th>
+												<th><b>Address Line 2</b></th>
+											
+												<th><b>Address  Line 3</b></th>
+												<th><b>Address  Line 4</b></th>
+												<th><b>City</b></th>
+												<th><b>State</b></th>
+												<th><b>Zip Code</b></th>
+												<th><b>Country</b></th>
+												<th><b>Contact Person </b></th>
+												<th><b>Contact Number</b></th>
+												<th><b>Email ID</b></th>
+												<th><b>Created Date</b></th>
+												<th><b>Updated Date</b></th>
+												<th><b>Active Status</b></th>
+												
 												<th><b></b></th>
 
 
@@ -472,104 +472,12 @@ Trail </a> -->
 										</thead>
 
 										<tbody class="alignmentp" id="tableBody" >
-											<c:forEach items="${cSites}" var="il">
-
-												<tr class="dynamicRowLine">
-													<td>													
-														<select onchange="showBillToId()">
-															 <option value="">SELECT</option>
-															 <option value="BILL_TO" <c:if test="${il.siteType=='BILL_TO'}">selected</c:if>>BILL_TO</option>
-															 <option value="SHIP_TO" <c:if test="${il.siteType=='SHIP_TO'}">selected</c:if>>SHIP_TO</option>
-														</select>																									
-													</td> 
-													<td contenteditable='true'>${il.siteUseId}</td>
-													<td contenteditable='true' style="display: none;">${il.contactCompanyNumber}</td>
-													<td>
-														<c:choose>
-														  <c:when test="${il.siteType=='BILL_TO'}">
-														    
-														  </c:when>
-														  <c:otherwise>
-														  	<select>
-														  		<option value="">SELECT</option>
-																<c:forEach items="${distinctBillToSiteId}" var="billToList">																						
-															 	<option value="${billToList}" <c:if test="${billToList==il.billToSiteUseId}">selected</c:if>> ${billToList} </option>
-																</c:forEach> 
-															</select>	
-														  </c:otherwise>
-														</c:choose>																									
-													</td>
-													<td contenteditable='true'>${il.locationId}</td>
-													<%-- <td contenteditable='true'><select>
-														  		<option value="">SELECT</option>
-																<c:forEach items="${RegionDetailList}" var="operatingUnitID">																						
-															 	<option value="${operatingUnitID.operatingUnitId}" > ${operatingUnitID.operatingUnit} </option>
-																</c:forEach>
-															</select>	</td> --%>
-													<td contenteditable='true'>${il.addressLine1}</td>
-													<td contenteditable='true'>${il.addressLine2}</td>
-													<td contenteditable='true'>${il.addressLine3}</td>
-													<td contenteditable='true'>${il.addressLine4}</td>
-													<td contenteditable='true'>${il.addressCity}</td>
-													<td contenteditable='true'>${il.addressState}</td>
-													<td contenteditable='true'>${il.addressPostalCode}</td>
-													<td contenteditable='true'>${il.addressCountry}</td>
-													
-													<td contenteditable='true'><select>
-														  		<option value="">SELECT</option>
-																<c:forEach items="${RegionDetailList}" var="operatingUnitID">																						
-															 	<option value="${operatingUnitID.operatingUnitId}" <c:if test="${il.operatingUnit == operatingUnitID.operatingUnitId}">selected</c:if>> ${operatingUnitID.operatingUnit}</option>
-																</c:forEach>
-															</select></td>
-													<td contenteditable='true'>${il.defaultPaymentTerms}</td>
-													<td contenteditable='true'>${il.defaultTransactionType}</td>
-													<td contenteditable='true'>${il.defaultWareHouse}</td>
-													<td contenteditable='true'>${il.defaultPriceList}</td>
-													<td contenteditable='true'>${il.defaultFOBPoint}</td>
-
-													<td>
-														<button type="button" class="btn btn-danger btn-sm"
-															data-toggle="modal"
-															data-target="#updateDeleteModal${il.siteUseId}">Delete</button>
-
-													</td>
-												</tr>
-												<!-- Start Of Modal  -->
-													<div class="modal fade" id="updateDeleteModal${il.siteUseId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-						                                    <div class="modal-dialog" role="document ">
-						                                        <div class="modal-content">
-						                                            <div class="modal-header">
-						                                                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-						                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						                                                    <span aria-hidden="true ">&times;</span>
-						                                                </button>
-						                                            </div>
-						                                            <form action="deleteContactSite" method="POST">
-						                                            <div class="modal-body">
-																		<div class="card-body col-sm-12 text-center">Do you really want to delete...?</div>
-																		<input type="hidden" name="siteUseId" value="${il.siteUseId}"/>
-																		<input type="hidden" name="contactCompanyNumber" value="${il.contactCompanyNumber}"/>
-																		<input type="hidden" name="siteType" value="${il.siteType}"/>
-																		<input type="hidden" name="contactId" value="${contactDetails.contactId}"/>
-																		<div class="card-body col-sm-12 text-center">						
-																			<button type="submit" name="action"
-																				value="delete" class="btn btn-sm btn-primary">Yes</button>
-																			<button type="button"
-																				class="btn btn-sm btn-secondary"
-																				data-dismiss="modal">No</button>
-																		</div>
-																	</div>
-																	</form>
-						                                        </div>
-						                                    </div>
-						                                </div>
-												<!-- End Of Modal -->
-											</c:forEach>
+											
 										</tbody>
 
 									</table>
 									<span style="margin-left: 20px;"><button
-											type="button" class="btn btn-danger btn-sm btnAddCustomer">Add
+											type="button" class="btn btn-danger btn-sm btnAdd">Add
 											Line</button></span>
 
 								</div>
@@ -585,361 +493,24 @@ Trail </a> -->
 
 			<div class="border-top">
 				<div class="card-body">
-					<c:if test="${editAccess=='1'}">
+					
 						<button type="button" class="btn btn-info "
 							data-toggle="modal" data-target="#updateConfirmModal">Update</button>
-					</c:if>
-					<c:if test="${approveAccess=='1' || approval10000=='1'}">
-
-						<button type="button" class="btn btn-info"
+					
+					
+						<!-- <button type="button" class="btn btn-info"
 							data-toggle="modal" data-target="#approveConfirmModal">Approve</button>
-					</c:if>
-					<c:if test="${editAccess=='1' && approveAccess=='1'}">
-
+					
 						<button type="button" class="btn btn-info btn-reject"
-							data-toggle="modal" data-target="#rejectConfirmModal">Reject</button>
-					</c:if>
-
+							data-toggle="modal" data-target="#rejectConfirmModal">Reject</button> -->
+					
 				</div>
 			</div>
-		<%-- </form> --%>
+		 </form> 
 
-	</c:when>
 	
-	<c:when test="${Type=='Vendor'}">
-		<%-- <form class="form-horizontal"> --%>
-			<%-- action="managecontact" method="POST" --%>
-			<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+	
 
-				<!-- starts invoice Information -->
-				<div class="tab-pane fade show active" id="nav-about"
-					role="tabpanel" aria-labelledby="nav-contact-tab">
-
-					<div class="col-12">
-						<div class="card">
-
-							<div class="card-body">
-								<h4 class="card-title">Contact Information</h4>
-								
-								 <div class="form-group row">
-									<!-- <label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										ID</label> -->
-									<div class="col-sm-4">
-
-										<input type="text" class="form-control contactId"
-											id="ContactID" value="${contactDetails.contactId}" style="display:none;"
-											placeholder="Contact ID" />
-
-									</div>
-
-								</div>
-								
-								
-								<div class="form-group row">
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Type </label>
-									<div class="col-sm-4">
-										<input type="text" disabled class="form-control contactType"
-											id="ContactType" value="Vendor"
-											placeholder="Contact Type">
-									</div>
-									
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										First Name</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control contactFirstName"
-											id="ContactFirstName"
-											value="${contactDetails.contactFirstName}"
-											placeholder="Contact First Name">
-									</div>
-								
-								</div>
-
-
-								
-
-								<div class="form-group row">
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Middle Name</label>
-									<div class="col-sm-4">
-										<input type="text"
-											class="form-control contactMiddleName"
-											id="ContactMiddleName"
-											value="${contactDetails.contactMiddleName}"
-											placeholder="Contact Middle Name">
-									</div>
-
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Last Name</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control contactlastName"
-											id="ContactLastName"
-											value="${contactDetails.contactlastName}"
-											placeholder="Contact Last Name">
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label" >Contact
-										Company Number</label>
-									<div class="col-sm-4" >
-										<input type="text"
-											class="form-control contactCompanyNumber" id="fname"
-											value="${contactDetails.contactCompanyNumber}"
-											placeholder="Contact Company Number">
-									</div>
-
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Company</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control contactCompany"
-											id="ContactCompany"
-											value="${contactDetails.contactCompany}"
-											placeholder="Contact Company">
-									</div>
-
-								
-									
-								</div>
-								<div class="form-group row">
-								    <label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Email ID </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control contactEmailId"
-											id="ContactEmailID"
-											value="${contactDetails.contactEmailId}"
-											placeholder="Contact Email ID">
-									</div>
-								  
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label ">Contact
-										Phone </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control contactPhone"
-											id="ContactPhone"
-											value="${contactDetails.contactPhone}"
-											placeholder="Contact Phone">
-									</div>
-								</div>
-
-
-								<div class="form-group row"> 
-
-                                      <label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">
-										Bot ID</label>
-									<div class="col-sm-4">
-										<%-- <input type="text" class="form-control botId" id=""
-											value="${contactDetails.botId}" placeholder="Bot ID"> --%>
-											
-											<select class="form-control botId" >
-											<option value="">SELECT</option>
-											<c:forEach items="${botDetails}" var="botDetails">
-											<option value="${botDetails.botId}" <c:if test="${botDetails.botId == contactDetails.botId}">Selected</c:if>>${botDetails.botId}</option>
-											</c:forEach>
-											</select>
-											
-											
-									</div>
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Bank
-										Account Code </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control bankAccountCode"
-											id="BankAccountCode"
-											value="${contactDetails.bankAccountCode}"
-											placeholder="Bank Account Code">
-									</div>
-								</div>
-
-
-								<div class="form-group row">
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">
-										Bank Account</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control bankAccount"
-											id="BankAccount" value="${contactDetails.bankAccount}"
-											placeholder="Bank Account">
-									</div>
-								<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">
-										Bank Account Number</label>
-									<div class="col-sm-4">
-										<input type="text"
-											class="form-control bankaccountNumber"
-											id="BankAccountNumber"
-											value="${contactDetails.bankaccountNumber}"
-											placeholder="Bank Account Number">
-									</div>
-									
-									
-									</div>
-
-
-								<div class="form-group row">
-									
-                                  <label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">VAT
-										Reg No </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control vatRegno"
-											id="VATRegNo" value="${contactDetails.vatRegno}"
-											placeholder="VAT Reg No">
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<!-- ends of start invoice information -->
-				<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-					aria-labelledby="nav-profile-tab">
-					<div class="col-12">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Site Details</h5>
-								<div class="table-responsive tableFixHead">
-
-									<table id=""
-										class="table table-striped table-bordered myTable2">
-
-										<thead>
-											<tr>
-                                                <th><b>Site Type</b></th>
-												<th><b>Site Use ID</b></th>
-												<th style="display: none"><b>Contact Company Number</b></th> 
-                                                <th><b>Location ID</b></th>
-                                                <th><b>Operation Unit</b></th>
-												<th><b>Address Line1</b></th>
-												<th><b>Address Line2</b></th>
-												<th><b>Address Line3 </b></th>
-												<th><b>Address Line4</b></th>
-												<th><b>Address City</b></th>
-												<th><b>Address State</b></th>
-												<th><b>Address Postal Code</b></th>
-												<th><b>Address Country</b></th>
-												<th><b></b></th>
-                                               	</tr>
-
-										</thead>
-
-										<tbody id="tableBody">
-									     <c:forEach items="${cSites}" var="il">
-                                                	<tr class="dynamicRowLine">
-                                                    <td contenteditable='true'>${il.siteType}</td>
-													<td contenteditable='true'>${il.siteUseId}</td>
-													<td style="display: none" contenteditable='true'>${il.contactCompanyNumber}</td>
-													<td contenteditable='true'>${il.locationId}</td>
-													<td contenteditable='true'><select>
-														  		<option value="">SELECT</option>
-																<c:forEach items="${RegionDetailList}" var="operatingUnitID">																						
-															 	<option value="${operatingUnitID.operatingUnitId}" <c:if test="${il.operatingUnit == operatingUnitID.operatingUnitId}">selected</c:if>> ${operatingUnitID.operatingUnit}   </option>
-																</c:forEach>
-															</select>
-														
-															</td>
-													<td contenteditable='true'>${il.addressLine1}</td>
-													<td contenteditable='true'>${il.addressLine2}</td>
-													<td contenteditable='true'>${il.addressLine3}</td>
-													<td contenteditable='true'>${il.addressLine4}</td>
-													<td contenteditable='true'>${il.addressCity}</td>
-													<td contenteditable='true'>${il.addressState}</td>
-													<td contenteditable='true'>${il.addressPostalCode}</td>
-													<td contenteditable='true'>${il.addressCountry}</td>
-													<td>
-														<button type="button" class="btn btn-danger btn-sm"
-															data-toggle="modal"
-															data-target="#updateDeleteModal${il.siteUseId}">Delete</button>
-
-													</td>
-												</tr>
-												
-												<!-- Start Of Modal  -->
-													<div class="modal fade" id="updateDeleteModal${il.siteUseId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-						                                    <div class="modal-dialog" role="document ">
-						                                        <div class="modal-content">
-						                                            <div class="modal-header">
-						                                                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-						                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						                                                    <span aria-hidden="true ">&times;</span>
-						                                                </button>
-						                                            </div>
-						                                            <form action="deleteContactSite" method="POST">
-						                                            <div class="modal-body">
-																		<div class="card-body col-sm-12 text-center">Do you really want to delete...?</div>
-																		<input type="hidden" name="siteUseId" value="${il.siteUseId}"/>
-																		<input type="hidden" name="contactCompanyNumber" value="${il.contactCompanyNumber}"/>
-																		<input type="hidden" name="siteType" value="${il.siteType}"/>
-																		<input type="hidden" name="contactId" value="${contactDetails.contactId}"/>
-																		<div class="card-body col-sm-12 text-center">						
-																			<button type="submit" name="action"
-																				value="delete" class="btn btn-sm btn-primary">Yes</button>
-																			<button type="button"
-																				class="btn btn-sm btn-secondary"
-																				data-dismiss="modal">No</button>
-																		</div>
-																	</div>
-																	</form>
-						                                        </div>
-						                                    </div>
-						                                </div>
-												<!-- End Of Modal -->
-											</c:forEach>
-
-										</tbody>
-
-									</table>
-									<span style="margin-left: 20px;"><button
-											type="button"
-											class="btn btn-danger btn-sm btnAddVendor">Add
-											Line</button></span>
-
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-
-
-			<div class="border-top">
-				<div class="card-body">
-					<c:if test="${editAccess=='1'}">
-						<button type="button" class="btn btn-info "
-							data-toggle="modal" data-target="#updateConfirmModal">Update</button>
-					</c:if>
-					<c:if test="${approveAccess=='1' || approval10000=='1'}">
-
-						<button type="button" class="btn btn-info"
-							data-toggle="modal" data-target="#approveConfirmModal">Approve</button>
-					</c:if>
-					<c:if test="${editAccess=='1' && approveAccess=='1'}">
-
-						<button type="button" class="btn btn-info btn-reject"
-							data-toggle="modal" data-target="#rejectConfirmModal">Reject</button>
-					</c:if>
-
-				</div>
-			</div>
-		<%-- </form> --%>
-
-
-	</c:when>
-</c:choose>
 
 </div>
 

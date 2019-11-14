@@ -91,113 +91,46 @@ $(document)
 		      var contactCompany=  $('.contactCompany').val();
 		      var city=$('.city').val();
 		      var state=  $('.state').val();
-		      var botId=  $('.botId').val();// common fields
+		      var zipCode=  $('.zipCode').val();// common fields
+		      var country=  $('.country').val();// common fields
+		      var contactPerson=  $('.contactPerson').val();// common fields
+		      var contactNumber=  $('.contactNumber').val();// common fields
+		      var emailID=  $('.emailID').val();// common fields
+		     // var updatedDate= toDate($('.updatedDate').val());// common fields
+		   //   alert(updatedDate);
+		      var status=  $('.activeStatus').val();// common fields
 		      var action='update'
 		      var arrayContactSites = [];
 		      
-		    	 if(contactType=='Vendor'){
-		    		 var bankAccount=  $('.bankAccount').val();
-				      var bankAccountCode=  $('.bankAccountCode').val();
-				      var bankaccountNumber=  $('.bankaccountNumber').val();
-				      var vatRegno=  $('.vatRegno').val();
-				      
-				      /* getting value from table using json array invoiceLine*/
-					   $('.myTable2 tbody tr').each(function(row, tr) {
-							    	var className = $(this).attr('class');
-							    	var siteType=$(this).find("td:eq(0)").html();
-							        var siteUseId=$(this).find("td:eq(1)").html();//primary Key
-								    var contactCompanyNumber = $(this).find("td:eq(2)").html();//primary Key
-								    var locationId = $(this).find("td:eq(3)").html();
-								    var operatingUnitID = $(this).find("td:eq(4) select").val();
-								    if(operatingUnitID==undefined)
-							    	{
-							    	operatingUnitID ="";
-							    	}
-								    
-								    var addressLine1 = $(this).find("td:eq(5)").html();
-								    
-								    var addressLine2 = $(this).find("td:eq(6)").html();
-								    var addressLine3 = $(this).find("td:eq(7)").html();
-								    var addressLine4 = $(this).find("td:eq(8)").html();
-								    var addressCity = $(this).find("td:eq(9)").html();
-                                    var addressState = $(this).find("td:eq(10)").html();
-								    var addressPostalCode = $(this).find("td:eq(11)").html();
-								    var addressCountry = $(this).find("td:eq(12)").html();
-								   
-								    arrayContactSites.push({siteType:siteType,siteUseId:siteUseId,contactCompanyNumber:contactCompanyNumber, locationId:locationId, addressLine1:addressLine1, addressLine2:addressLine2, addressLine3:addressLine3, addressLine4:addressLine4, addressCity:addressCity, addressState:addressState, addressPostalCode:addressPostalCode, addressCountry:addressCountry,operatingUnitID:operatingUnitID});
-								     
-							    });
-				        	 /*Calling Loader*/
-		    				 showPage();
-		    				 disableScreen();
-		     	            $.post("manageContactAction", {
-						    action : action,
-							contactType : contactType,
-							contactId : contactId,
-							contactFirstName : contactFirstName,
-							contactMiddleName : contactMiddleName,
-							contactCompany:contactCompany,
-							contactlastName : contactlastName,
-							contactCompanyNumber : contactCompanyNumber,
-							contactEmailId : contactEmailId,
-							contactPhone : contactPhone,
-							botId : botId,
-							bankAccount : bankAccount,
-							bankAccountCode : bankAccountCode,
-							bankaccountNumber : bankaccountNumber,
-							vatRegno : vatRegno,
-							arrayContactSites:JSON.stringify(arrayContactSites)
-		     	           	
-		     				},function(res){
-		     					
-		     					if(res==1){
-		     						$('#duplicateIdSpanUpdate').html("Data is updated !");
-		     						$('#updateConfirmModaljquery').modal();
-		     						disableLoader();
-		     						enableScreen();
-	                               }
-		     				 
-		     				});
-		    	  }
-		           if(contactType=='Customer'){
-		        	      var defaultFobPoint=  $('.defaultFobPoint').val();
-					      var defaultPaymentTerms=  $('.defaultPaymentTerms').val();
-					      var defaultTranscationType=  $('.defaultTranscationType').val();
-					      var defaultWarehouse=  $('.defaultWarehouse').val();
-					      var defaultPriceList=  $('.defaultPriceList').val();
+		    	
+		        
 			        	 $('.myTable1 tbody tr').each(function(row, tr) {
 			        		    var className = $(this).attr('class');
-			        		    var siteType=$(this).find("td:eq(0) select").val();
+			        		    var clientSiteId=$(this).find("td:eq(0) select").val();
 						    	
-						        var siteUseId=$(this).find("td:eq(1)").html();//primary Key
-							    var contactCompanyNumber = $(this).find("td:eq(2)").html();//primary Key
-							    var billToSiteUseId = $(this).find("td:eq(3) select").val();//primary Key 
-							    if(billToSiteUseId==undefined)
-							    	{
-							    	billToSiteUseId ="";
-							    	}
+						        var clientId=$(this).find("td:eq(1)").html();//primary Key
+							    var siteName = $(this).find("td:eq(2)").html();//primary Key
+							    var addressLine1 = $(this).find("td:eq(3) select").val();//primary Key 
 							    
-							    var locationId = $(this).find("td:eq(4)").html();
-							    var addressLine1 = $(this).find("td:eq(5)").html();
-							    var addressLine2 = $(this).find("td:eq(6)").html();
+							    var addressLine2 = $(this).find("td:eq(4)").html();
+							    var addressLine3 = $(this).find("td:eq(5)").html();
+							    var addressLine4 = $(this).find("td:eq(6)").html();
 							    var addressLine3 = $(this).find("td:eq(7)").html();
 							    var addressLine4 = $(this).find("td:eq(8)").html();
-							    var addressCity = $(this).find("td:eq(9)").html();
-                                var addressState = $(this).find("td:eq(10)").html();
-							    var addressCountry = $(this).find("td:eq(12)").html();
-							    var addressPostalCode = $(this).find("td:eq(11)").html();
+							    var city = $(this).find("td:eq(9)").html();
+                                var state = $(this).find("td:eq(10)").html();
+							    var zipCode = $(this).find("td:eq(12)").html();
+							    var country = $(this).find("td:eq(11)").html();
 							    
-							    var operatingUnitID = $(this).find("td:eq(13) select").val();//primary Key 
-							    if(operatingUnitID==undefined)
-							    	{
-							    	operatingUnitID ="";
-							    	}
-							    var defaultPaymentTerms = $(this).find("td:eq(14)").html();
-							    var defaultTransactionType = $(this).find("td:eq(15)").html();
-							    var defaultWareHouse = $(this).find("td:eq(16)").html();
-							    var defaultPriceList = $(this).find("td:eq(17)").html();
-							    var defaultFOBPoint = $(this).find("td:eq(18)").html();
-							   arrayContactSites.push({siteType:siteType,siteUseId:siteUseId,contactCompanyNumber:contactCompanyNumber, billToSiteUseId:billToSiteUseId, locationId:locationId, addressLine1:addressLine1, addressLine2:addressLine2, addressLine3:addressLine3, addressLine4:addressLine4, addressCity:addressCity, addressState:addressState, addressCountry:addressCountry, addressPostalCode:addressPostalCode,defaultPaymentTerms:defaultPaymentTerms,defaultTransactionType:defaultTransactionType,defaultWareHouse:defaultWareHouse,defaultPriceList:defaultPriceList,defaultFOBPoint:defaultFOBPoint,operatingUnitID:operatingUnitID});
+							    var contactPerson = $(this).find("td:eq(13) select").val();//primary Key 
+							   
+							    var contactNumber = $(this).find("td:eq(14)").html();
+							    var emailID = $(this).find("td:eq(15)").html();
+							    var createdDate = $(this).find("td:eq(16)").html();
+							   // var updatedDate = $(this).find("td:eq(17)").html();
+							    var status = $(this).find("td:eq(18)").html();
+							    
+							   arrayContactSites.push({clientSiteId:clientSiteId,clientId:clientId,siteName:siteName, addressLine1:addressLine1, addressLine2:addressLine2, addressLine3:addressLine3, addressLine4:addressLine4, city:city, state:state, zipCode:zipCode, country:country,contactPerson:contactPerson,contactNumber:contactNumber,emailID:emailID,status:status});
 						       
 			        	 });
 			        	 var temp=JSON.stringify(arrayContactSites);
@@ -210,22 +143,23 @@ $(document)
 	    				
 	     	            $.post("manageContactAction", {
 					    action : action,
-						contactType : contactType,
-						contactId : contactId,
-						contactFirstName : contactFirstName,
-						contactMiddleName : contactMiddleName,
-						contactCompany:contactCompany,
-						contactlastName : contactlastName,
-						contactCompanyNumber : contactCompanyNumber,
-						contactEmailId : contactEmailId,
-						contactPhone : contactPhone,
-						botId : botId,
-						defaultPaymentTerms:defaultPaymentTerms,
-						defaultTransactionType:defaultTranscationType,
-						defaultWareHouse:defaultWarehouse,
-						defaultPriceList:defaultPriceList,
-						defaultFobPoint:defaultFobPoint,
-						arrayContactSites:temp
+					    clientId : clientId,
+					    clientCompanyName : clientCompanyName,
+					    addressLine1 : addressLine1,
+					    addressLine2 : addressLine2,
+					    addressLine3:addressLine3,
+					    addressLine4 : addressLine4,
+					    contactCompany : contactCompany,
+					    city : city,
+						state : state,
+						zipCode : zipCode,
+						country:country,
+						contactPerson:contactPerson,
+						contactNumber:contactNumber,
+						emailID:emailID,
+					//	updatedDate:updatedDate,
+						status:status,
+						arrayContactSites:JSON.stringify(arrayContactSites)
 						
 	     	           	},function(res){
 	     					
@@ -238,8 +172,7 @@ $(document)
 	     				 
 	     				});
 			        	
-			        }
-			               	 
+			        	 
 	 	});// end of update function
 	
 });	
@@ -254,36 +187,9 @@ $(document)
 		   var mailDateTime = s[2] + '-' + s[1] + '-' + s[0]+" "+s[3]+":"+s[4]+":"+s[5];
 		  // alert(mailDateTime);
 		   var m=new Date(mailDateTime);
-		 
+		   alert(m);
 			}
 
-		function showBillToId()
-		{ 
-			
-			 $('.myTable1 tbody tr').each(function(row, tr) {
-     		    var className = $(this).attr('class');
-				    var billToSiteUseId = $(this).find("td:eq(0) select").val();//primary Key 
-				  
-				    
-				    if(billToSiteUseId==undefined)
-				    	{
-				    	billToSiteUseId ="";
-				    	}
-				     if(billToSiteUseId == 'BILL_TO')
-				    	{
-				   // 		alert("jadhfkjashdfkjahs");
-				   	       $(this).find("td:eq(3)").html(""); 
-				   
-				    	}  
-				    else if(billToSiteUseId == 'SHIP_TO'){
-				    	
-				    
-				    		 
-				    	}
-				    
-			 });
-		}
-		
 		
 		/*Loader */
 		function showPage() {

@@ -1,18 +1,23 @@
 package com.augustconsulting.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.augustconsulting.model.Contacts;
+import com.augustconsulting.service.ManageContactsService;
 
 
 @Controller
@@ -24,6 +29,8 @@ public class ManageContactsController {
 	
 	public static String specialAccess;
 
+	@Autowired
+	private ManageContactsService manageContactService;
 	
 
 	@GetMapping("/contactList")
@@ -44,6 +51,18 @@ public class ManageContactsController {
 		return new String(contactDetails);
 	}
 
+	@PostMapping("/manageContactAction")
+	public @ResponseBody String doActionOnManageContacts(@ModelAttribute("Contacts") Contacts contacts,
+			@RequestParam("action") String action, @RequestParam("arrayContactSites") String arrayContactSites) {
+		System.out.println("<><><>"+contacts.getUpdatedDate());
+		String message = "";
+		if (action.equals("update")) {
+			manageContactService.updateManageContactHeader(contacts);
+			message="1";
+		}
+
+		return message;
+	}
 
 	
 

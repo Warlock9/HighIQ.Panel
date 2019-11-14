@@ -186,7 +186,7 @@
 					<div class="col-12">
 						<div class="card">
 
-							<form class="form-horizontal" action="manageDistributionSet.do"
+							<form class="form-horizontal" action="componentBundle.do"
 								method="POST">
 
 								<div class="card-body">
@@ -194,42 +194,46 @@
 
 									<div class="form-group row">
 										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">Distribution Set Name</label>
+											class="col-sm-2 text-right control-label col-form-label">Component/Bundle Name</label>
 										<div class="col-sm-3">
-											<input type="text" name="distributionSetName" class="form-control distributionName" 
-												id="fname" placeholder="Distribution Name Here"  required>
+											<input type="text" name="componentBundleName" class="form-control componentBundleName" 
+												id="fname" placeholder="Component Bundle Name Here"  required>
 										</div>
 										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">Description</label>
-										<div class="col-sm-3">
-											<input type="text" name="description" class="form-control description"
-												id="fname" placeholder="Description Here"  required>
-										</div>
-									</div>
-									<div class="form-group row">
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">Operating Unit</label>
-										<div class="col-sm-3">
-											<input type="text" name="operatingUnit"
-												class="form-control assign-to operatingUnit"
-												placeholder="Operating Unit Here" >
-										</div>
-										
-										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">Type</label>
 										<div class="col-sm-3">
-											<select name="isEnabled" class="select1 form-control custom-select isEnableDropDown" required>
+											<select name="type" class="select1 form-control custom-select type" required>
 													<option value="">Select</option>
-													<option value="Y">Component</option>
-													<option value="N">Bundle</option>
+													<option value="Component">Component</option>
+													<option value="Bundle">Bundle</option>
 											</select>
 										</div>
 									</div>
-
-									
-								
-									
 									<div class="form-group row">
+										<label for="lname"
+											class="col-sm-2 text-right control-label col-form-label">Updated Date</label>
+										<div class="col-sm-3">
+											<input type="date" name="updatedDate"
+												class="form-control assign-to updatedDate"
+												placeholder="Updated Date Here" >
+												<input type="text" name="createdDate" value ="" style="display: none"
+												class="form-control assign-to updatedDate"
+												placeholder="Updated Date Here" >
+										</div>
+										
+										<label for="lname"
+											class="col-sm-2 text-right control-label col-form-label">Status</label>
+										<div class="col-sm-3">
+											<select name="status" class="select1 form-control custom-select type" required>
+													<option value="">Select</option>
+													<option value="1">1</option>
+													<option value="0">0</option>
+											</select>
+										</div>
+										
+										
+									</div>
+                                       <div class="form-group row">
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label"></label>
 										<div class="col-sm-3">
@@ -260,14 +264,14 @@
 
 								<div class="modal fade" id="updateConfirmModal" tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true ">
+									aria-hidden="true">
 									<div class="modal-dialog" role="document ">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
 												<button type="button" class="close" data-dismiss="modal"
 													aria-label="Close">
-													<span aria-hidden="true ">&times;</span>
+													<span aria-hidden="true">&times;</span>
 												</button>
 											</div>
 											<div class="modal-body">
@@ -291,38 +295,38 @@
 					<div class="col-12">
 						<div class="card">
 									<div class="card-body">
-								<h4 class="card-title">Manage Distribution Set List </h4>
+								<h4 class="card-title">Manage Component/Bundle List</h4>
 								<div class="table-responsive">
 									<table id="zero_config"
 										class="table table-striped table-bordered myTable text-center">
 										<thead>
 											<tr>
-												<th><b>Distribution Set Name</b></th>
-												<th><b>Description</b></th>
-												<th><b>Operating Unit</b></th>
-												<th><b>Is Enabled</b></th>
+												<th><b>Component/Bundle Name</b></th>
+												<th><b>Type</b></th>
+												<th><b>Updated Date</b></th>
+												<th><b>Status</b></th>
 											 <!--  <th><b>Windows Authentication</b></th> -->
 												<th><b></b></th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:set var="count" value="0" scope="page" />
+											<%-- <c:set var="count" value="0" scope="page" /> --%>
 											<c:forEach items="${manageDistributionSetDetails}" var="bs">
 												<tr>
-													<td>${bs.distributionSetName}</td>
-													<td>${bs.description}</td>
-													<td>${bs.operatingUnit}</td>
-													<td>${bs.isEnabled}</td>						
+													<td>${bs.componentBundleName}</td>
+													<td>${bs.type}</td>
+													<td>${bs.updatedDate}</td>
+													<td>${bs.status}</td>						
 													<td>	
-													<c:if test="${editAccess=='1'}">			
+													<%-- <c:if test="${editAccess=='1'}"> --%>			
 														<button type="button"
 															class="btn btn-success btn-sm btnSelect" >Edit</button>		
-																					</c:if>
-														<c:if test="${deleteAccess=='1'}">															
+																					<%-- </c:if> --%>
+														<%-- <c:if test="${deleteAccess=='1'}">		 --%>													
 														<button type="button" class="btn btn-danger btn-sm"
 															data-toggle="modal"
 															data-target="#updateDeleteModal${count}">Delete</button>		
-															</c:if>											
+															<%-- </c:if>		 --%>									
 													</td>
 												</tr>
 												<!-- Start Of Modal  -->
@@ -338,7 +342,7 @@
 						                                            <form action="manageDistributionSet.del" method="POST">
 						                                            <div class="modal-body">
 																		<div class="card-body col-sm-12 text-center">Do you really want to delete ?</div>
-																		<input type="hidden"  name="dsName" value="${bs.distributionSetName}"/>
+																		<input type="hidden"  name="dsName" value="${bs.componentBundleName}"/>
 																		<div class="card-body col-sm-12 text-center">						
 																			<button type="submit" name="action"
 																				value="delete" class="btn btn-sm btn-primary">Yes</button>
@@ -353,7 +357,7 @@
 						                                    </div>
 						                               </div>
 												<!-- End Of Modal -->
-											<c:set var="count" value="${count + 1}" scope="page"/>
+											<%-- <c:set var="count" value="${count + 1}" scope="page"/> --%>
 											</c:forEach>
 
 										</tbody>

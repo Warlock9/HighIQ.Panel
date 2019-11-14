@@ -33,7 +33,7 @@ public ComponentBundleController() {
 }
 
 
-@GetMapping("/ManageDistributionSet")
+@GetMapping("/componentBundle")
 public String botManagerLandingPage(Model model,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
 		 * String st = new ViewAndOperationAccess().gettingViewAndOperationAccess(model,
@@ -41,23 +41,24 @@ public String botManagerLandingPage(Model model,HttpServletRequest request, Http
 		 * if(st==null) { return new String("redirect:/"); }
 		 */
 	model.addAttribute("manageDistributionSetDetails",distributionServices.fetchingDataFromDb());
-	return new String("manageDistributionSet");
+	return new String("ComponentBundle");
 }
 
-@PostMapping(value = "/manageDistributionSet.do")
-public String doActions(@ModelAttribute("manageDistributionSet") ComponentBundle manageDistributionSet, @RequestParam("action") String action) {
+@PostMapping(value = "/componentBundle.do")
+public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageDistributionSet, @RequestParam("action") String action) {
 	if(action.equals("save")) {
+		System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiii");
 		distributionServices.insertingDataToDb(manageDistributionSet);
 	}else if(action.equals("update")){
 		distributionServices.updateDataToDb(manageDistributionSet);		
 	}	
-	return new String("redirect:/ManageDistributionSet");
+	return new String("redirect:/ComponentBundle");
 }
 
 @PostMapping(value = "/manageDistributionSet.del")
 public String doDeleteAction(@RequestParam("action") String action,@RequestParam("dsName") String dsName) {
 	distributionServices.deleteFromDb(dsName);
-	return new String("redirect:/ManageDistributionSet");		
+	return new String("redirect:/ComponentBundle");		
 }
 
 @PostMapping(value = "/manageDistributionSet.val")

@@ -126,11 +126,11 @@ $(document)
 							   
 							    var contactNumber = $(this).find("td:eq(14)").html();
 							    var emailID = $(this).find("td:eq(15)").html();
-							    var createdDate = $(this).find("td:eq(16)").html();
+							   var createdDate = $(this).find("td:eq(16)").html();
 							   // var updatedDate = $(this).find("td:eq(17)").html();
 							    var status = $(this).find("td:eq(18)").html();
 							    
-							   arrayContactSites.push({clientSiteId:clientSiteId,clientId:clientId,siteName:siteName, addressLine1:addressLine1, addressLine2:addressLine2, addressLine3:addressLine3, addressLine4:addressLine4, city:city, state:state, zipCode:zipCode, country:country,contactPerson:contactPerson,contactNumber:contactNumber,emailID:emailID,status:status});
+							   arrayContactSites.push({clientSiteId:clientSiteId,clientId:clientId,siteName:siteName, addressLine1:addressLine1, addressLine2:addressLine2, addressLine3:addressLine3, addressLine4:addressLine4, city:city, state:state, zipCode:zipCode,createdDate:createdDate, country:country,contactPerson:contactPerson,contactNumber:contactNumber,emailID:emailID,status:status});
 						       
 			        	 });
 			        	 var temp=JSON.stringify(arrayContactSites);

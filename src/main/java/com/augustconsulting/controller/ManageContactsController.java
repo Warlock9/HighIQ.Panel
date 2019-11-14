@@ -58,6 +58,7 @@ public class ManageContactsController {
 		String message = "";
 		if (action.equals("update")) {
 			manageContactService.updateManageContactHeader(contacts);
+			manageContactService.updateContactSites(arrayContactSites);
 			message="1";
 		}
 

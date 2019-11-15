@@ -20,7 +20,7 @@
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16"
 	href="${resourceURL}/resources/assets/images/favicon.png">
-<title>HighIQ.ai - Cost Center Manager</title>
+<title>HighIQ.ai - Manage Component/Bundle</title>
 <!-- Custom CSS -->
 <link rel="stylesheet" type="text/css" href="${resourceURL}/resources/assets/libs/select2/dist/css/select2.min.css">
 
@@ -150,12 +150,12 @@
 			<div class="page-breadcrumb">
 				<div class="row">
 					<div class="col-12 d-flex no-block align-items-center">
-						<h4 class="page-title">Manage Cost Centers </h4>
+						<h4 class="page-title">Manage Component/Bundle </h4>
 						<div class="ml-auto text-right">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Manage Cost Centers
+									<li class="breadcrumb-item active" aria-current="page">Manage Component/Bundle
 										</li>
 								</ol>
 							</nav>
@@ -181,20 +181,20 @@
 								method="POST">
 
 								<div class="card-body">
-									<h4 class="card-title card-title1">Add Cost Center</h4>
+									<h4 class="card-title card-title1">Add Component/Bundle</h4>
 
 									<div class="form-group row">
 										<label for="fname"
 											class="col-sm-2 text-right control-label col-form-label">Component Bundle Name</label>
 										<div class="col-sm-3">
-											<input type="text" name="componentBundleName" class="form-control costCenterId" pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
-												 placeholder="Cost Center ID Here" required/>
+											<input type="text" name="componentBundleName" class="form-control componentBundleName" pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
+												 placeholder="Component or Bundle Name Here" required/>
 												 
 										</div>
 										<label for="fname"
 											class="col-sm-2 text-right control-label col-form-label">Type</label>
 										<div class="col-sm-3">
-											<select name="type" class="form-control custom-select isEnableDropDown" required>
+											<select name="type" class="form-control custom-select type" required>
 													<option value="">Select</option>
 													<option value="Component">Component</option>
 													<option value="Bundle">Bundle</option>
@@ -216,8 +216,8 @@
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">SKU Code</label>
 										<div class="col-sm-3">
-											<input type="text" class="form-control managerLastName"
-											    name="skuCode" placeholder="Manager Last Name Here"
+											<input type="text" class="form-control skuCode"
+											    name="skuCode" placeholder="SKU Code Here"
 												>
 										</div>
 									</div>
@@ -270,7 +270,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title ">Cost Center List</h5>
+								<h5 class="card-title ">Component/Bundle List</h5>
 								<div class="table-responsive">
 									<table id="zero_config"
 										class="table table-striped table-bordered myTable">

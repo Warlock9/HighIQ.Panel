@@ -1,6 +1,12 @@
 package com.augustconsulting.controller;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.augustconsulting.model.ComponentBundle;
 import com.augustconsulting.service.ComponentBundleService;
+import com.augustconsulting.service.DateConversionService;
 
 
 @Controller
@@ -24,7 +31,9 @@ public class ComponentBundleController {
 	private static final long serialVersionUID = 1L;
 
 @Autowired
-ComponentBundleService distributionServices;
+ComponentBundleService services;
+
+
 
 
 public ComponentBundleController() {
@@ -40,35 +49,36 @@ public String botManagerLandingPage(Model model,HttpServletRequest request, Http
 		 * request,userRoleService, "ManageDistributionSet", "Manage Distribution Set");
 		 * if(st==null) { return new String("redirect:/"); }
 		 */
-	model.addAttribute("manageDistributionSetDetails",distributionServices.fetchingDataFromDb());
+	model.addAttribute("setDetails",services.fetchingDataFromDb());
 	return new String("ComponentBundle");
 }
 
-@PostMapping(value = "/componentBundle.do")
-public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageDistributionSet, @RequestParam("action") String action) {
-	if(action.equals("save")) {
+@PostMapping("/ComponentBundle.do")
+public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageSet, @RequestParam("action") String action) {
+	System.out.println("fsdakjffffffffffff");
+	
+	if(action.equals("save")) {	 
 		System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiii");
-		distributionServices.insertingDataToDb(manageDistributionSet);
+		services.insertingDataToDb(manageSet);
 	}else if(action.equals("update")){
-		distributionServices.updateDataToDb(manageDistributionSet);		
-	}	
-	return new String("redirect:/ComponentBundle");
-}
-
-@PostMapping(value = "/manageDistributionSet.del")
-public String doDeleteAction(@RequestParam("action") String action,@RequestParam("dsName") String dsName) {
-	distributionServices.deleteFromDb(dsName);
-	return new String("redirect:/ComponentBundle");		
-}
-
-@PostMapping(value = "/manageDistributionSet.val")
-public @ResponseBody String validatingDistributionSetName(@RequestParam("distributionSetName") String distributionSetName) {
-	String msg="0";
-	List<ComponentBundle> adl = distributionServices.validatingDistributionSetName(distributionSetName);
-	if(adl.size()>0) {
-		msg="1";
+		services.updateDataToDb(manageSet);		
 	}
-	return msg;		
+	return new String("redirect:/componentBundle");
 }
+
+@PostMapping("/componentBundle.del")
+public String doDeleteAction(@RequestParam("action") String action,@RequestParam("id") int id) {
+	System.out.println("fdsafasdfsafasdfllllllllllllllllllllllllllll");
+	services.deleteFromDb(id);
+	return new String("redirect:/componentBundle");		
+}
+
+	/*
+	 * @PostMapping("/manageDistributionSet.val") public @ResponseBody String
+	 * validatingDistributionSetName(@RequestParam("distributionSetName") String
+	 * distributionSetName) { String msg="0"; List<ComponentBundle> adl =
+	 * distributionServices.validatingDistributionSetName(distributionSetName);
+	 * if(adl.size()>0) { msg="1"; } return msg; }
+	 */
 
 }

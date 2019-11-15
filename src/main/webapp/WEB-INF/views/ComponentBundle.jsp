@@ -1,15 +1,13 @@
 
 
 <!-- Add contact -->
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page isELIgnored="false" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:url value="/" var="resourceURL" />
 <% 
     response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 %>
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -21,25 +19,25 @@
 <meta name="author" content="">
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16"
-	href="${contextPath}/resources/assets/images/favicon.png">
-<title>HighIQ.ai - Manage Component Bundle</title>
+	href="${resourceURL}/resources/assets/images/favicon.png">
+<title>HighIQ.ai - Cost Center Manager</title>
 <!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="${resourceURL}/resources/assets/libs/select2/dist/css/select2.min.css">
+
 <link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/assets/libs/select2/dist/css/select2.min.css">
+	href="${resourceURL}/resources/assets/libs/jquery-minicolors/jquery.minicolors.css">
 <link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/assets/libs/jquery-minicolors/jquery.minicolors.css">
+	href="${resourceURL}/resources/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 <link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/assets/libs/quill/dist/quill.snow.css">
+	href="${resourceURL}/resources/assets/libs/quill/dist/quill.snow.css">
 <link
-	href="${contextPath}/resources/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css"
+	href="${resourceURL}/resources/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css"
 	rel="stylesheet">
 
-<link href="${contextPath}/resources/dist/css/style.min.css"
+<link href="${resourceURL}/resources/dist/css/style.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/dist/css/icons/font-awesome/css/font-awesome.min.css">
+	href="${resourceURL}/resources/dist/css/icons/font-awesome/css/font-awesome.min.css">
 
 <!-- Custom CSS -->
 <script
@@ -47,19 +45,12 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="${contextPath}/resources/jquery/manageDistribution.js"></script>
+<script src="${resourceURL}/resources/jquery/costCenter.js"></script>
 <!-- Custom CSS -->
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <body>
-
 	<!-- ============================================================== -->
 	<!-- Main wrapper - style you can find in pages.scss -->
 	<!-- ============================================================== -->
@@ -78,10 +69,10 @@
 					<!-- ============================================================== -->
 					<a class="navbar-brand" href="dashboard"> <b
 						class="logo-icon p-l-10"> <img
-							src="${contextPath}/resources/assets/images/logo-icon.png"
+							src="${resourceURL}/resources/assets/images/logo-icon.png"
 							alt="homepage" class="light-logo" />
 					</b> <span class="logo-text"> <img
-							src="${contextPath}/resources/assets/images/logo-text.png"
+							src="${resourceURL}/resources/assets/images/logo-text.png"
 							alt="homepage" class="light-logo" />
 					</span>
 					</a>
@@ -115,7 +106,6 @@
 					<!-- Right side toggle and nav items -->
 					<!-- ============================================================== -->
 					<ul class="navbar-nav float-right"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle waves-effect waves-dark"> Welcome - ${userFirstName} ${userLastName}</a></li>
-
 						<!-- ============================================================== -->
 						<!-- User profile and search -->
 						<!-- ============================================================== -->
@@ -123,12 +113,12 @@
 							class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic"
 							href="" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"><img
-								src="${contextPath}/resources/assets/images/users/1.jpg"
+								src="${resourceURL}/resources/assets/images/users/1.jpg"
 								alt="user" class="rounded-circle" width="31"></a>
 							<div class="dropdown-menu dropdown-menu-right user-dd animated">
 							
 									
-								 
+								
 								<a href="logOut.do?logOut=logOut" class="dropdown-item" href="javascript:void(0)"><i
 									class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
 							</div></li>
@@ -160,12 +150,13 @@
 			<div class="page-breadcrumb">
 				<div class="row">
 					<div class="col-12 d-flex no-block align-items-center">
-						<h4 class="page-title">Manage Component Bundle</h4>
+						<h4 class="page-title">Manage Cost Centers </h4>
 						<div class="ml-auto text-right">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Manage Component Bundle</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage Cost Centers
+										</li>
 								</ol>
 							</nav>
 						</div>
@@ -186,23 +177,24 @@
 					<div class="col-12">
 						<div class="card">
 
-							<form class="form-horizontal" action="componentBundle.do"
+							<form class="form-horizontal" action="ComponentBundle.do"
 								method="POST">
 
 								<div class="card-body">
-									<h4 class="card-title card-title1">Add Component Or Bundle</h4>
+									<h4 class="card-title card-title1">Add Cost Center</h4>
 
 									<div class="form-group row">
 										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">Component/Bundle Name</label>
+											class="col-sm-2 text-right control-label col-form-label">Component Bundle Name</label>
 										<div class="col-sm-3">
-											<input type="text" name="componentBundleName" class="form-control componentBundleName" 
-												id="fname" placeholder="Component Bundle Name Here"  required>
+											<input type="text" name="componentBundleName" class="form-control costCenterId" pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
+												 placeholder="Cost Center ID Here" required/>
+												 
 										</div>
 										<label for="fname"
 											class="col-sm-2 text-right control-label col-form-label">Type</label>
 										<div class="col-sm-3">
-											<select name="type" class="select1 form-control custom-select type" required>
+											<select name="type" class="form-control custom-select isEnableDropDown" required>
 													<option value="">Select</option>
 													<option value="Component">Component</option>
 													<option value="Bundle">Bundle</option>
@@ -211,126 +203,43 @@
 									</div>
 									<div class="form-group row">
 										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">Updated Date</label>
-										<div class="col-sm-3">
-											<input type="date" name="updatedDate"
-												class="form-control assign-to updatedDate"
-												placeholder="Updated Date Here" >
-												<input type="text" name="createdDate" value ="" style="display: none"
-												class="form-control assign-to updatedDate"
-												placeholder="Updated Date Here" >
-										</div>
-										
-										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">Status</label>
 										<div class="col-sm-3">
-											<select name="status" class="select1 form-control custom-select type" required>
+											<select name="status" class="form-control custom-select isEnableDropDown" required>
 													<option value="">Select</option>
 													<option value="1">1</option>
 													<option value="0">0</option>
 											</select>
+											
 										</div>
-										
-										
+                                         
+										<label for="lname"
+											class="col-sm-2 text-right control-label col-form-label">SKU Code</label>
+										<div class="col-sm-3">
+											<input type="text" class="form-control managerLastName"
+											    name="skuCode" placeholder="Manager Last Name Here"
+												>
+										</div>
 									</div>
-                                       <div class="form-group row">
+									
+
+									<div class="form-group row">
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label"></label>
 										<div class="col-sm-3">
-										<c:if test="${createAccess=='1'}">
+										<%-- <c:if test="${createAccess=='1'}"> --%>
 											<button type="submit" name="action" value="save"
-												class="btn btn-success btn-submit">Add</button>
-										</c:if>
+												class="btn btn-success btn-submit btnAdd">Add</button>
+										<%-- </c:if> --%>
 											<button type="button" class="btn btn-info btn-update"
 												data-toggle="modal" data-target="#updateConfirmModal">Update</button>
 											<button type="button" onclick="reloadPage();"
 												class="btn btn-primary btn-reset">Reset</button>
 										</div>
-										
-										<!-- <label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">
-											Windows Authentication</label>
-										<div class="col-sm-3">
-											<select name="windowsAuthentication"
-												class="select1 form-control custom-select windowsAuthentication" required>
-												<option value="">Select Windows Authentication</option>
-												<option value="Yes">Yes</option>
-												<option value="No">No</option>
-											</select>
-										</div> -->
 									</div>
 								</div>
 								<!-- Start Of Modal  -->
-
-								<div class="modal fade" id="updateConfirmModal" tabindex="-1"
-									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true">
-									<div class="modal-dialog" role="document ">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<div class="card-body col-sm-12 text-center">Do you
-													really want to update ?</div>
-												<div class="card-body col-sm-12 text-center">
-													<button type="submit" name="action" value="update"
-														class="btn btn-sm btn-primary">Yes</button>
-													<button type="button" class="btn btn-sm btn-secondary"
-														data-dismiss="modal">No</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- End Of Modal -->
-							</form>
-						</div>
-					</div>
-					
-					<div class="col-12">
-						<div class="card">
-									<div class="card-body">
-								<h4 class="card-title">Manage Component/Bundle List</h4>
-								<div class="table-responsive">
-									<table id="zero_config"
-										class="table table-striped table-bordered myTable text-center">
-										<thead>
-											<tr>
-												<th><b>Component/Bundle Name</b></th>
-												<th><b>Type</b></th>
-												<th><b>Updated Date</b></th>
-												<th><b>Status</b></th>
-											 <!--  <th><b>Windows Authentication</b></th> -->
-												<th><b></b></th>
-											</tr>
-										</thead>
-										<tbody>
-											<%-- <c:set var="count" value="0" scope="page" /> --%>
-											<c:forEach items="${manageDistributionSetDetails}" var="bs">
-												<tr>
-													<td>${bs.componentBundleName}</td>
-													<td>${bs.type}</td>
-													<td>${bs.updatedDate}</td>
-													<td>${bs.status}</td>						
-													<td>	
-													<%-- <c:if test="${editAccess=='1'}"> --%>			
-														<button type="button"
-															class="btn btn-success btn-sm btnSelect" >Edit</button>		
-																					<%-- </c:if> --%>
-														<%-- <c:if test="${deleteAccess=='1'}">		 --%>													
-														<button type="button" class="btn btn-danger btn-sm"
-															data-toggle="modal"
-															data-target="#updateDeleteModal${count}">Delete</button>		
-															<%-- </c:if>		 --%>									
-													</td>
-												</tr>
-												<!-- Start Of Modal  -->
-												 <div class="modal fade" id="updateDeleteModal${count}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+										<div class="modal fade" id="updateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
 						                                    <div class="modal-dialog" role="document ">
 						                                        <div class="modal-content">
 						                                            <div class="modal-header">
@@ -339,25 +248,94 @@
 						                                                    <span aria-hidden="true ">&times;</span>
 						                                                </button>
 						                                            </div>
-						                                            <form action="manageDistributionSet.del" method="POST">
 						                                            <div class="modal-body">
-																		<div class="card-body col-sm-12 text-center">Do you really want to delete ?</div>
-																		<input type="hidden"  name="dsName" value="${bs.componentBundleName}"/>
+																		<div class="card-body col-sm-12 text-center">Do you really want to update ?</div>
 																		<div class="card-body col-sm-12 text-center">						
 																			<button type="submit" name="action"
-																				value="delete" class="btn btn-sm btn-primary">Yes</button>
+																				value="update" class="btn btn-sm btn-primary">Yes</button>
 																			<button type="button"
 																				class="btn btn-sm btn-secondary"
 																				data-dismiss="modal">No</button>
 																		
 																		</div>
 																	</div>
+						                                        </div>
+						                                    </div>
+						                                </div>
+								<!-- End Of Modal -->
+							</form>
+						</div>
+					</div>
+					
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title ">Cost Center List</h5>
+								<div class="table-responsive">
+									<table id="zero_config"
+										class="table table-striped table-bordered myTable">
+										<thead>
+											<tr>
+												<th><b>Component Bundle Name</b></th>
+												<th><b>type</b></th>
+												<th><b>SKU Code</b></th>
+												<th><b>Status</b></th>
+												<!-- <th><b>Manager Mail ID</b></th> -->
+												
+												<th><b></b></th>
+											</tr>
+										</thead>
+										<tbody>
+
+											<c:forEach items="${setDetails}" var="md">
+												<tr>
+
+													<%-- <td>${md.id}</td> --%>
+													<td>${md.componentBundleName}</td>
+													<td>${md.type}</td>
+													<td>${md.skuCode}</td>
+													<td>${md.status}</td>
+													
+													<td>
+													<%-- <c:if test="${editAccess=='1'}"> --%>
+														<button type="button"
+															class="btn btn-success btn-sm btnSelect">Edit</button>
+													<%-- </c:if> --%>
+													<%-- <c:if test="${deleteAccess=='1'}"> --%>
+														<button type="button" class="btn btn-danger btn-sm"
+															data-toggle="modal"
+															data-target="#updateDeleteModal${md.id}">Delete</button>
+													<%-- </c:if> --%>
+													</td>
+												</tr>
+												<!-- Start Of Modal  -->
+													<div class="modal fade" id="updateDeleteModal${md.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+						                                    <div class="modal-dialog" role="document ">
+						                                        <div class="modal-content">
+						                                            <div class="modal-header">
+						                                                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+						                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                                                    <span aria-hidden="true ">&times;</span>
+						                                                </button>
+						                                            </div>
+						                                            <form action="componentBundle.del" method="POST">
+						                                            <div class="modal-body">
+																		<div class="card-body col-sm-12 text-center">Do you really want to delete ?</div>
+																		<input type="hidden" name="id" value="${md.id}" />
+																		<div class="card-body col-sm-12 text-center">						
+																			<button type="submit" name="action"
+																				value="delete" class="btn btn-sm btn-primary">Yes</button>
+																			<button type="button"
+																				class="btn btn-sm btn-secondary"
+																				data-dismiss="modal">No</button>
+																		</div>
+																	</div>
 																	</form>
 						                                        </div>
 						                                    </div>
-						                               </div>
+						                                </div>
 												<!-- End Of Modal -->
-											<%-- <c:set var="count" value="${count + 1}" scope="page"/> --%>
+
 											</c:forEach>
 
 										</tbody>
@@ -367,8 +345,8 @@
 							</div>
 						</div>
 					</div>
-				
 				</div>
+				
 				<!-- ============================================================== -->
 				<!-- End PAge Content -->
 				<!-- ============================================================== -->
@@ -380,8 +358,8 @@
 				<!-- End Right sidebar -->
 				<!-- ============================================================== -->
 			</div>
-			<!-- Start Of Modal  -->
-				      <div class="modal fade" id="duplicateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+			<!-- Start Of Modal  -->				
+				              <div class="modal fade" id="duplicateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                     <div class="modal-dialog" role="document ">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -398,7 +376,7 @@
 											</div>
                                         </div>
                                     </div>
-                       </div>
+                                </div>
 				<!-- End Of Modal -->
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
@@ -408,7 +386,6 @@
 			<!-- ============================================================== -->
 			<footer class="footer text-center">
 					All Rights Reserved by <a href="dashboard">HighIQ.ai</a>.
-
 			</footer>
 			<!-- ============================================================== -->
 			<!-- End footer -->
@@ -425,45 +402,44 @@
 	<!-- All Jquery -->
 	<!-- ============================================================== -->
 	<script
-		src="${contextPath}/resources/assets/libs/jquery/dist/jquery.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap tether Core JavaScript -->
 	<script
-		src="${contextPath}/resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- slimscrollbar scrollbar JavaScript -->
 	<script
-		src="${contextPath}/resources/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 	<script
-		src="${contextPath}/resources/assets/extra-libs/sparkline/sparkline.js"></script>
+		src="${resourceURL}/resources/assets/extra-libs/sparkline/sparkline.js"></script>
 	<!--Wave Effects -->
-	<script src="${contextPath}/resources/dist/js/waves.js"></script>
+	<script src="${resourceURL}/resources/dist/js/waves.js"></script>
 	<!--Menu sidebar -->
-	<script src="${contextPath}/resources/dist/js/sidebarmenu.js"></script>
+	<script src="${resourceURL}/resources/dist/js/sidebarmenu.js"></script>
 	<!--Custom JavaScript -->
-	<script src="${contextPath}/resources/dist/js/custom.min.js"></script>
+	<script src="${resourceURL}/resources/dist/js/custom.min.js"></script>
 	<!-- This Page JS -->
 	<script
-		src="${contextPath}/resources/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-	<script src="${contextPath}/resources/dist/js/pages/mask/mask.init.js"></script>
+		src="${resourceURL}/resources/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+	<script src="${resourceURL}/resources/dist/js/pages/mask/mask.init.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/select2/dist/js/select2.full.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/select2/dist/js/select2.full.min.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/select2/dist/js/select2.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/select2/dist/js/select2.min.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+		src="${resourceURL}/resources/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 	<script
-		src="${contextPath}/resources/assets/libs/quill/dist/quill.min.js"></script>
-	<script
-		src="${contextPath}/resources/assets/extra-libs/DataTables/datatables.min.js"></script>
+		src="${resourceURL}/resources/assets/libs/quill/dist/quill.min.js"></script>
+	<script src="${resourceURL}/resources/assets/extra-libs/DataTables/datatables.min.js"></script>
 	<script>
 		//***********************************//
 		// For select 2

@@ -10,7 +10,7 @@ public interface ComponentBundleDao {
 	
 	public void updateDataToDb(ComponentBundle ds);
 	
-	public void deleteFromDb(String distributionName);
+	public void deleteFromDb(int id);
 	
 	public List<ComponentBundle> fetchingDataFromDb();
 	

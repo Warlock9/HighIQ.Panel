@@ -17,7 +17,7 @@ $(document).ready(function() {
 	//update button is disabled on page loading 
 	$(".btn-update").hide();
 	// code to read selected table row cell data (values).
-	$(".myTable").on('click', '.btnSelect', function() {
+	/*$(".myTable").on('click', '.btnSelect', function() {
 		// get the current row
 		var currentRow = $(this).closest("tr");
 		var costCenterId = currentRow.find("td:eq(0)").text();//primary key
@@ -42,9 +42,9 @@ $(document).ready(function() {
 		$(".btn-update").show();//enabling the update button
 		$(".costCenterId").css('pointer-events', 'none');
 		$(".costCenterId").prop('readonly', true);
-	});
+	});*/
 
-	$('.btnAdd').mouseover(function(){
+	/*$('.btnAdd').mouseover(function(){
 		var costCenterNum = $('.costCenterId').val();
 		if(costCenterNum.length>0){
 			$.post('costCenterNumValidation.do',{costCenterNum:costCenterNum},function(res){
@@ -55,6 +55,6 @@ $(document).ready(function() {
 				}
 			});
 		}
-	});	
+	});	*/
 });
 

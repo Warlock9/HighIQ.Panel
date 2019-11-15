@@ -33,11 +33,11 @@ public class ComponentBundleDaoImpl implements ComponentBundleDao {
 	}
 
 	@Override
-	public void deleteFromDb(String dsName) {
+	public void deleteFromDb(int dsName) {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println(dsName);
-		Query q  = session.createQuery("DELETE FROM ComponentBundle WHERE componentBundleName =:dsName");
-		q.setString("dsName",dsName);
+		Query q  = session.createQuery("DELETE FROM ComponentBundle WHERE id =:dsName");
+		q.setInteger("dsName",dsName);
+		//q.setInt("dsName",dsName);
 		q.executeUpdate();
 	}
 

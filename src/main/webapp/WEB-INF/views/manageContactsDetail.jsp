@@ -246,7 +246,7 @@ Trail </a> -->
 									<div class="col-sm-4">
 
 										<input type="text" class="form-control clientId"
-											id="clientId" value="" style="display:none;"
+											id="clientId" value="${contact.clientId}" style="display:none;"
 											placeholder="Client Id" />
 
 									</div>
@@ -257,7 +257,7 @@ Trail </a> -->
 										class="col-sm-2 text-right control-label col-form-label">Client Company Name </label>
 									<div class="col-sm-4">
 										<input type="text"  class="form-control clientCompanyName"
-											id="clientCompanyName" value=""
+											id="clientCompanyName" value="${contact.clientCompanyName}"
 											placeholder="Client Company Name">
 									</div>
 									
@@ -266,7 +266,7 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text" class="form-control addressLine1"
 											id="addressLine1"
-											value=""
+											value="${contact.addressLine1}"
 											placeholder="Address Line 1">
 									</div>
 								
@@ -281,7 +281,7 @@ Trail </a> -->
 										<input type="text"
 											class="form-control addressLine2"
 											id="addressLine2"
-											value=""
+											value="${contact.addressLine2}"
 											placeholder="Address Line 2">
 									</div>
 
@@ -290,7 +290,7 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text" class="form-control addressLine3"
 											id="addressLine3"
-											value=""
+											value="${contact.addressLine3}"
 											placeholder="Address Line 3">
 									</div>
 								</div>
@@ -301,19 +301,18 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text"
 											class="form-control addressLine4" id="addressLine4"
-											value=""
+											value="${contact.addressLine4}"
 											placeholder="Address Line 4">
 									</div>
-
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Contact
-										Company</label>
+                                    <label for="fname"
+										class="col-sm-2 text-right control-label col-form-label">Active Status</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control contactCompany"
-											id="ContactCompany"
-											value=""
-											placeholder="Contact Company">
+										<input type="text" class="form-control activeStatus"
+											id="activeStatus"
+											value="${contact.status}"
+											placeholder="Active Status">
 									</div>
+									
 
 								
 									
@@ -325,7 +324,7 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text" class="form-control city"
 											id="city"
-											value=""
+											value="${contact.city}"
 											placeholder="City">
 									</div>
 									<label for="fname"
@@ -333,7 +332,7 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text" class="form-control state"
 											id="state"
-											value=""
+											value="${contact.state}"
 											placeholder="State">
 									</div>
                  	         </div>
@@ -346,7 +345,7 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text" class="form-control zipCode"
 											id="zipCode"
-											value=""
+											value="${contact.zipCode}"
 											placeholder="Zip Code">
 									</div>
 								
@@ -358,7 +357,7 @@ Trail </a> -->
 										<input type="text"
 											class="form-control country"
 											id="country"
-											value=""
+											value="${contact.country}"
 											placeholder="Country">
 									</div>
 						</div>
@@ -372,7 +371,7 @@ Trail </a> -->
 										<input type="text"
 											class="form-control contactPerson"
 											id="contactPerson"
-											value=""
+											value="${contact.contactPerson}"
 											placeholder="Contact Person">
 									</div>
 								
@@ -382,7 +381,7 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text" class="form-control contactNumber"
 											id="contactNumber"
-											value=""
+											value="${contact.contactNumber}"
 											placeholder="Contact Number">
 									</div>
 									</div>
@@ -394,35 +393,36 @@ Trail </a> -->
 									<div class="col-sm-4">
 										<input type="text" class="form-control emailID"
 											id="emailID"
-											value=""
+											value="${contact.emailID}"
 											placeholder="Email ID">
 									</div>
 									
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">
-										Updated Date</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control updatedDate"
-											id="updatedDate"
-											value=""
-											placeholder="Updated Date">
+									
+									
+									<div class="input-group date col-md-6" id="datepicker-autoclose1">
+										<label for="fname"
+											class="col-sm-4 text-right control-label col-form-label">Updated Date</label>
+										<input type="text" class="form-control updatedDate "
+											 placeholder="yyyy-mm-dd"
+											autocomplete="off" value="${contact.updatedDate}">
+										<div class="input-group-append">
+											<span class="input-group-text input-group-addon"><i
+												class="fa fa-calendar"></i></span>
+										</div>
 									</div>
 								</div>
 								
-								<div class="form-group row">
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">Active Status</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control activeStatus"
-											id="activeStatus"
-											value=""
-											placeholder="Active Status">
+								<div style="display: none;" class="form-group row">
+									<div class="input-group date col-md-6" id="datepicker-autoclose">
+									
+										<input type="text" class="form-control createdDate"
+											 placeholder="yyyy-mm-dd"
+											autocomplete="off" value="${contact.createdDate}">
+										<div class="input-group-append">
+											<span class="input-group-text input-group-addon"><i
+												class="fa fa-calendar"></i></span>
+										</div>
 									</div>
-									
-									<label for="fname"
-										class="col-sm-2 text-right control-label col-form-label">
-										</label>
-									
 								</div>
 
 
@@ -463,7 +463,6 @@ Trail </a> -->
 												<th><b>Created Date</b></th>
 												<th><b>Updated Date</b></th>
 												<th><b>Active Status</b></th>
-												
 												<th><b></b></th>
 
 
@@ -472,12 +471,39 @@ Trail </a> -->
 										</thead>
 
 										<tbody class="alignmentp" id="tableBody" >
+											<c:forEach items="${contactSites}" var="il">
+
+												<tr class="dynamicRow"${il.clientSiteId}>
+													<td style="display: none;">${il.clientSiteId}</td>
+													<td style="display: none;">${il.clientId}</td>
+													<td contenteditable='true'>${il.siteName}</td>
+													<td contenteditable='true'>${il.addressLine1}</td>
+													<td contenteditable='true'>${il.addressLine2}</td>
+													<td contenteditable='true'>${il.addressLine3}</td>
+													<td contenteditable='true'>${il.addressLine4}</td>
+													<td contenteditable='true'>${il.city}</td>
+													<td contenteditable='true'>${il.state}</td>
+													<td contenteditable='true'>${il.zipCode}</td>
+													<td contenteditable='true'>${il.country}</td>
+													<td contenteditable='true'>${il.contactPerson}</td>
+													<td contenteditable='true'>${il.contactNumber}</td>
+													<td contenteditable='true'>${il.emailID}</td>
+													<td >${il.createdDate}</td>
+													<td contenteditable='true'>${il.updatedDate}</td>
+													<td contenteditable='true'>${il.status}</td>
+													<td>
+														<button type="button" class="btn btn-danger btn-sm btnDelete"
+															>Delete</button>
+
+													</td>
+												</tr>
 											
+											</c:forEach>
 										</tbody>
 
 									</table>
 									<span style="margin-left: 20px;"><button
-											type="button" class="btn btn-danger btn-sm btnAdd">Add
+											type="button" class="btn btn-danger btn-sm btnAdd1">Add
 											Line</button></span>
 
 								</div>
@@ -903,7 +929,7 @@ $('.demo').each(function() {
 });
 /*datwpicker*/
 jQuery('.mydatepicker').datepicker();
-jQuery('#datepicker-autoclose').datepicker({
+jQuery('#datepicker-autoclose1,#datepicker-autoclose').datepicker({
 	autoclose : true,
 	todayHighlight : true
 });

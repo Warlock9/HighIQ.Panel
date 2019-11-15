@@ -1,6 +1,5 @@
 package com.augustconsulting.service.impl;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -25,8 +24,10 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	@Override
 	public void updateManageContactHeader(Contacts contacts) {
 
-		contacts.setCreatedDate(new java.sql.Date(System.currentTimeMillis()));
-		contacts.setUpdatedDate(new java.sql.Date(System.currentTimeMillis()));
+		if(contacts.getCreatedDate()==null) {
+			contacts.setCreatedDate(new java.sql.Date(System.currentTimeMillis()));
+		}
+		
 		managecontactdao.updateManageContactHeader(contacts);
 	}
 
@@ -51,32 +52,41 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 				String state = jsonObject1.optString("state");
 				String zipCode = jsonObject1.optString("zipCode");
 				String country = jsonObject1.optString("country");
-
-				String contactPerson = jsonObject1.optString("contactPerson");
-                 String createdDate=jsonObject1.optString("createdDate");
+                String contactPerson = jsonObject1.optString("contactPerson");
+                // String createdDate=jsonObject1.optString("createdDate");
 				String contactNumber = jsonObject1.optString("contactNumber");
 				String emailID = jsonObject1.optString("emailID");
-
 				String status = jsonObject1.optString("status");
+                System.out.println(clientSiteId);
+                System.out.println(clientId);
+				if(clientSiteId.length()>0) {
+					 contactSites.setClientSiteId(Long.parseLong(clientSiteId));
+				}else {
+					 contactSites.setClientSiteId(null);
+				}
+					
+					 contactSites.setClientId(Long.parseLong(clientId));
+	      				contactSites.setSiteName(siteName);
+	      				contactSites.setAddressLine1(addressLine1);
+	      				contactSites.setAddressLine2(addressLine2);
+	      				contactSites.setAddressLine3(addressLine3);
+	      				contactSites.setAddressLine4(addressLine4);
+	      				contactSites.setCity(city);
+	      				contactSites.setState(state);
+	      				contactSites.setCountry(country);
+	      				contactSites.setZipCode(zipCode);
+	      				contactSites.setContactNumber(contactNumber);
+	      				contactSites.setContactPerson(contactPerson);
+	      				contactSites.setEmailID(emailID);
+	      				contactSites.setStatus(status);
+	      				contactSites.setCreatedDate(new java.sql.Date(System.currentTimeMillis()));
+	      				contactSites.setUpdatedDate(new java.sql.Date(System.currentTimeMillis()));
 
-				contactSites.setClientSiteId(Long.parseLong(clientSiteId));
-				contactSites.setClientId(clientId);
-				contactSites.setSiteName(siteName);
-
-				contactSites.setAddressLine1(addressLine1);
-				contactSites.setAddressLine2(addressLine2);
-				contactSites.setAddressLine3(addressLine3);
-				contactSites.setAddressLine4(addressLine4);
-				contactSites.setCity(city);
-				contactSites.setState(state);
-				contactSites.setCountry(country);
-				contactSites.setZipCode(zipCode);
-				contactSites.setContactNumber(contactNumber);
-				contactSites.setContactPerson(contactPerson);
-				contactSites.setEmailID(emailID);
-				contactSites.setStatus(status);
-				contactSites.setCreatedDate(new java.sql.Date(System.currentTimeMillis()));
-				managecontactdao.updateContactSites(contactSites);
+	      				managecontactdao.updateContactSites(contactSites); 
+					
+				 
+                	
+				
 
 			}
 
@@ -97,6 +107,18 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	public List<Contacts> getAllcontactDetails() {
 		// TODO Auto-generated method stub
 		return managecontactdao.getAllcontactDetails();
+	}
+
+	@Override
+	public List<ContactSites> getSiteDetails(long clientId) {
+		// TODO Auto-generated method stub
+		return managecontactdao.getSiteDetails(clientId);
+	}
+
+	@Override
+	public void deleteContactSites(ContactSites contactSites) {
+		// TODO Auto-generated method stub
+		 managecontactdao.deleteContactSites(contactSites);
 	}
 
 }

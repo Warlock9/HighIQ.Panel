@@ -19,5 +19,11 @@ public interface ManageContactsDao {
 
 	/* update contactSites */
 	void updateContactSites(ContactSites contactSites);
+	
+	 /*Get site Details from companyContactNumber*/
+    List<ContactSites> getSiteDetails(long clientId);
+    
+    /*delete ContactSites for contact */
+	void deleteContactSites (ContactSites contactSites);
 
 }

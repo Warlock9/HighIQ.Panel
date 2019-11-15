@@ -234,7 +234,7 @@
 																name="checkBoxId[]" value="${cd.clientId}"> <span
 																class="checkmark"></span>
 														</label></td> --%>
-														<td>${cd.clientCompanyName}</td>
+														<td><a href="contactDetails?clientId=${cd.clientId}" target="_blank">${cd.clientCompanyName}</a></td>
 														<td>${cd.addressLine1}</td>	
 														<td>${cd.addressLine2}</td>	
 														<td>${cd.addressLine3}</td>	
@@ -289,11 +289,10 @@
 												
 											</tbody>
 										</table>
-										<form target="_blank" class="form-horizontal" action="contactDetails">
+										<form target="_blank" class="form-horizontal" action="manageContactForNewContact">
 										
-										<button type="submit" class="btn btn-success"
-														 >Add New Contact</button>
-												
+										<button type="submit" class="btn btn-success" >Add New Contact</button>
+														
 									</form>
 								
 								</div>

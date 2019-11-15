@@ -1,6 +1,7 @@
 package com.augustconsulting.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.augustconsulting.model.ContactSites;
 import com.augustconsulting.model.Contacts;
 import com.augustconsulting.service.ManageContactsService;
+
 
 
 @Controller
@@ -46,6 +50,13 @@ public class ManageContactsController {
 	public String detailsLanding(Model model, HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("contacts") Contacts contactsDetails) {
 
+		   Contacts contact=manageContactService.getAllcontactDetails(contactsDetails.getClientId());
+		   
+		   List<ContactSites> siteDetails=manageContactService.getSiteDetails(contactsDetails.getClientId());
+		   System.out.println(siteDetails);
+		   model.addAttribute("contact", contact);
+		   model.addAttribute("contactSites", siteDetails);
+		   
 
 
 		return new String(contactDetails);
@@ -65,6 +76,29 @@ public class ManageContactsController {
 		return message;
 	}
 
+	@GetMapping("/manageContactForNewContact")
+	public String getNewContactDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return new String(contactDetails);
+	}
 	
+
+
+	@RequestMapping(value = "/contactSiteDelete.do", method = RequestMethod.POST)
+	public @ResponseBody String deleteInvoiceLineDetails(@RequestParam("action") String action,
+			@ModelAttribute("ContactSites") ContactSites contactSites) {
+
+		System.out.println("hello");
+		String message = "0";
+		
+		if (action.equals("delete")) {
+
+			manageContactService.deleteContactSites(contactSites);
+			
+				message = "1";
+			
+		}
+		return message;
+	}
+
 
 }

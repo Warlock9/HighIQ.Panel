@@ -14,18 +14,18 @@ import javax.validation.constraints.NotNull;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "tbl_ContactSites")
+
 public class ContactSites implements Serializable {
 
-	@Id
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ClientSiteID")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ClientSiteID")
 	private Long clientSiteId;
 
 	@Id
-	
-	@Column(name="ClientID", length = 10)
-	private String clientId;
+	@Column(name="ClientID")
+	private Long clientId;
 	
 	
 	@NotNull
@@ -100,11 +100,12 @@ public class ContactSites implements Serializable {
 		this.clientSiteId = clientSiteId;
 	}
 
-	public String getClientId() {
+
+	public Long getClientId() {
 		return clientId;
 	}
 
-	public void setClientId(String clientId) {
+	public void setClientId(Long clientId) {
 		this.clientId = clientId;
 	}
 

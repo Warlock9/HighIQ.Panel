@@ -17,37 +17,37 @@ $(document).ready(function() {
 	//update button is disabled on page loading 
 	$(".btn-update").hide();
 	// code to read selected table row cell data (values).
-	/*$(".myTable").on('click', '.btnSelect', function() {
+	$(".myTable").on('click', '.btnSelect', function() {
 		// get the current row
 		var currentRow = $(this).closest("tr");
-		var costCenterId = currentRow.find("td:eq(0)").text();//primary key
-		var costCenterName = currentRow.find("td:eq(1)").text();
-		var managerFirstName = currentRow.find("td:eq(2)").text();
-		var managerLastName = currentRow.find("td:eq(3)").text();
-		var managerMailId = currentRow.find("td:eq(4)").text();
-		var isEnabled = currentRow.find("td:eq(5)").text();
+		var id = currentRow.find("td:eq(0)").text();//primary key
+		var componentBundleName = currentRow.find("td:eq(1)").text();
+		var type = currentRow.find("td:eq(2)").text();
+		var skuCode = currentRow.find("td:eq(3)").text();
+		var status = currentRow.find("td:eq(4)").text();
+		var createdDate = currentRow.find("td:eq(5)").text();
 
 		$("html, body").animate({
 			scrollTop : 0
 		}, "fast"); // scrolling action to top of page
 
-		$(".costCenterId").val(costCenterId.trim());
-		$(".costCenterName").val(costCenterName.trim());
-		$(".managerFirstName").val(managerFirstName.trim());
-		$(".managerLastName").val(managerLastName.trim());
-		$(".managerMailId").val(managerMailId.trim());
-		$(".isEnableDropDown").val(isEnabled);
-		$(".card-title1").html("Edit Cost Center");
+		$(".id").val(id.trim());
+		$(".componentBundleName").val(componentBundleName.trim());
+		$(".type").val(type.trim());
+		$(".skuCode").val(skuCode.trim());
+		$(".status").val(status.trim());
+		$(".createdDate").val(createdDate.trim());
+		$(".card-title1").html("Edit Component/Bundle");
 		$(".btn-submit").hide(); // disabling submit button
 		$(".btn-update").show();//enabling the update button
-		$(".costCenterId").css('pointer-events', 'none');
-		$(".costCenterId").prop('readonly', true);
-	});*/
+		$(".id").css('pointer-events', 'none');
+		$(".id").prop('readonly', true);
+	});
 
 	/*$('.btnAdd').mouseover(function(){
-		var costCenterNum = $('.costCenterId').val();
+		var costCenterNum = $('.id').val();
 		if(costCenterNum.length>0){
-			$.post('costCenterNumValidation.do',{costCenterNum:costCenterNum},function(res){
+			$.post('componentBundle.val',{costCenterNum:costCenterNum},function(res){
 				if(res==1){
 					$('#duplicateIdSpan').html("Duplicate cost center number : "+costCenterNum);
 					$('#duplicateConfirmModal').modal();

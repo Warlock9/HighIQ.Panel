@@ -73,12 +73,17 @@ public String doDeleteAction(@RequestParam("action") String action,@RequestParam
 	return new String("redirect:/componentBundle");		
 }
 
-	/*
-	 * @PostMapping("/manageDistributionSet.val") public @ResponseBody String
-	 * validatingDistributionSetName(@RequestParam("distributionSetName") String
-	 * distributionSetName) { String msg="0"; List<ComponentBundle> adl =
-	 * distributionServices.validatingDistributionSetName(distributionSetName);
-	 * if(adl.size()>0) { msg="1"; } return msg; }
-	 */
+	
+	@PostMapping("/componentBundle.val")
+	public @ResponseBody String validatingDistributionSetName(
+			@RequestParam("distributionSetName") String distributionSetName) {
+		String msg = "0";
+		List<ComponentBundle> adl = services.validatingDistributionSetName(distributionSetName);
+		if (adl.size() > 0) {
+			msg = "1";
+		}
+		return msg;
+	}
+	 
 
 }

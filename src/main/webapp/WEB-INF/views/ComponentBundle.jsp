@@ -190,6 +190,12 @@
 											<input type="text" name="componentBundleName" class="form-control componentBundleName" pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
 												 placeholder="Component or Bundle Name Here" required/>
 												 
+												 <input type="text" style="display: none;" name="id" class="form-control id" 
+												  required/>
+												  
+												  <input type="date" style="display: none;" name="createdDate" class="form-control createdDate" 
+												  required/>
+												 
 										</div>
 										<label for="fname"
 											class="col-sm-2 text-right control-label col-form-label">Type</label>
@@ -205,7 +211,7 @@
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">Status</label>
 										<div class="col-sm-3">
-											<select name="status" class="form-control custom-select isEnableDropDown" required>
+											<select name="status" class="form-control custom-select status" required>
 													<option value="">Select</option>
 													<option value="1">1</option>
 													<option value="0">0</option>
@@ -221,7 +227,7 @@
 												>
 										</div>
 									</div>
-									
+									s
 
 									<div class="form-group row">
 										<label for="lname"
@@ -290,11 +296,12 @@
 											<c:forEach items="${setDetails}" var="md">
 												<tr>
 
-													<%-- <td>${md.id}</td> --%>
+													<td style="display: none;">${md.id}</td> 
 													<td>${md.componentBundleName}</td>
 													<td>${md.type}</td>
 													<td>${md.skuCode}</td>
 													<td>${md.status}</td>
+													<td style="display: none;">${md.createdDate}</td>
 													
 													<td>
 													<%-- <c:if test="${editAccess=='1'}"> --%>

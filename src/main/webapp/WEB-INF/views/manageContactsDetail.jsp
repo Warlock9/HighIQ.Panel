@@ -190,8 +190,8 @@ overflow: hidden;
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Purchase
-						Order Details</li>
+					<li class="breadcrumb-item active" aria-current="page">Manage
+						Customer Details</li>
 				</ol>
 			</nav>
 		</div>
@@ -307,17 +307,33 @@ Trail </a> -->
                                     <label for="fname"
 										class="col-sm-2 text-right control-label col-form-label">Active Status</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control activeStatus"
+										<%-- <input type="text" class="form-control activeStatus"
 											id="activeStatus"
 											value="${contact.status}"
-											placeholder="Active Status">
-									</div>
-									
+											placeholder="Active Status"> --%>
+											<select name="status" class="form-control custom-select activeStatus" required>
+													<option value="">Select</option>
+															<c:choose>
+																<c:when test="${contact.status=='1'}">
+																	<option selected value="${contact.status}">Active</option>
+																	<option value="0">Inactive</option>
+																</c:when>
+																<c:when test="${contact.status=='0'}">
+																	<option selected value="${contact.status}">Inactive</option>
+																	<option value="1">Active</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="1">Active</option>
+																	<option value="0">Inactive</option>
+																</c:otherwise>
+															</c:choose>
 
-								
-									
-									
+
+
+														</select>
 									</div>
+									
+							</div>
                        	<div class="form-group row">
                  	           <label for="fname"
 										class="col-sm-2 text-right control-label col-form-label">City </label>
@@ -399,7 +415,7 @@ Trail </a> -->
 									
 									
 									
-									<div class="input-group date col-md-6" id="datepicker-autoclose1">
+									<div style="display: none;" class="input-group date col-md-6" id="datepicker-autoclose1">
 										<label for="fname"
 											class="col-sm-4 text-right control-label col-form-label">Updated Date</label>
 										<input type="text" class="form-control updatedDate "
@@ -488,8 +504,8 @@ Trail </a> -->
 													<td contenteditable='true'>${il.contactPerson}</td>
 													<td contenteditable='true'>${il.contactNumber}</td>
 													<td contenteditable='true'>${il.emailID}</td>
-													<td >${il.createdDate}</td>
-													<td contenteditable='true'>${il.updatedDate}</td>
+													<td>${il.createdDate}</td>
+													<td>${il.updatedDate}</td>
 													<td contenteditable='true'>${il.status}</td>
 													<td>
 														<button type="button" class="btn btn-danger btn-sm btnDelete"
@@ -519,9 +535,15 @@ Trail </a> -->
 
 			<div class="border-top">
 				<div class="card-body">
-					
-						<button type="button" class="btn btn-info "
+					<c:if test="${contact.clientId!=null}">
+					   <button type="button" class="btn btn-info "
 							data-toggle="modal" data-target="#updateConfirmModal">Update</button>
+					</c:if>
+					<c:if test="${contact.clientId==null}">
+					   <button type="button" class="btn btn-info "
+							data-toggle="modal" data-target="#updateConfirmModal">Add</button>
+					</c:if>
+						
 					
 					
 						<!-- <button type="button" class="btn btn-info"

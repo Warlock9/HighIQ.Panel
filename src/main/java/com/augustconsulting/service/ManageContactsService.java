@@ -18,12 +18,17 @@ public interface ManageContactsService {
 	void updateContactSites(String arraycontactSites);
 	
 	/*get contactDetails using contactType and contactId*/
-    public Contacts getAllcontactDetails(Long contactId);
+    public Contacts getAllcontactDetails(Integer contactId);
     
     /*Get site Details from companyContactNumber*/
-    List<ContactSites> getSiteDetails(long clientId);
+    List<ContactSites> getSiteDetails(int clientId);
     
     /* delete contactSites of contact */
 	void deleteContactSites(ContactSites contactSites);
+	
+/*delete Customer details and site Details*/
+	
+	void deleteCustomerDetails(Contacts clientId);
+	
 
 }

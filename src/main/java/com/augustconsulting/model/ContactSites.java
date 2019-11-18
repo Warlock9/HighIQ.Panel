@@ -21,11 +21,11 @@ public class ContactSites implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ClientSiteID")
-	private Long clientSiteId;
+	private Integer clientSiteId;
 
 	@Id
 	@Column(name="ClientID")
-	private Long clientId;
+	private Integer clientId;
 	
 	
 	@NotNull
@@ -92,20 +92,22 @@ public class ContactSites implements Serializable {
 	@Column(name = "Status", length = 5)
 	private String status;
 
-	public Long getClientSiteId() {
+	
+
+	public Integer getClientSiteId() {
 		return clientSiteId;
 	}
 
-	public void setClientSiteId(Long clientSiteId) {
+	public void setClientSiteId(Integer clientSiteId) {
 		this.clientSiteId = clientSiteId;
 	}
 
 
-	public Long getClientId() {
+	public int getClientId() {
 		return clientId;
 	}
 
-	public void setClientId(Long clientId) {
+	public void setClientId(int clientId) {
 		this.clientId = clientId;
 	}
 

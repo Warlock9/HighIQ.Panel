@@ -164,12 +164,12 @@
 			<div class="page-breadcrumb">
 				<div class="row">
 					<div class="col-12 d-flex no-block align-items-center">
-						<h4 class="page-title">Manage Contacts</h4>
+						<h4 class="page-title">Manage Customer</h4>
 						<div class="ml-auto text-right">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Manage Contacts</li>
+								<li class="breadcrumb-item active" aria-current="page">Manage Customer</li>
 								</ol>
 							</nav>
 						</div>
@@ -191,19 +191,22 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
-								<h4 class="card-title"> Contact List</h4>
+								<h4 class="card-title"> Customer List</h4>
 								<div class="table-responsive">
 									
 										<table id="zero_config" id="myTable"
 											class="table table-striped table-bordered myTable">
 											<thead>
 												<tr>
-													<!-- <th>
+													<!--  <th>
 														<label class="customcheckbox m-b-20"> <input
 															type="checkbox" id="mainCheckbox"> <span
 															class="checkmark"></span>
 													</label>
 													</th> -->
+													 <th style="display: none;"><b>
+														ClientId</b>
+													</th>
 													<th><b>Client Company Name</b></th>
 													<th><b>Address Line 1</b></th>
 													<th><b>Address Line 2</b></th>
@@ -216,8 +219,7 @@
 													<th><b>Contact Person</b></th>
 													<th><b>Contact Number</b></th>
 													<th><b>Email ID</b></th>
-													<th><b>Created Date</b></th>
-													<th><b>Updated Date</b></th>
+													
 													<th><b>Status</b></th>
 													
 													<th><b></b></th>
@@ -234,6 +236,7 @@
 																name="checkBoxId[]" value="${cd.clientId}"> <span
 																class="checkmark"></span>
 														</label></td> --%>
+														<td style="display: none;">${cd.clientId}</td>
 														<td><a href="contactDetails?clientId=${cd.clientId}" target="_blank">${cd.clientCompanyName}</a></td>
 														<td>${cd.addressLine1}</td>	
 														<td>${cd.addressLine2}</td>	
@@ -246,8 +249,7 @@
 														<td>${cd.contactPerson}</td>
 														<td>${cd.contactNumber}</td>
 														<td>${cd.emailID}</td>
-														<td>${cd.createdDate}</td>
-														<td>${cd.updatedDate}</td>
+														
 														<td>${cd.status}</td>
 														
 													<td>
@@ -267,10 +269,10 @@
 						                                                    <span aria-hidden="true ">&times;</span>
 						                                                </button>
 						                                            </div>
-						                                            <form action="deleteContactSiteList" method="POST">
+						                                            <form action="deleteCustomerList" method="POST">
 						                                            <div class="modal-body">
 																		<div class="card-body col-sm-12 text-center">Do you really want to delete...?</div>
-																		<input type="hidden" name="contactId" value="${cd.clientId}"/>
+																		<input type="hidden" name="clientId" value="${cd.clientId}"/>
 																		<%-- <input type="hidden" name="contactCompanyNumber" value="${cd.contactCompanyNumber}"/> --%>
 																		<div class="card-body col-sm-12 text-center">						
 																			<button type="submit" name="action"

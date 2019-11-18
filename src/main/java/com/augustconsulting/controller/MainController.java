@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
 	
-	
-
-	@RequestMapping("/")
+	@RequestMapping({"/","/dashboard"})
 	public String mainLandingPageonLogout(Model model) {
 		
 		return new String("dashboard");

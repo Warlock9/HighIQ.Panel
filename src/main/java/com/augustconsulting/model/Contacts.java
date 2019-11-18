@@ -17,8 +17,9 @@ public class Contacts{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Column(name="ClientID ")
-	private Long clientId;
+	private Integer clientId;
 	
 	@NotNull
 	@Column(name="ClientCompanyName" ,length=10)
@@ -74,11 +75,15 @@ public class Contacts{
 	@Column(name="Status" ,length=5)
 	private String status;
 
-	public Long getClientId() {
+	
+
+
+
+	public Integer getClientId() {
 		return clientId;
 	}
 
-	public void setClientId(Long clientId) {
+	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
 

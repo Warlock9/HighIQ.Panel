@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.augustconsulting.dao.ManageContactsDao;
 import com.augustconsulting.model.ContactSites;
 import com.augustconsulting.model.Contacts;
+import com.augustconsulting.service.DateConversionService;
 import com.augustconsulting.service.ManageContactsService;
 
 @Service
@@ -20,6 +21,8 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 
 	@Autowired
 	private ManageContactsDao managecontactdao;
+	
+	@Autowired DateConversionService dateConversionService;
 
 	@Override
 	public void updateManageContactHeader(Contacts contacts) {
@@ -27,7 +30,7 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 		if(contacts.getCreatedDate()==null) {
 			contacts.setCreatedDate(new java.sql.Date(System.currentTimeMillis()));
 		}
-		
+		contacts.setUpdatedDate(new java.sql.Date(System.currentTimeMillis()));
 		managecontactdao.updateManageContactHeader(contacts);
 	}
 
@@ -53,19 +56,18 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 				String zipCode = jsonObject1.optString("zipCode");
 				String country = jsonObject1.optString("country");
                 String contactPerson = jsonObject1.optString("contactPerson");
-                // String createdDate=jsonObject1.optString("createdDate");
+                String createdDate=jsonObject1.optString("createdDate");
 				String contactNumber = jsonObject1.optString("contactNumber");
 				String emailID = jsonObject1.optString("emailID");
 				String status = jsonObject1.optString("status");
-                System.out.println(clientSiteId);
-                System.out.println(clientId);
+               
 				if(clientSiteId.length()>0) {
-					 contactSites.setClientSiteId(Long.parseLong(clientSiteId));
+					 contactSites.setClientSiteId(Integer.parseInt(clientSiteId));
 				}else {
 					 contactSites.setClientSiteId(null);
 				}
 					
-					 contactSites.setClientId(Long.parseLong(clientId));
+					   contactSites.setClientId(Integer.parseInt(clientId));
 	      				contactSites.setSiteName(siteName);
 	      				contactSites.setAddressLine1(addressLine1);
 	      				contactSites.setAddressLine2(addressLine2);
@@ -79,7 +81,14 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	      				contactSites.setContactPerson(contactPerson);
 	      				contactSites.setEmailID(emailID);
 	      				contactSites.setStatus(status);
-	      				contactSites.setCreatedDate(new java.sql.Date(System.currentTimeMillis()));
+	      				
+	      				/*created Date not change ! change only when new Customer added*/
+	      				if(createdDate.length()<=0) {
+	      					contactSites.setCreatedDate(new java.sql.Date(System.currentTimeMillis()));
+	      				}else {
+	      					contactSites.setCreatedDate(dateConversionService.StringToSqlDateConversion(createdDate));
+	      				}
+	      				
 	      				contactSites.setUpdatedDate(new java.sql.Date(System.currentTimeMillis()));
 
 	      				managecontactdao.updateContactSites(contactSites); 
@@ -98,7 +107,7 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	}
 
 	@Override
-	public Contacts getAllcontactDetails(Long contactId) {
+	public Contacts getAllcontactDetails(Integer contactId) {
 		// TODO Auto-generated method stub
 		return managecontactdao.getAllcontactDetails(contactId);
 	}
@@ -110,7 +119,7 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	}
 
 	@Override
-	public List<ContactSites> getSiteDetails(long clientId) {
+	public List<ContactSites> getSiteDetails(int clientId) {
 		// TODO Auto-generated method stub
 		return managecontactdao.getSiteDetails(clientId);
 	}
@@ -119,6 +128,14 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	public void deleteContactSites(ContactSites contactSites) {
 		// TODO Auto-generated method stub
 		 managecontactdao.deleteContactSites(contactSites);
+	}
+
+/*delete Customer details and site Details*/
+	
+	@Override
+	public void deleteCustomerDetails(Contacts clientId) {
+		// TODO Auto-generated method stub
+		managecontactdao.deleteCustomerDetails(clientId);
 	}
 
 }

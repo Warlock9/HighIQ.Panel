@@ -23,6 +23,9 @@ $(document)
 $(document)
 .ready(
 		function() {
+			
+			
+			
 		/* Delete Action  of invoice line details */
 $(".myTable1").on('click', '.btnDelete', function() {
 	// get the current row
@@ -58,26 +61,20 @@ $(".myTable1").on('click', '.btnDelete', function() {
 		
 			
 });			
+
+/**/
 		
 /*this is function is add  a field Order VendorSite */		
 			$('.btnAdd1').click(function(){
 				
-				var clientSiteId;
+				/*check client Id when new customer added bcoz clientid is mandatory*/
 				
-				
-			/*	 $('.myTable1  tbody tr').each(function() {
-						
-					  clientSiteId=$(this).find("td:eq(0)").text();
-						clientSiteId=parseInt(clientSiteId)+1;
-						
-					 });
-				 
-               if(clientSiteId==undefined){
-					 
-					 clientSiteId=1;
-					
-				 }
-				*/
+				  if(clientId==""){
+				   $('#duplicateIdSpan').html("ClientID not found ! Please add customer details first");
+					$('#duplicateConfirmModal').modal();
+					 x += $("img:eq(" + i +")").width();// this line code is wrong to stop jquery return false is not working here
+			   }
+			    
 				var line="<tr>"
 					
 				+"<td  style='display: none'></td>"
@@ -94,12 +91,13 @@ $(".myTable1").on('click', '.btnDelete', function() {
 				+"<td  contenteditable='true'></td>"
 				+"<td  contenteditable='true'></td>"
 				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
-				+"<td  contenteditable='true'></td>"
+				+"<td></td>"
+				+"<td></td>"
 				+"<td  contenteditable='true'></td>"
 				+"<td><button type='button'class='btn btn-danger btn-sm btnDelete'>Delete</button>"
                 +"</td></tr>";  
  				
+				
  				$('.myTable1').append(line);
 		});
 			
@@ -126,13 +124,15 @@ $(".myTable1").on('click', '.btnDelete', function() {
 		      var contactPerson=  $('.contactPerson').val();// common fields
 		      var contactNumber=  $('.contactNumber').val();// common fields
 		      var emailID=  $('.emailID').val();// common fields
-		      var updatedDate= convert($('.updatedDate').val());// common fields
+		     // var updatedDate= convert($('.updatedDate').val());// common fields
 		    
 		      var status=  $('.activeStatus').val();// common fields
+		     
 		      var action='update'
 		      var arrayContactSites = [];
 		      
-		    	
+		    	/*validation for customerDetails*/
+		     
 		        
 			        	 $('.myTable1 tbody tr').each(function(row, tr) {
 			        		    var className = $(this).attr('class');
@@ -156,16 +156,53 @@ $(".myTable1").on('click', '.btnDelete', function() {
 							   
 							    var contactNumber = $(this).find("td:eq(13)").html();
 							    var emailID = $(this).find("td:eq(13)").html();
-							   var createdDate = $(this).find("td:eq(14)").html();
+							    var createdDate = $(this).find("td:eq(14)").html();
 							    var updatedDate = $(this).find("td:eq(15)").html();
 							    var status = $(this).find("td:eq(16)").html();
+							    
+							
 							    
 							   arrayContactSites.push({clientSiteId:clientSiteId,clientId:clientId,siteName:siteName, addressLine1:addressLine1, addressLine2:addressLine2, addressLine3:addressLine3, addressLine4:addressLine4, city:city, state:state, zipCode:zipCode,createdDate:createdDate, updatedDate:updatedDate,country:country,contactPerson:contactPerson,contactNumber:contactNumber,emailID:emailID,status:status});
 						       
 			        	 });
-			        	 var temp=JSON.stringify(arrayContactSites);
 			        	 
+			        	 /*Validation for one */
+			        	 var rowCount = $('.myTable1 tr').length;
+			        	 if(rowCount<2){
+			        		 $('#duplicateIdSpan').html("Add atleast one site details !");
+								$('#duplicateConfirmModal').modal();
+						    	return; 
+			        	 }
+			        	
+			        	
+			        	/*Customer Details validation */
 			        	 
+			        	 if(clientCompanyName == ""){
+						    	$('#duplicateIdSpan').html("Fields cannot be empty ! check if client Company Name is not empty");
+								$('#duplicateConfirmModal').modal();
+						    	return;}
+			        	 
+			        	 if(city == ""){
+						    	$('#duplicateIdSpan').html("Fields cannot be empty ! check if city is not empty");
+								$('#duplicateConfirmModal').modal();
+						    	return;}
+			        	 
+			        	 if(emailID == ""){
+						    	$('#duplicateIdSpan').html("Fields cannot be empty ! check if email ID is not empty");
+								$('#duplicateConfirmModal').modal();
+						    	return;}
+			        	 
+			        	
+					    	 //Checking a email address is valid or not
+						       var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+				        	 if (!pattern.test(emailID)) {
+				        		
+									$('#duplicateIdSpan').html(emailID + ' ' + ' = is not a valid mail address');
+									$('#duplicateConfirmModal').modal();
+									return;
+								} 
+						
+					       
 			        	// Calling Loader
 	    				 showPage();
 	    				 disableScreen();
@@ -187,7 +224,7 @@ $(".myTable1").on('click', '.btnDelete', function() {
 						contactPerson:contactPerson,
 						contactNumber:contactNumber,
 						emailID:emailID,
-					    updatedDate:updatedDate,
+					   // updatedDate:updatedDate,
 						status:status,
 						arrayContactSites:JSON.stringify(arrayContactSites)
 						

@@ -12,7 +12,7 @@ public interface ManageContactsDao {
 	public List<Contacts> getAllcontactDetails();
 	
 	/*get contactDetails using contactType and contactId*/
-    public Contacts getAllcontactDetails(Long contactId);
+    public Contacts getAllcontactDetails(Integer clientId);
 
 	/* update Header manageContacts */
 	void updateManageContactHeader(Contacts contacts);
@@ -21,9 +21,14 @@ public interface ManageContactsDao {
 	void updateContactSites(ContactSites contactSites);
 	
 	 /*Get site Details from companyContactNumber*/
-    List<ContactSites> getSiteDetails(long clientId);
+    List<ContactSites> getSiteDetails(Integer clientId);
     
     /*delete ContactSites for contact */
 	void deleteContactSites (ContactSites contactSites);
+	
+	/*delete Customer details and site Details*/
+	
+	void deleteCustomerDetails(Contacts clientId);
+	
 
 }

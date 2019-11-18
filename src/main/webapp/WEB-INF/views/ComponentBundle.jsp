@@ -188,13 +188,11 @@
 											class="col-sm-2 text-right control-label col-form-label">Component Bundle Name</label>
 										<div class="col-sm-3">
 											<input type="text" name="componentBundleName" class="form-control componentBundleName" pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
-												 placeholder="Component or Bundle Name Here" required/>
+												 placeholder="Component or Bundle Name Here" required>
+												 <input type="number" style="display: none;" name="id1" value=0 class="form-control id1">
+												 <input type="date" style="display: none;" name="cDate" value="2019-02-04" class="form-control cDate">
 												 
-												 <input type="text" style="display: none;" name="id" class="form-control id" 
-												  required/>
-												  
-												  <input type="date" style="display: none;" name="createdDate" class="form-control createdDate" 
-												  required/>
+												
 												 
 										</div>
 										<label for="fname"
@@ -213,8 +211,8 @@
 										<div class="col-sm-3">
 											<select name="status" class="form-control custom-select status" required>
 													<option value="">Select</option>
-													<option value="1">1</option>
-													<option value="0">0</option>
+													<option value="1">Active</option>
+													<option value="0">Inactive</option>
 											</select>
 											
 										</div>
@@ -227,7 +225,7 @@
 												>
 										</div>
 									</div>
-									s
+									
 
 									<div class="form-group row">
 										<label for="lname"

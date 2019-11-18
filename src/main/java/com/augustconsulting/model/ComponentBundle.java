@@ -18,21 +18,27 @@ public class ComponentBundle {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", length = 5)
 	private int id;
+	
 	@Column(name = "ComponentBundleName", length = 100)
 	@NotNull
 	private String componentBundleName;
+	
 	@Column(name = "Type", length = 10)
 	@NotNull
 	private String type;
+	
 	@Column(name = "SkuCode", length = 5)
 	@NotNull
 	private String skuCode;
+	
 	@Column(name = "UpdatedDate")
 	@NotNull
 	private Date updatedDate;
+	
 	@Column(name = "CreatedDate")
 	@NotNull
 	private Date createdDate;
+	
 	@Column(name = "Status", length = 5)
 	@NotNull
 	private int status;

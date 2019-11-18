@@ -31,17 +31,17 @@ $(document).ready(function() {
 			scrollTop : 0
 		}, "fast"); // scrolling action to top of page
 
-		$(".id").val(id.trim());
+		$(".id1").val(id.trim());
 		$(".componentBundleName").val(componentBundleName.trim());
 		$(".type").val(type.trim());
 		$(".skuCode").val(skuCode.trim());
 		$(".status").val(status.trim());
-		$(".createdDate").val(createdDate.trim());
+		$(".cDate").val(createdDate.trim());
 		$(".card-title1").html("Edit Component/Bundle");
 		$(".btn-submit").hide(); // disabling submit button
 		$(".btn-update").show();//enabling the update button
-		$(".id").css('pointer-events', 'none');
-		$(".id").prop('readonly', true);
+		//$(".id").css('pointer-events', 'none');
+		//$(".id").prop('readonly', true);
 	});
 
 	/*$('.btnAdd').mouseover(function(){

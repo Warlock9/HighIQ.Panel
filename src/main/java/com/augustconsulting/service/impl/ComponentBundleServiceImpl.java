@@ -36,6 +36,7 @@ public class ComponentBundleServiceImpl implements ComponentBundleService {
 
 	@Override
 	public void insertingDataToDb(ComponentBundle ds) {
+		
 		ds.setCreatedDate(dateService.getToDate());
 		ds.setUpdatedDate(dateService.getToDate());
 		manageDao.insertingDataToDb(ds);

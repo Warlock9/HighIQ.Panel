@@ -21,8 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.augustconsulting.model.ComponentBundle;
-import com.augustconsulting.service.ComponentBundleService;
-import com.augustconsulting.service.DateConversionService;
+import com.augustconsulting.service.ComponentBundleService; 
 
 
 @Controller
@@ -54,13 +53,16 @@ public String botManagerLandingPage(Model model,HttpServletRequest request, Http
 }
 
 @PostMapping("/ComponentBundle.do")
-public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageSet, @RequestParam("action") String action) {
+public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageSet, @RequestParam("action") String action, @RequestParam("id1") int id1,@RequestParam("cDate") java.sql.Date cdate) {
 	System.out.println("fsdakjffffffffffff");
-	
 	if(action.equals("save")) {	 
-		System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiii");
+		System.out.println("saaaaaaaaaaaaaavvvvvvvvvvvvvvvvvvvvv");
+		
 		services.insertingDataToDb(manageSet);
 	}else if(action.equals("update")){
+		System.out.println("updaaaaaaaaaaaateeeeeeeeeeeeeeeeeeeeeeee");
+		manageSet.setId(id1);
+		manageSet.setCreatedDate(cdate);
 		services.updateDataToDb(manageSet);		
 	}
 	return new String("redirect:/componentBundle");

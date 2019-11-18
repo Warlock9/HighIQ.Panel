@@ -184,18 +184,27 @@
 									<h4 class="card-title card-title1">Add Component/Bundle</h4>
 
 									<div class="form-group row">
+									
+									<label for="fname"
+											class="col-sm-2 text-right control-label col-form-label">SKU Code</label>
+										<div class="col-sm-3">
+											<input type="text" class="form-control skuCode"
+											    name="skuCode" placeholder="SKU Code Here">
+										</div>
+										
 										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">Component Bundle Name</label>
+											class="col-sm-2 text-right control-label col-form-label">Component/Bundle Name</label>
 										<div class="col-sm-3">
 											<input type="text" name="componentBundleName" class="form-control componentBundleName" pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
 												 placeholder="Component or Bundle Name Here" required>
 												 <input type="number" style="display: none;" name="id1" value=0 class="form-control id1">
 												 <input type="date" style="display: none;" name="cDate" value="2019-02-04" class="form-control cDate">
-												 
-												
-												 
 										</div>
-										<label for="fname"
+										
+									</div>
+									<div class="form-group row">
+									
+										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">Type</label>
 										<div class="col-sm-3">
 											<select name="type" class="form-control custom-select type" required>
@@ -204,8 +213,7 @@
 													<option value="Bundle">Bundle</option>
 											</select>
 										</div>
-									</div>
-									<div class="form-group row">
+										
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">Status</label>
 										<div class="col-sm-3">
@@ -215,14 +223,6 @@
 													<option value="0">Inactive</option>
 											</select>
 											
-										</div>
-                                         
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">SKU Code</label>
-										<div class="col-sm-3">
-											<input type="text" class="form-control skuCode"
-											    name="skuCode" placeholder="SKU Code Here"
-												>
 										</div>
 									</div>
 									

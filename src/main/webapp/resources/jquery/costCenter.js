@@ -24,7 +24,14 @@ $(document).ready(function() {
 		var componentBundleName = currentRow.find("td:eq(1)").text();
 		var type = currentRow.find("td:eq(2)").text();
 		var skuCode = currentRow.find("td:eq(3)").text();
-		var status = currentRow.find("td:eq(4)").text();
+		var status ;
+		if(currentRow.find("td:eq(4)").text() == "Inactive")
+			{
+			status = "0";
+			}
+		else{
+			status = "1";
+		}
 		var createdDate = currentRow.find("td:eq(5)").text();
 
 		$("html, body").animate({

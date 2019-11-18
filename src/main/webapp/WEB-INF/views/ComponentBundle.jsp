@@ -280,7 +280,7 @@
 										class="table table-striped table-bordered myTable">
 										<thead>
 											<tr>
-												<th><b>Component Bundle Name</b></th>
+												<th><b>Component/Bundle Name</b></th>
 												<th><b>type</b></th>
 												<th><b>SKU Code</b></th>
 												<th><b>Status</b></th>
@@ -298,7 +298,14 @@
 													<td>${md.componentBundleName}</td>
 													<td>${md.type}</td>
 													<td>${md.skuCode}</td>
-													<td>${md.status}</td>
+													<c:choose>
+													<c:when test ="${md.status==0}">
+													<td id="ww">Inactive</td>
+													</c:when>
+													<c:when test ="${md.status==1}">
+													<td id="ww">Active</td>
+													</c:when>
+													</c:choose>
 													<td style="display: none;">${md.createdDate}</td>
 													
 													<td>

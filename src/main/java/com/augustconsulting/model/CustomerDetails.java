@@ -1,6 +1,7 @@
+/*Here We Manage Contacts as CustomerDetails*/
+
 package com.augustconsulting.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -11,112 +12,89 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@SuppressWarnings("serial")
+
 @Entity
-@Table(name = "tbl_ContactSites")
-
-public class ContactSites implements Serializable {
-
-
+@Table(name="tbl_CustomerDetails")
+public class CustomerDetails{
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ClientSiteID")
-	private Integer clientSiteId;
-
-	@Id
-	@Column(name="ClientID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@Column(name="ClientID ")
 	private Integer clientId;
 	
-	
 	@NotNull
-	@Column(name = "SiteName", length = 100)
-	private String siteName;
-
+	@Column(name="ClientCompanyName" ,length=10)
+	private String clientCompanyName;
 	
-	@NotNull
-	@Column(name = "AddressLine1", length = 255)
+	@Column(name="AddressLine1" ,length=255)
 	private String addressLine1;
-
 	
-	@NotNull
-	@Column(name = "AddressLine2", length = 255)
+	@Column(name="AddressLine2" ,length=255)
 	private String addressLine2;
-
-	@NotNull
-	@Column(name = "AddressLine3", length = 255)
+	
+	@Column(name="AddressLine3" ,length=255)
 	private String addressLine3;
-
 	
-	@NotNull
-	@Column(name = "AddressLine4", length = 255)
+	@Column(name="AddressLine4" ,length=255)
 	private String addressLine4;
-
-	@NotNull
-	@Column(name = "City", length = 100)
-	private String city;
-
-	@NotNull
-	@Column(name = "State", length = 100)
-	private String state;
-
-	@NotNull
-	@Column(name = "ZipCode", length = 20)
-	private String zipCode;
-
-	@NotNull
-	@Column(name = "Country", length = 100)
-	private String country;
-
 	
 	@NotNull
-	@Column(name = "ContactPerson", length = 25)
+	@Column(name="City" ,length=100)
+	private String city;
+	
+	@Column(name="State" ,length=100)
+	private String state;
+	
+	@NotNull
+	@Column(name="ZipCode" ,length=20)
+	private String zipCode;
+	
+	@Column(name="Country" ,length=100)
+	private String country;
+	
+	@NotNull
+	@Column(name="ContactPerson" ,length=25)
 	private String contactPerson;
-
+	
 	@NotNull
-	@Column(name = "ContactNumber", length = 15)
+	@Column(name="ContactNumber" ,length=15)
 	private String contactNumber;
-
+	
 	@NotNull
-	@Column(name = "EmailID", length = 30)
+	@Column(name="EmailID" ,length=30)
 	private String emailID;
-
-	@NotNull	
-	@Column(name = "CreatedDate", length = 15)
+	
+	@NotNull
+	@Column(name="CreatedDate" ,length=15)
 	private Date createdDate;
-
+	
 	@NotNull
-	@Column(name = "UpdatedDate", length = 15)
+	@Column(name="UpdatedDate" ,length=15)
 	private Date updatedDate;
-
+	
 	@NotNull
-	@Column(name = "Status", length = 5)
+	@Column(name="Status" ,length=5)
 	private String status;
 
 	
 
-	public Integer getClientSiteId() {
-		return clientSiteId;
-	}
-
-	public void setClientSiteId(Integer clientSiteId) {
-		this.clientSiteId = clientSiteId;
-	}
 
 
-	public int getClientId() {
+	public Integer getClientId() {
 		return clientId;
 	}
 
-	public void setClientId(int clientId) {
+	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
 
-	public String getSiteName() {
-		return siteName;
+	public String getClientCompanyName() {
+		return clientCompanyName;
 	}
 
-	public void setSiteName(String siteName) {
-		this.siteName = siteName;
+	public void setClientCompanyName(String clientCompanyName) {
+		this.clientCompanyName = clientCompanyName;
 	}
 
 	public String getAddressLine1() {
@@ -207,7 +185,6 @@ public class ContactSites implements Serializable {
 		this.emailID = emailID;
 	}
 
-	
 
 	public Date getCreatedDate() {
 		return createdDate;
@@ -235,14 +212,14 @@ public class ContactSites implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ContactSites [clientSiteId=" + clientSiteId + ", clientId=" + clientId + ", siteName=" + siteName
-				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3
-				+ ", addressLine4=" + addressLine4 + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode
-				+ ", country=" + country + ", contactPerson=" + contactPerson + ", contactNumber=" + contactNumber
-				+ ", emailID=" + emailID + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", status="
-				+ status + "]";
+		return "Contacts [clientId=" + clientId + ", clientCompanyName=" + clientCompanyName + ", addressLine1="
+				+ addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3 + ", addressLine4="
+				+ addressLine4 + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", country=" + country
+				+ ", contactPerson=" + contactPerson + ", contactNumber=" + contactNumber + ", emailID=" + emailID
+				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", status=" + status + "]";
 	}
 	
-	
 
+
+	
 }

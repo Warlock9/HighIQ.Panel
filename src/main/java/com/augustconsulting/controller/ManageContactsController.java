@@ -18,14 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.augustconsulting.model.ContactSites;
-import com.augustconsulting.model.Contacts;
+import com.augustconsulting.model.CustomerSites;
+import com.augustconsulting.model.CustomerDetails;
 import com.augustconsulting.service.ManageContactsService;
 
 @Controller
 @RequestMapping("/")
 public class ManageContactsController {
 
+	private static String clientId;
 	private final String landingPageViewList = "manageContactsList";
 	private final String contactDetails = "manageContactsDetail";
 
@@ -45,26 +46,25 @@ public class ManageContactsController {
 
 	@GetMapping("/contactDetails")
 	public String detailsLanding(Model model, HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("contacts") Contacts contactsDetails) {
+			@ModelAttribute("contacts") CustomerDetails contactsDetails) {
 
-		Contacts contact = manageContactService.getAllcontactDetails(contactsDetails.getClientId());
+		CustomerDetails contact = manageContactService.getAllcontactDetails(contactsDetails.getClientId());
 
-		List<ContactSites> siteDetails = manageContactService.getSiteDetails(contactsDetails.getClientId());
+		List<CustomerSites> siteDetails = manageContactService.getSiteDetails(String.valueOf(contactsDetails.getClientId()));
 		System.out.println(siteDetails);
 		model.addAttribute("contact", contact);
 		model.addAttribute("contactSites", siteDetails);
-
 		return new String(contactDetails);
 	}
 
 	@PostMapping("/manageContactAction")
-	public @ResponseBody String doActionOnManageContacts(@ModelAttribute("Contacts") Contacts contacts,
+	public @ResponseBody String doActionOnManageContacts(@ModelAttribute("Contacts") CustomerDetails contacts,
 			@RequestParam("action") String action, @RequestParam("arrayContactSites") String arrayContactSites) {
-		System.out.println("<><><>" + contacts.getUpdatedDate());
 		String message = "";
 		if (action.equals("update")) {
 			manageContactService.updateManageContactHeader(contacts);
-			manageContactService.updateContactSites(arrayContactSites);
+			clientId=String.valueOf(contacts.getClientId());
+			manageContactService.updateContactSites(arrayContactSites,clientId);
 			message = "1";
 		}
 
@@ -78,7 +78,7 @@ public class ManageContactsController {
 
 	@RequestMapping(value = "/contactSiteDelete.do", method = RequestMethod.POST)
 	public @ResponseBody String deleteInvoiceLineDetails(@RequestParam("action") String action,
-			@ModelAttribute("ContactSites") ContactSites contactSites) {
+			@ModelAttribute("ContactSites") CustomerSites contactSites) {
 
 		String message = "0";
 
@@ -96,7 +96,7 @@ public class ManageContactsController {
 
 	@RequestMapping(value = "/deleteCustomerList", method = RequestMethod.POST)
 	public String deleteCustomerList(@RequestParam("action") String action,
-			@ModelAttribute("Contacts") Contacts contact) {
+			@ModelAttribute("Contacts") CustomerDetails contact) {
 		System.out.println(contact.getClientId());
 		manageContactService.deleteCustomerDetails(contact);
 

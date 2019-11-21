@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@page isELIgnored="false" %>
+<%@page isELIgnored="false"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <% 
     response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
@@ -23,15 +23,21 @@
 						class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
 				</li>
 				
-				<li class="sidebar-item"><a href="contactList"
-								class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
-									class="hide-menu"> Manage Customer </span></a></li>
-									
-									<li class="sidebar-item"><a href="componentBundle"
-								class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
-									class="hide-menu"> Manage Component Bundle </span></a></li>
-				
+					<li class="sidebar-item"><a href="digitalWorkerSales"
+					class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
+						class="hide-menu"> Digital Worker Sales</span></a></li>
 
+				<li class="sidebar-item"><a href="contactList"
+					class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
+						class="hide-menu"> Manage Customer </span></a></li>
+
+				<li class="sidebar-item"><a href="componentBundle"
+					class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
+						class="hide-menu"> Manage Component Bundle </span></a></li>
+
+
+
+			
 
 
 

@@ -3,32 +3,32 @@ package com.augustconsulting.dao;
 
 import java.util.List;
 
-import com.augustconsulting.model.ContactSites;
-import com.augustconsulting.model.Contacts;
+import com.augustconsulting.model.CustomerSites;
+import com.augustconsulting.model.CustomerDetails;
 
 public interface ManageContactsDao {
 
 	// getting all details form botcontactTable
-	public List<Contacts> getAllcontactDetails();
+	public List<CustomerDetails> getAllcontactDetails();
 	
 	/*get contactDetails using contactType and contactId*/
-    public Contacts getAllcontactDetails(Integer clientId);
+    public CustomerDetails getAllcontactDetails(Integer clientId);
 
 	/* update Header manageContacts */
-	void updateManageContactHeader(Contacts contacts);
+	void updateManageContactHeader(CustomerDetails contacts);
 
 	/* update contactSites */
-	void updateContactSites(ContactSites contactSites);
+	void updateContactSites(CustomerSites contactSites);
 	
 	 /*Get site Details from companyContactNumber*/
-    List<ContactSites> getSiteDetails(Integer clientId);
+    List<CustomerSites> getSiteDetails(String clientId);
     
     /*delete ContactSites for contact */
-	void deleteContactSites (ContactSites contactSites);
+	void deleteContactSites (CustomerSites contactSites);
 	
 	/*delete Customer details and site Details*/
 	
-	void deleteCustomerDetails(Contacts clientId);
+	void deleteCustomerDetails(CustomerDetails clientId);
 	
 
 }

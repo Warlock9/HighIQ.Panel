@@ -12,11 +12,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.augustconsulting.dao.ManageContactsDao;
-import com.augustconsulting.model.ContactSites;
-import com.augustconsulting.model.Contacts;
+import com.augustconsulting.model.CustomerSites;
+import com.augustconsulting.model.CustomerDetails;
 
 @Repository("ManageContactsDAO")
-
 @Transactional("transactionManager")
 public class ManageContactsDaoImpl implements ManageContactsDao {
 
@@ -26,7 +25,7 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 
 	/* update Header manageContacts */
 	@Override
-	public void updateManageContactHeader(Contacts contacts) {
+	public void updateManageContactHeader(CustomerDetails contacts) {
 		// TODO Auto-generated method stub
 		System.out.println(contacts.getCreatedDate());
 		Session ss = sessionFactory.getCurrentSession();
@@ -35,13 +34,13 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 	}
 
 	@Override
-	public Contacts getAllcontactDetails(Integer contactId) {
+	public CustomerDetails getAllcontactDetails(Integer contactId) {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().get(Contacts.class, contactId);
+		return sessionFactory.getCurrentSession().get(CustomerDetails.class, contactId);
 	}
 
 	@Override
-	public void updateContactSites(ContactSites contactSites) {
+	public void updateContactSites(CustomerSites contactSites) {
 		// sessionFactory.getCurrentSession().saveOrUpdate(contactSites);
 		Session ss = sessionFactory.getCurrentSession();
 		ss.saveOrUpdate(contactSites);
@@ -52,25 +51,25 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Contacts> getAllcontactDetails() {
+	public List<CustomerDetails> getAllcontactDetails() {
 		// TODO Auto-generated method stub
-		return (List<Contacts>) sessionFactory.getCurrentSession().createCriteria(Contacts.class).list();
+		return (List<CustomerDetails>) sessionFactory.getCurrentSession().createCriteria(CustomerDetails.class).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ContactSites> getSiteDetails(Integer clientId) {
+	public List<CustomerSites> getSiteDetails(String clientId) {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(ContactSites.class)
+		return sessionFactory.getCurrentSession().createCriteria(CustomerSites.class)
 				.add(Restrictions.eq("clientId", clientId)).list();
 	}
 
 	@Override
-	public void deleteContactSites(ContactSites contactSites) {
-		String hql = "delete from ContactSites where clientSiteId=:clientSiteId and clientId=:clientId";
+	public void deleteContactSites(CustomerSites contactSites) {
+		String hql = "delete from CustomerSites where clientSiteId=:clientSiteId and clientId=:clientId";
 		Query q = sessionFactory.getCurrentSession().createQuery(hql);
 		q.setLong("clientSiteId", contactSites.getClientSiteId());
-		q.setLong("clientId", contactSites.getClientId());
+		q.setString("clientId", contactSites.getClientId());
 
 		q.executeUpdate();
 
@@ -79,11 +78,11 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 	/* delete Customer details and site Details */
 
 	@Override
-	public void deleteCustomerDetails(Contacts clientId) {
+	public void deleteCustomerDetails(CustomerDetails clientId) {
 		// TODO Auto-generated method stub
 		Session ss = sessionFactory.getCurrentSession();
-		String hql = "delete from Contacts where clientId =:clientId";
-		String hql1 = "delete from ContactSites where clientId =:clientId";
+		String hql = "delete from CustomerDetails where clientId =:clientId";
+		String hql1 = "delete from CustomerSites where clientId =:clientId";
 
 		Query q = ss.createQuery(hql);
 		Query q1 = ss.createQuery(hql1);

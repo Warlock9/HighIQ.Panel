@@ -16,7 +16,12 @@ $(document)
 					order: [],
 					columnDefs: [ { orderable: false, targets: [0] } ]
 					});   // end of sorting in decending order of table 
-					      
+					$(".contactNumber").keypress(function(e) {
+				 		  //Enter key
+				 		  if (e.which == 13) {
+				 		    return false;
+				 		  }
+				 		});  
 					
 				});			
 		
@@ -63,18 +68,10 @@ $(".myTable1").on('click', '.btnDelete', function() {
 });			
 
 /**/
-		
+	
 /*this is function is add  a field Order VendorSite */		
 			$('.btnAdd1').click(function(){
 				
-				/*check client Id when new customer added bcoz clientid is mandatory*/
-				
-				  if(clientId==""){
-				   $('#duplicateIdSpan').html("ClientID not found ! Please add customer details first");
-					$('#duplicateConfirmModal').modal();
-					 x += $("img:eq(" + i +")").width();// this line code is wrong to stop jquery return false is not working here
-			   }
-			    
 				var line="<tr>"
 					
 				+"<td  style='display: none'></td>"
@@ -91,13 +88,19 @@ $(".myTable1").on('click', '.btnDelete', function() {
 				+"<td  contenteditable='true'></td>"
 				+"<td  contenteditable='true'></td>"
 				+"<td  contenteditable='true'></td>"
-				+"<td></td>"
-				+"<td></td>"
-				+"<td  contenteditable='true'></td>"
+				+"<td style='display: none;'></td>"
+				+"<td style='display: none;'></td>"
+				+"<td  contenteditable='true'>"
+				+"<select name='status' class='form-control custom-select activeStatus' required>"
+				+"	<option value=''>Select</option>"
+				+"<option value='1'>Active</option>"
+				+"<option value='0'>Inactive</option>"
+			     +"</select>"
+				
+				+"</td>"
 				+"<td><button type='button'class='btn btn-danger btn-sm btnDelete'>Delete</button>"
                 +"</td></tr>";  
  				
-				
  				$('.myTable1').append(line);
 		});
 			
@@ -131,7 +134,38 @@ $(".myTable1").on('click', '.btnDelete', function() {
 		      var action='update'
 		      var arrayContactSites = [];
 		      
-		    	/*validation for customerDetails*/
+		      
+		  	/*Customer Details validation */
+	        	 
+	        	 if(clientCompanyName == ""){
+				    	$('#duplicateIdSpan').html("Fields cannot be empty ! client Company Name is mandatory");
+						$('#duplicateConfirmModal').modal();
+				    	return;}
+	        	 
+	        	 if(city == ""){
+				    	$('#duplicateIdSpan').html("Fields cannot be empty ! city is mandatory");
+						$('#duplicateConfirmModal').modal();
+				    	return;}
+	        	 
+	        	 if(emailID == ""){
+				    	$('#duplicateIdSpan').html("Fields cannot be empty ! email ID is mandatory");
+						$('#duplicateConfirmModal').modal();
+				    	return;}
+	        	    if(status==""){
+	        	    	$('#duplicateIdSpan').html("Fields cannot be empty ! status is mandatory ");
+						$('#duplicateConfirmModal').modal();
+				    	return;
+	        	    }
+			    	 //Checking a email address is valid or not
+				       var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+		        	 if (!pattern.test(emailID)) {
+		        		
+							$('#duplicateIdSpan').html(emailID + ' ' + ' = is not a valid mail address');
+							$('#duplicateConfirmModal').modal();
+							return;
+						} 
+				     
+				       
 		     
 		        
 			        	 $('.myTable1 tbody tr').each(function(row, tr) {
@@ -154,14 +188,60 @@ $(".myTable1").on('click', '.btnDelete', function() {
 							    
 							    var contactPerson = $(this).find("td:eq(11)").html();//imary Key 
 							   
-							    var contactNumber = $(this).find("td:eq(13)").html();
+							    var contactNumber = $(this).find("td:eq(12)").html();
 							    var emailID = $(this).find("td:eq(13)").html();
+							    
 							    var createdDate = $(this).find("td:eq(14)").html();
 							    var updatedDate = $(this).find("td:eq(15)").html();
-							    var status = $(this).find("td:eq(16)").html();
+							    var status = $(this).find("td:eq(16) select").val();
 							    
 							
+							     /*check mandatory field*/
+							    if(siteName==""){
+				        	    	$('#duplicateIdSpan').html("Fields cannot be empty ! site name is mandatory ");
+									$('#duplicateConfirmModal').modal();
+									 x += $("img:eq(" + i +")").width();// this line code is wrong to stop jquery return false is not working here 
+				        	    }
+							    if(city==""){
+				        	    	$('#duplicateIdSpan').html("Fields cannot be empty ! city is mandatory ");
+									$('#duplicateConfirmModal').modal();
+									 x += $("img:eq(" + i +")").width();// this line code is wrong to stop jquery return false is not working here 
+				        	    }
+							     if(status==""){
+					        	    	$('#duplicateIdSpan').html("Fields cannot be empty ! status is mandatory ");
+										$('#duplicateConfirmModal').modal();
+										 x += $("img:eq(" + i +")").width();// this line code is wrong to stop jquery return false is not working here 
+					        	    }
+							     
+							     /*check mandatory field*/
+							     if(emailID==""){
+					        	    	$('#duplicateIdSpan').html("Fields cannot be empty ! email ID is mandatory ");
+										$('#duplicateConfirmModal').modal();
+										 x += $("img:eq(" + i +")").width();// this line code is wrong to stop jquery return false is not working here 
+					        	    }
+
+							     //Checking a email address is valid or not
+								   
+                                /* var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+
+							     if (!pattern.test(emailID)) {
+						        		
+											$('#duplicateIdSpan').html(emailID + ' ' + ' = is not a valid mail address');
+											$('#duplicateConfirmModal').modal();
+										    x += $("img:eq(" + i +")").width();// this line code is wrong to stop jquery return false is not working here 
+
+										} */
 							    
+							     var NumberRegex = /^[0-9]*$/;
+							     if(contactNumber.length <= 10){
+							     if(NumberRegex.test(contactNumber)){
+							     //do whatever you want to
+							     }else{
+							    		$('#duplicateIdSpan').html(contactNumber + ' ' + ' = is not a valid contact number');
+										$('#duplicateConfirmModal').modal();
+										 x += $("img:eq(" + i +")").width();// this line code is wrong to stop jquery return false is not working here 
+							      }
+							     }
 							   arrayContactSites.push({clientSiteId:clientSiteId,clientId:clientId,siteName:siteName, addressLine1:addressLine1, addressLine2:addressLine2, addressLine3:addressLine3, addressLine4:addressLine4, city:city, state:state, zipCode:zipCode,createdDate:createdDate, updatedDate:updatedDate,country:country,contactPerson:contactPerson,contactNumber:contactNumber,emailID:emailID,status:status});
 						       
 			        	 });
@@ -175,34 +255,7 @@ $(".myTable1").on('click', '.btnDelete', function() {
 			        	 }
 			        	
 			        	
-			        	/*Customer Details validation */
-			        	 
-			        	 if(clientCompanyName == ""){
-						    	$('#duplicateIdSpan').html("Fields cannot be empty ! check if client Company Name is not empty");
-								$('#duplicateConfirmModal').modal();
-						    	return;}
-			        	 
-			        	 if(city == ""){
-						    	$('#duplicateIdSpan').html("Fields cannot be empty ! check if city is not empty");
-								$('#duplicateConfirmModal').modal();
-						    	return;}
-			        	 
-			        	 if(emailID == ""){
-						    	$('#duplicateIdSpan').html("Fields cannot be empty ! check if email ID is not empty");
-								$('#duplicateConfirmModal').modal();
-						    	return;}
-			        	 
 			        	
-					    	 //Checking a email address is valid or not
-						       var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
-				        	 if (!pattern.test(emailID)) {
-				        		
-									$('#duplicateIdSpan').html(emailID + ' ' + ' = is not a valid mail address');
-									$('#duplicateConfirmModal').modal();
-									return;
-								} 
-						
-					       
 			        	// Calling Loader
 	    				 showPage();
 	    				 disableScreen();
@@ -235,6 +288,7 @@ $(".myTable1").on('click', '.btnDelete', function() {
 	     						$('#updateConfirmModaljquery').modal();
 	     						disableLoader();
 	     						enableScreen();
+	     						window.top.close();
                                }
 	     				 
 	     				});
@@ -278,3 +332,5 @@ function convert(str) {
 			 $(".overlay").remove();
 		}
 
+		
+		

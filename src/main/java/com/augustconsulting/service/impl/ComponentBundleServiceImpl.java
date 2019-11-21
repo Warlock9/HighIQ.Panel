@@ -19,7 +19,7 @@ public class ComponentBundleServiceImpl implements ComponentBundleService {
 	
 
 	@Override
-	public void deleteFromDb(int id) {
+	public void deleteFromDb(String id) {
 		manageDao.deleteFromDb(id);
 	}
 

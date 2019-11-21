@@ -1,14 +1,8 @@
 package com.augustconsulting.controller;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,7 +47,7 @@ public String botManagerLandingPage(Model model,HttpServletRequest request, Http
 }
 
 @PostMapping("/ComponentBundle.do")
-public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageSet, @RequestParam("action") String action, @RequestParam("id1") int id1,@RequestParam("cDate") java.sql.Date cdate) {
+public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageSet, @RequestParam("action") String action,@RequestParam("cDate") java.sql.Date cdate) {
 	System.out.println("fsdakjffffffffffff");
 	if(action.equals("save")) {	 
 		System.out.println("saaaaaaaaaaaaaavvvvvvvvvvvvvvvvvvvvv");
@@ -61,7 +55,6 @@ public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manag
 		services.insertingDataToDb(manageSet);
 	}else if(action.equals("update")){
 		System.out.println("updaaaaaaaaaaaateeeeeeeeeeeeeeeeeeeeeeee");
-		manageSet.setId(id1);
 		manageSet.setCreatedDate(cdate);
 		services.updateDataToDb(manageSet);		
 	}
@@ -69,7 +62,7 @@ public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manag
 }
 
 @PostMapping("/componentBundle.del")
-public String doDeleteAction(@RequestParam("action") String action,@RequestParam("id") int id) {
+public String doDeleteAction(@RequestParam("action") String action,@RequestParam("id") String id) {
 	System.out.println("fdsafasdfsafasdfllllllllllllllllllllllllllll");
 	services.deleteFromDb(id);
 	return new String("redirect:/componentBundle");		
@@ -87,5 +80,29 @@ public String doDeleteAction(@RequestParam("action") String action,@RequestParam
 		return msg;
 	}
 	 
+	/*
+	 * @RequestMapping(value = "/FetchComponent.du", method = RequestMethod.POST)
+	 * public @ResponseBody String doActionBot(@ModelAttribute("botparamerter")
+	 * ManageBotParameter botparameter,@ModelAttribute("botParameterMaster")
+	 * BotParameterMaster botParameterMaster,
+	 * 
+	 * @RequestParam("action") String action, @RequestParam("botId") String botId) {
+	 * String message=""; if (action.equals("onSelectBotId")) { StringBuilder sb =
+	 * new StringBuilder(); List<BotParameterMaster> li =
+	 * botParmaterService.fetchingParameterNameAndValues(botParameterMaster.
+	 * getBotType(), botId); if (li != null) { for(BotParameterMaster ab:li) {
+	 * sb.append("<div class=\"form-group row\">\r\n" +
+	 * "   <div class=\"col-sm-2\">\r\n" +
+	 * "      <input type=\"text\" class=\"form-control text-right  \" value='"+ab.
+	 * getParameterName()+"' id=\"fname\" name=\"parameterName[]\"  readonly>\r\n" +
+	 * "   </div>\r\n" + "   <div class=\"col-sm-5\">\r\n" +
+	 * "      <input type=\"text\" class=\"form-control\" id=\"fname\" name=\"parameterDescription[]\" value='"
+	 * +ab.getParameterDescription()+"'  readonly>\r\n" + "   </div>\r\n" +
+	 * "   <div class=\"col-sm-5\">\r\n" +
+	 * "      <input type=\"text\" class=\"form-control "+ab.getParameterName()
+	 * +" \" id=\"fname\" name=\"parameterValue[]\" value='"+ab.getParameterValue()
+	 * +"' >\r\n" + "   </div>\r\n" + "</div>"); } } message = sb.toString(); }
+	 * return message; }
+	 */
 
 }

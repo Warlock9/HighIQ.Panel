@@ -10,7 +10,7 @@ public interface ComponentBundleService {
 
 	public void updateDataToDb(ComponentBundle ds);
 
-	public void deleteFromDb(int id);
+	public void deleteFromDb(String id);
 
 	public List<ComponentBundle> fetchingDataFromDb();
 

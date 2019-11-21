@@ -3,7 +3,7 @@
 <!-- Add contact -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@page isELIgnored="false" %>
+<%@page isELIgnored="false"%>
 <c:url value="/" var="resourceURL" />
 <% 
     response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
@@ -22,7 +22,8 @@
 	href="${resourceURL}/resources/assets/images/favicon.png">
 <title>HighIQ.ai - Manage Component/Bundle</title>
 <!-- Custom CSS -->
-<link rel="stylesheet" type="text/css" href="${resourceURL}/resources/assets/libs/select2/dist/css/select2.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${resourceURL}/resources/assets/libs/select2/dist/css/select2.min.css">
 
 <link rel="stylesheet" type="text/css"
 	href="${resourceURL}/resources/assets/libs/jquery-minicolors/jquery.minicolors.css">
@@ -45,7 +46,7 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="${resourceURL}/resources/jquery/costCenter.js"></script>
+<script src="${resourceURL}/resources/jquery/ComponentBundle.js"></script>
 <!-- Custom CSS -->
 
 </head>
@@ -105,7 +106,10 @@
 					<!-- ============================================================== -->
 					<!-- Right side toggle and nav items -->
 					<!-- ============================================================== -->
-					<ul class="navbar-nav float-right"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle waves-effect waves-dark"> Welcome - ${userFirstName} ${userLastName}</a></li>
+					<ul class="navbar-nav float-right">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle waves-effect waves-dark">
+								Welcome - ${userFirstName} ${userLastName}</a></li>
 						<!-- ============================================================== -->
 						<!-- User profile and search -->
 						<!-- ============================================================== -->
@@ -116,10 +120,11 @@
 								src="${resourceURL}/resources/assets/images/users/1.jpg"
 								alt="user" class="rounded-circle" width="31"></a>
 							<div class="dropdown-menu dropdown-menu-right user-dd animated">
-							
-									
-								
-								<a href="logOut.do?logOut=logOut" class="dropdown-item" href="javascript:void(0)"><i
+
+
+
+								<a href="logOut.do?logOut=logOut" class="dropdown-item"
+									href="javascript:void(0)"><i
 									class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
 							</div></li>
 						<!-- ============================================================== -->
@@ -150,13 +155,13 @@
 			<div class="page-breadcrumb">
 				<div class="row">
 					<div class="col-12 d-flex no-block align-items-center">
-						<h4 class="page-title">Manage Component/Bundle </h4>
+						<h4 class="page-title">Manage Component/Bundle</h4>
 						<div class="ml-auto text-right">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Manage Component/Bundle
-										</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage
+										Component/Bundle</li>
 								</ol>
 							</nav>
 						</div>
@@ -184,57 +189,83 @@
 									<h4 class="card-title card-title1">Add Component/Bundle</h4>
 
 									<div class="form-group row">
-									
-									<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">SKU Code</label>
+
+										<label for="fname"
+											class="col-sm-2 text-right control-label col-form-label">SKU
+											Code</label>
 										<div class="col-sm-3">
 											<input type="text" class="form-control skuCode"
-											    name="skuCode" placeholder="SKU Code Here">
+												name="skuCode" placeholder="SKU Code Here" required>
 										</div>
-										
+
 										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">Component/Bundle Name</label>
+											class="col-sm-2 text-right control-label col-form-label">Component/Bundle
+											Name</label>
 										<div class="col-sm-3">
-											<input type="text" name="componentBundleName" class="form-control componentBundleName" pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
-												 placeholder="Component or Bundle Name Here" required>
-												 <input type="number" style="display: none;" name="id1" value=0 class="form-control id1">
-												 <input type="date" style="display: none;" name="cDate" value="2019-02-04" class="form-control cDate">
+											<input type="text" name="componentBundleName"
+												class="form-control componentBundleName"
+												pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
+												placeholder="Component or Bundle Name Here" required>
+
+											<input type="date" style="display: none;" name="cDate"
+												value="2019-02-04" class="form-control cDate">
 										</div>
-										
+
 									</div>
 									<div class="form-group row">
-									
+
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">Type</label>
 										<div class="col-sm-3">
-											<select name="type" class="form-control custom-select type" required>
-													<option value="">Select</option>
-													<option value="Component">Component</option>
-													<option value="Bundle">Bundle</option>
+											<select name="type" class="form-control custom-select type"
+												required>
+												<option value="">Select</option>
+												<option value="Component">Component</option>
+												<option value="Bundle">Bundle</option>
 											</select>
 										</div>
-										
+
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">Status</label>
 										<div class="col-sm-3">
-											<select name="status" class="form-control custom-select status" required>
-													<option value="">Select</option>
-													<option value="1">Active</option>
-													<option value="0">Inactive</option>
+											<select name="status"
+												class="form-control custom-select status" required>
+												<option value="">Select</option>
+												<option value="1">Active</option>
+												<option value="0">Inactive</option>
 											</select>
-											
+
 										</div>
 									</div>
-									
+									<div class="form-group row componentSelect">
+										<label for="lname"
+											class="col-sm-2 text-right control-label col-form-label">Select
+											Component </label>
+										<div class="col-sm-3">
+
+											<c:forEach items="${setDetails}" var="md">
+												<c:choose>
+													<c:when test="${md.type == 'Component'}">
+														<select name="Component"
+															class="form-control custom-select component" required>
+															<option value="">Select</option>
+															<option value="${md.skuCode}">${md.componentBundleName}</option>
+
+														</select>
+													</c:when>
+												</c:choose>
+											</c:forEach>
+										</div>
+									</div>
 
 									<div class="form-group row">
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label"></label>
 										<div class="col-sm-3">
-										<%-- <c:if test="${createAccess=='1'}"> --%>
+											<%-- <c:if test="${createAccess=='1'}"> --%>
 											<button type="submit" name="action" value="save"
 												class="btn btn-success btn-submit btnAdd">Add</button>
-										<%-- </c:if> --%>
+											<%-- </c:if> --%>
 											<button type="button" class="btn btn-info btn-update"
 												data-toggle="modal" data-target="#updateConfirmModal">Update</button>
 											<button type="button" onclick="reloadPage();"
@@ -243,34 +274,37 @@
 									</div>
 								</div>
 								<!-- Start Of Modal  -->
-										<div class="modal fade" id="updateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-						                                    <div class="modal-dialog" role="document ">
-						                                        <div class="modal-content">
-						                                            <div class="modal-header">
-						                                                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-						                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						                                                    <span aria-hidden="true ">&times;</span>
-						                                                </button>
-						                                            </div>
-						                                            <div class="modal-body">
-																		<div class="card-body col-sm-12 text-center">Do you really want to update ?</div>
-																		<div class="card-body col-sm-12 text-center">						
-																			<button type="submit" name="action"
-																				value="update" class="btn btn-sm btn-primary">Yes</button>
-																			<button type="button"
-																				class="btn btn-sm btn-secondary"
-																				data-dismiss="modal">No</button>
-																		
-																		</div>
-																	</div>
-						                                        </div>
-						                                    </div>
-						                                </div>
+								<div class="modal fade" id="updateConfirmModal" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true ">
+									<div class="modal-dialog" role="document ">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true ">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="card-body col-sm-12 text-center">Do you
+													really want to update ?</div>
+												<div class="card-body col-sm-12 text-center">
+													<button type="submit" name="action" value="update"
+														class="btn btn-sm btn-primary">Yes</button>
+													<button type="button" class="btn btn-sm btn-secondary"
+														data-dismiss="modal">No</button>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								<!-- End Of Modal -->
 							</form>
 						</div>
 					</div>
-					
+
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
@@ -280,12 +314,10 @@
 										class="table table-striped table-bordered myTable">
 										<thead>
 											<tr>
+												<th><b>SKU Code</b></th>
 												<th><b>Component/Bundle Name</b></th>
 												<th><b>type</b></th>
-												<th><b>SKU Code</b></th>
 												<th><b>Status</b></th>
-												<!-- <th><b>Manager Mail ID</b></th> -->
-												
 												<th><b></b></th>
 											</tr>
 										</thead>
@@ -293,59 +325,60 @@
 
 											<c:forEach items="${setDetails}" var="md">
 												<tr>
-
-													<td style="display: none;">${md.id}</td> 
+													<td>${md.skuCode}</td>
 													<td>${md.componentBundleName}</td>
 													<td>${md.type}</td>
-													<td>${md.skuCode}</td>
+
 													<c:choose>
-													<c:when test ="${md.status==0}">
-													<td id="ww">Inactive</td>
-													</c:when>
-													<c:when test ="${md.status==1}">
-													<td id="ww">Active</td>
-													</c:when>
+														<c:when test="${md.status==0}">
+															<td id="ww">Inactive</td>
+														</c:when>
+														<c:when test="${md.status==1}">
+															<td id="ww">Active</td>
+														</c:when>
 													</c:choose>
 													<td style="display: none;">${md.createdDate}</td>
-													
+
 													<td>
-													<%-- <c:if test="${editAccess=='1'}"> --%>
+														<%-- <c:if test="${editAccess=='1'}"> --%>
 														<button type="button"
-															class="btn btn-success btn-sm btnSelect">Edit</button>
-													<%-- </c:if> --%>
-													<%-- <c:if test="${deleteAccess=='1'}"> --%>
+															class="btn btn-success btn-sm btnSelect">Edit</button> <%-- </c:if> --%>
+														<%-- <c:if test="${deleteAccess=='1'}"> --%>
 														<button type="button" class="btn btn-danger btn-sm"
 															data-toggle="modal"
-															data-target="#updateDeleteModal${md.id}">Delete</button>
-													<%-- </c:if> --%>
+															data-target="#updateDeleteModal${md.skuCode}">Delete</button>
+														<%-- </c:if> --%>
 													</td>
 												</tr>
 												<!-- Start Of Modal  -->
-													<div class="modal fade" id="updateDeleteModal${md.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-						                                    <div class="modal-dialog" role="document ">
-						                                        <div class="modal-content">
-						                                            <div class="modal-header">
-						                                                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-						                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						                                                    <span aria-hidden="true ">&times;</span>
-						                                                </button>
-						                                            </div>
-						                                            <form action="componentBundle.del" method="POST">
-						                                            <div class="modal-body">
-																		<div class="card-body col-sm-12 text-center">Do you really want to delete ?</div>
-																		<input type="hidden" name="id" value="${md.id}" />
-																		<div class="card-body col-sm-12 text-center">						
-																			<button type="submit" name="action"
-																				value="delete" class="btn btn-sm btn-primary">Yes</button>
-																			<button type="button"
-																				class="btn btn-sm btn-secondary"
-																				data-dismiss="modal">No</button>
-																		</div>
+												<div class="modal fade" id="updateDeleteModal${md.skuCode}"
+													tabindex="-1" role="dialog"
+													aria-labelledby="exampleModalLabel" aria-hidden="true ">
+													<div class="modal-dialog" role="document ">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Close">
+																	<span aria-hidden="true ">&times;</span>
+																</button>
+															</div>
+															<form action="componentBundle.del" method="POST">
+																<div class="modal-body">
+																	<div class="card-body col-sm-12 text-center">Do
+																		you really want to delete ?</div>
+																	<input type="hidden" name="id" value="${md.skuCode}" />
+																	<div class="card-body col-sm-12 text-center">
+																		<button type="submit" name="action" value="delete"
+																			class="btn btn-sm btn-primary">Yes</button>
+																		<button type="button" class="btn btn-sm btn-secondary"
+																			data-dismiss="modal">No</button>
 																	</div>
-																	</form>
-						                                        </div>
-						                                    </div>
-						                                </div>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
 												<!-- End Of Modal -->
 
 											</c:forEach>
@@ -358,7 +391,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<!-- ============================================================== -->
 				<!-- End PAge Content -->
 				<!-- ============================================================== -->
@@ -370,26 +403,32 @@
 				<!-- End Right sidebar -->
 				<!-- ============================================================== -->
 			</div>
-			<!-- Start Of Modal  -->				
-				              <div class="modal fade" id="duplicateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                                    <div class="modal-dialog" role="document ">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true ">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-												<div class="card-body col-sm-12 text-center"><span id="duplicateIdSpan"></span></div>
-												<div class="card-body col-sm-12 text-center">
-													<button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Ok</button>
-												</div>
-											</div>
-                                        </div>
-                                    </div>
-                                </div>
-				<!-- End Of Modal -->
+			<!-- Start Of Modal  -->
+			<div class="modal fade" id="duplicateConfirmModal" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true ">
+				<div class="modal-dialog" role="document ">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true ">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="card-body col-sm-12 text-center">
+								<span id="duplicateIdSpan"></span>
+							</div>
+							<div class="card-body col-sm-12 text-center">
+								<button type="button" class="btn btn-sm btn-primary"
+									data-dismiss="modal">Ok</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Of Modal -->
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -397,7 +436,7 @@
 			<!-- footer -->
 			<!-- ============================================================== -->
 			<footer class="footer text-center">
-					All Rights Reserved by <a href="dashboard">HighIQ.ai</a>.
+				All Rights Reserved by <a href="dashboard">HighIQ.ai</a>.
 			</footer>
 			<!-- ============================================================== -->
 			<!-- End footer -->
@@ -451,7 +490,8 @@
 		src="${resourceURL}/resources/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 	<script
 		src="${resourceURL}/resources/assets/libs/quill/dist/quill.min.js"></script>
-	<script src="${resourceURL}/resources/assets/extra-libs/DataTables/datatables.min.js"></script>
+	<script
+		src="${resourceURL}/resources/assets/extra-libs/DataTables/datatables.min.js"></script>
 	<script>
 		//***********************************//
 		// For select 2
@@ -501,6 +541,52 @@
 		 *       Basic Table                   *
 		 ****************************************/
 		$('#zero_config').DataTable();
+	</script>
+	<script>
+	
+		var expanded = false;
+		checkboxes.style.display = "none";
+		
+		function showCheckboxes() {
+			var checkboxes = document.getElementById("checkboxes");
+			if (!expanded) {
+				checkboxes.style.display = "block";
+				expanded = true;
+			} else {
+				checkboxes.style.display = "none";
+				expanded = false;
+			}
+		}
+		//search filter on vendor name
+		$(document).ready(function(){
+			  $(".selectVemdorType").on("keyup", function() {
+				  checkboxes.style.display = "block";
+			    var value = $(this).val().toLowerCase();
+			    $("#checkboxes label").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			    });
+			  });
+		});
+		
+		//for uncheck checkboxes on reset buttons
+		$(document).ready(function(){
+			$(".btn-reset").on("click", function() {
+				var divControl = document.getElementById('checkboxes');
+				$('input:checkbox:checked', divControl).each(function(){
+					$(this).prop('checked',false); 
+				});
+				clearAll();
+			});
+			
+		});
+		
+		$('body').click(function(evt){    
+		       if($(evt.target).closest('.multiselect').length){
+		          return;             
+		       }
+		       checkboxes.style.display = "none";
+		});
+		
 	</script>
 </body>
 

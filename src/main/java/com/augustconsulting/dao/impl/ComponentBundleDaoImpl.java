@@ -33,10 +33,10 @@ public class ComponentBundleDaoImpl implements ComponentBundleDao {
 	}
 
 	@Override
-	public void deleteFromDb(int dsName) {
+	public void deleteFromDb(String dsName) {
 		Session session = sessionFactory.getCurrentSession();
 		Query q  = session.createQuery("DELETE FROM ComponentBundle WHERE id =:dsName");
-		q.setInteger("dsName",dsName);
+		q.setString("dsName",dsName);
 		//q.setInt("dsName",dsName);
 		q.executeUpdate();
 	}
@@ -54,5 +54,7 @@ public class ComponentBundleDaoImpl implements ComponentBundleDao {
 	public List<ComponentBundle> validatingDistributionSetName(String distributionName) {
 		return sessionFactory.getCurrentSession().createCriteria(ComponentBundle.class).add(Restrictions.eq("distributionSetName", distributionName)).list();
 	}
+
+	
 
 }

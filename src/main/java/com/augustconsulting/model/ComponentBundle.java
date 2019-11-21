@@ -15,9 +15,9 @@ import javax.validation.constraints.NotNull;
 public class ComponentBundle {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id", length = 5)
-	private int id;
+	@Column(name = "SkuCode", length = 5)
+	@NotNull
+	private String skuCode;
 	
 	@Column(name = "ComponentBundleName", length = 100)
 	@NotNull
@@ -27,15 +27,11 @@ public class ComponentBundle {
 	@NotNull
 	private String type;
 	
-	@Column(name = "SkuCode", length = 5)
-	@NotNull
-	private String skuCode;
-	
-	@Column(name = "UpdatedDate")
+	@Column(name = "UpdatedDate",length = 15)
 	@NotNull
 	private Date updatedDate;
 	
-	@Column(name = "CreatedDate")
+	@Column(name = "CreatedDate",length = 15)
 	@NotNull
 	private Date createdDate;
 	
@@ -43,12 +39,12 @@ public class ComponentBundle {
 	@NotNull
 	private int status;
 
-	public int getId() {
-		return id;
+	public String getSkuCode() {
+		return skuCode;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setSkuCode(String skuCode) {
+		this.skuCode = skuCode;
 	}
 
 	public String getComponentBundleName() {
@@ -65,14 +61,6 @@ public class ComponentBundle {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public String getSkuCode() {
-		return skuCode;
-	}
-
-	public void setSkuCode(String skuCode) {
-		this.skuCode = skuCode;
 	}
 
 	public Date getUpdatedDate() {
@@ -101,9 +89,9 @@ public class ComponentBundle {
 
 	@Override
 	public String toString() {
-		return "ComponentBundle [id=" + id + ", componentBundleName=" + componentBundleName + ", type=" + type
-				+ ", skuCode=" + skuCode + ", updatedDate=" + updatedDate + ", createdDate=" + createdDate + ", status="
-				+ status + "]";
+		return "ComponentBundle [skuCode=" + skuCode + ", componentBundleName=" + componentBundleName + ", type=" + type
+				+ ", updatedDate=" + updatedDate + ", createdDate=" + createdDate + ", status=" + status + "]";
 	}
 
+	
 }

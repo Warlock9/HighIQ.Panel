@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.augustconsulting.dao.ComponentBundleDao;
+import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
 
 @Repository
@@ -53,6 +54,12 @@ public class ComponentBundleDaoImpl implements ComponentBundleDao {
 	@Override
 	public List<ComponentBundle> validatingDistributionSetName(String distributionName) {
 		return sessionFactory.getCurrentSession().createCriteria(ComponentBundle.class).add(Restrictions.eq("distributionSetName", distributionName)).list();
+	}
+
+	@Override
+	public void insertDataToRelation(BundleComponentRelation rs) {
+		sessionFactory.getCurrentSession().save(rs);
+		
 	}
 
 	

@@ -49,9 +49,47 @@
 <script src="${resourceURL}/resources/jquery/ComponentBundle.js"></script>
 <!-- Custom CSS -->
 
+<style type="text/css">
+.multiselect {
+  width: 263px;
+  padding-left: 11px;
+  
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+</style>
 </head>
 
 <body>
+
 	<!-- ============================================================== -->
 	<!-- Main wrapper - style you can find in pages.scss -->
 	<!-- ============================================================== -->
@@ -241,7 +279,7 @@
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label">Select
 											Component </label>
-										<div class="col-sm-3">
+										<%-- <div class="col-sm-3">
 
 											<c:forEach items="${setDetails}" var="md">
 												<c:choose>
@@ -255,6 +293,30 @@
 													</c:when>
 												</c:choose>
 											</c:forEach>
+										</div> --%>
+
+										<div class="multiselect">
+
+											<div class="selectBox" onclick="showCheckboxes()">
+												<select name="Component"
+													class="form-control custom-select component" required>
+													<option>Select an option</option>
+												</select>
+												<div class="overSelect"></div>
+											</div>
+											<div id="checkboxes">
+
+												<c:forEach items="${setDetails}" var="md">
+													<c:choose>
+														<c:when test="${md.type == 'Component'}">
+															<label> <input type="checkbox" name="ComponentList"
+																value="${md.skuCode}" /> ${md.componentBundleName}
+															</label>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+
+											</div>
 										</div>
 									</div>
 

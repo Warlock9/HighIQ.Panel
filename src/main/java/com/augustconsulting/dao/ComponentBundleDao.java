@@ -2,6 +2,7 @@ package com.augustconsulting.dao;
 
 import java.util.List;
 
+import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
 
 public interface ComponentBundleDao {
@@ -16,5 +17,6 @@ public interface ComponentBundleDao {
 	
 	public List<ComponentBundle> validatingDistributionSetName(String distributionName);
 	
+	public void insertDataToRelation(BundleComponentRelation rs);
 	
 }

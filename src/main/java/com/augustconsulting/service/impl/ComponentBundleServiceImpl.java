@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.augustconsulting.dao.ComponentBundleDao;
+import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
 import com.augustconsulting.service.ComponentBundleService;
 import com.augustconsulting.service.DateConversionService;
@@ -47,6 +48,12 @@ public class ComponentBundleServiceImpl implements ComponentBundleService {
 	public void updateDataToDb(ComponentBundle ds) {
 		ds.setUpdatedDate(dateService.getToDate());
 		manageDao.updateDataToDb(ds);
+		
+	}
+
+	@Override
+	public void insertDataToRelation(BundleComponentRelation rs) {
+		manageDao.insertDataToRelation(rs);
 		
 	}
 

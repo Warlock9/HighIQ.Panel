@@ -2,6 +2,7 @@ package com.augustconsulting.service;
 
 import java.util.List;
 
+import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
 
 public interface ComponentBundleService {
@@ -15,4 +16,6 @@ public interface ComponentBundleService {
 	public List<ComponentBundle> fetchingDataFromDb();
 
 	public List<ComponentBundle> validatingDistributionSetName(String distributionName);
+	
+	public void insertDataToRelation(BundleComponentRelation rs);
 }

@@ -37,7 +37,12 @@ $(document).ready(function() {
 		var currentRow = $(this).closest("tr");
 		var skuCode = currentRow.find("td:eq(0)").text();
 		var componentBundleName = currentRow.find("td:eq(1)").text();
+		
 		var type = currentRow.find("td:eq(2)").text();
+		if(currentRow.find("td:eq(2)").text() == "Bundle")
+			{
+			$(".componentSelect").show();
+			}
 		var status ;
 		if(currentRow.find("td:eq(3)").text() == "Inactive")
 			{

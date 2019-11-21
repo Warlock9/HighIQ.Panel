@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
 import com.augustconsulting.service.ComponentBundleService; 
 
@@ -47,11 +49,23 @@ public String botManagerLandingPage(Model model,HttpServletRequest request, Http
 }
 
 @PostMapping("/ComponentBundle.do")
-public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageSet, @RequestParam("action") String action,@RequestParam("cDate") java.sql.Date cdate) {
+public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageSet, @RequestParam("action") String action,@RequestParam("cDate") java.sql.Date cdate,@RequestParam("ComponentList") List<String> componentSkuList ) {
 	System.out.println("fsdakjffffffffffff");
+	
 	if(action.equals("save")) {	 
-		System.out.println("saaaaaaaaaaaaaavvvvvvvvvvvvvvvvvvvvv");
 		
+		System.out.println("saaaaaaaaaaaaaavvvvvvvvvvvvvvvvvvvvv");
+		if(componentSkuList != null)
+		{
+			
+			for(String componentSku:componentSkuList) {
+				BundleComponentRelation rs = new BundleComponentRelation();
+				rs.setComponentSKUs(componentSku);
+				rs.setBundleSKU(manageSet.getSkuCode());
+				services.insertDataToRelation(rs);
+			}
+				
+		}
 		services.insertingDataToDb(manageSet);
 	}else if(action.equals("update")){
 		System.out.println("updaaaaaaaaaaaateeeeeeeeeeeeeeeeeeeeeeee");

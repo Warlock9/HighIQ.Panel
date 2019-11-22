@@ -1,4 +1,3 @@
-/*Here We Manage Contacts as CustomerDetails*/
 
 package com.augustconsulting.model;
 
@@ -6,80 +5,88 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
-@Table(name="tbl_CustomerDetails")
-public class CustomerDetails{
-	
+
+@Table(name = "tbl_CustomerDetails")
+public class CustomerDetails {
+
 	@Id
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@Column(name="ClientID ")
+
+	@Column(name = "ClientID ")
 	private Integer clientId;
-	
+
 	@NotNull
-	@Column(name="ClientCompanyName" ,length=10)
+
+	@Column(name = "ClientCompanyName", length = 10)
 	private String clientCompanyName;
-	
-	@Column(name="AddressLine1" ,length=255)
+
+	@Column(name = "AddressLine1", length = 255)
 	private String addressLine1;
-	
-	@Column(name="AddressLine2" ,length=255)
+
+	@Column(name = "AddressLine2", length = 255)
 	private String addressLine2;
-	
-	@Column(name="AddressLine3" ,length=255)
+
+	@Column(name = "AddressLine3", length = 255)
 	private String addressLine3;
-	
-	@Column(name="AddressLine4" ,length=255)
+
+	@Column(name = "AddressLine4", length = 255)
 	private String addressLine4;
-	
+
 	@NotNull
-	@Column(name="City" ,length=100)
+
+	@Column(name = "City", length = 100)
 	private String city;
-	
-	@Column(name="State" ,length=100)
+
+	@Column(name = "State", length = 100)
 	private String state;
-	
+
 	@NotNull
-	@Column(name="ZipCode" ,length=20)
+
+	@Column(name = "ZipCode", length = 20)
 	private String zipCode;
-	
-	@Column(name="Country" ,length=100)
+
+	@Column(name = "Country", length = 100)
 	private String country;
-	
+
 	@NotNull
-	@Column(name="ContactPerson" ,length=25)
+
+	@Column(name = "ContactPerson", length = 25)
 	private String contactPerson;
-	
+
 	@NotNull
-	@Column(name="ContactNumber" ,length=15)
+
+	@Column(name = "ContactNumber", length = 15)
 	private String contactNumber;
-	
+
 	@NotNull
-	@Column(name="EmailID" ,length=30)
+
+	@Column(name = "EmailID", length = 30)
 	private String emailID;
-	
+
 	@NotNull
-	@Column(name="CreatedDate" ,length=15)
+
+	@Column(name = "CreatedDate", length = 15)
 	private Date createdDate;
-	
+
 	@NotNull
-	@Column(name="UpdatedDate" ,length=15)
+
+	@Column(name = "UpdatedDate", length = 15)
 	private Date updatedDate;
-	
+
 	@NotNull
-	@Column(name="Status" ,length=5)
+
+	@Column(name = "Status", length = 5)
 	private String status;
-
-	
-
-
 
 	public Integer getClientId() {
 		return clientId;
@@ -185,7 +192,6 @@ public class CustomerDetails{
 		this.emailID = emailID;
 	}
 
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -218,8 +224,5 @@ public class CustomerDetails{
 				+ ", contactPerson=" + contactPerson + ", contactNumber=" + contactNumber + ", emailID=" + emailID
 				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", status=" + status + "]";
 	}
-	
 
-
-	
 }

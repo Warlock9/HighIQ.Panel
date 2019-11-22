@@ -1,3 +1,4 @@
+
 package com.augustconsulting.controller;
 
 import java.io.IOException;
@@ -23,10 +24,12 @@ import com.augustconsulting.model.CustomerDetails;
 import com.augustconsulting.service.ManageContactsService;
 
 @Controller
+
 @RequestMapping("/")
 public class ManageContactsController {
 
-	private static String clientId;
+	private static Integer clientId;
+	private static String customerCompanyName;
 	private final String landingPageViewList = "manageContactsList";
 	private final String contactDetails = "manageContactsDetail";
 
@@ -46,12 +49,13 @@ public class ManageContactsController {
 
 	@GetMapping("/contactDetails")
 	public String detailsLanding(Model model, HttpServletRequest request, HttpServletResponse response,
+
 			@ModelAttribute("contacts") CustomerDetails contactsDetails) {
 
 		CustomerDetails contact = manageContactService.getAllcontactDetails(contactsDetails.getClientId());
 
-		List<CustomerSites> siteDetails = manageContactService.getSiteDetails(String.valueOf(contactsDetails.getClientId()));
-		System.out.println(siteDetails);
+		List<CustomerSites> siteDetails = manageContactService.getSiteDetails(contactsDetails.getClientId());
+
 		model.addAttribute("contact", contact);
 		model.addAttribute("contactSites", siteDetails);
 		return new String(contactDetails);
@@ -59,12 +63,14 @@ public class ManageContactsController {
 
 	@PostMapping("/manageContactAction")
 	public @ResponseBody String doActionOnManageContacts(@ModelAttribute("Contacts") CustomerDetails contacts,
+
 			@RequestParam("action") String action, @RequestParam("arrayContactSites") String arrayContactSites) {
 		String message = "";
 		if (action.equals("update")) {
 			manageContactService.updateManageContactHeader(contacts);
-			clientId=String.valueOf(contacts.getClientId());
-			manageContactService.updateContactSites(arrayContactSites,clientId);
+			clientId = contacts.getClientId();
+			customerCompanyName=contacts.getClientCompanyName();
+			manageContactService.updateContactSites(arrayContactSites, clientId,customerCompanyName);
 			message = "1";
 		}
 
@@ -78,11 +84,12 @@ public class ManageContactsController {
 
 	@RequestMapping(value = "/contactSiteDelete.do", method = RequestMethod.POST)
 	public @ResponseBody String deleteInvoiceLineDetails(@RequestParam("action") String action,
+
 			@ModelAttribute("ContactSites") CustomerSites contactSites) {
 
 		String message = "0";
 
-		System.out.println(contactSites.getClientId()+" ?????????????");
+		System.out.println(contactSites.getClientId() + " ?????????????");
 		if (action.equals("delete")) {
 
 			manageContactService.deleteContactSites(contactSites);
@@ -90,12 +97,13 @@ public class ManageContactsController {
 			message = "1";
 
 		}
-		
+
 		return message;
 	}
 
 	@RequestMapping(value = "/deleteCustomerList", method = RequestMethod.POST)
 	public String deleteCustomerList(@RequestParam("action") String action,
+
 			@ModelAttribute("Contacts") CustomerDetails contact) {
 		System.out.println(contact.getClientId());
 		manageContactService.deleteCustomerDetails(contact);

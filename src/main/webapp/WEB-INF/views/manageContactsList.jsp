@@ -207,7 +207,7 @@
 													 <th style="display: none;"><b>
 														ClientId</b>
 													</th>
-													<th><b>Client Company Name</b></th>
+													<th><b>Customer Company Name</b></th>
 													<th><b>Address Line 1</b></th>
 													<th><b>Address Line 2</b></th>
 													<th><b>Address Line 3</b></th>

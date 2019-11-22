@@ -15,13 +15,13 @@ public interface ManageContactsService {
 	/* update Header manageContacts */
 	void updateManageContactHeader(CustomerDetails contacts);
 
-	void updateContactSites(String arraycontactSites,String clientId);
+	void updateContactSites(String arraycontactSites,Integer clientId,String customerCompanyName);
 	
 	/*get contactDetails using contactType and contactId*/
     public CustomerDetails getAllcontactDetails(Integer contactId);
     
     /*Get site Details from companyContactNumber*/
-    List<CustomerSites> getSiteDetails(String clientId);
+    List<CustomerSites> getSiteDetails(Integer clientId);
     
     /* delete contactSites of contact */
 	void deleteContactSites(CustomerSites contactSites);

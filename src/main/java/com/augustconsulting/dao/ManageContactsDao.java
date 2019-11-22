@@ -1,5 +1,5 @@
-package com.augustconsulting.dao;
 
+package com.augustconsulting.dao;
 
 import java.util.List;
 
@@ -10,25 +10,17 @@ public interface ManageContactsDao {
 
 	// getting all details form botcontactTable
 	public List<CustomerDetails> getAllcontactDetails();
-	
-	/*get contactDetails using contactType and contactId*/
-    public CustomerDetails getAllcontactDetails(Integer clientId);
 
-	/* update Header manageContacts */
+	public CustomerDetails getAllcontactDetails(Integer clientId);
+
 	void updateManageContactHeader(CustomerDetails contacts);
 
-	/* update contactSites */
 	void updateContactSites(CustomerSites contactSites);
-	
-	 /*Get site Details from companyContactNumber*/
-    List<CustomerSites> getSiteDetails(String clientId);
-    
-    /*delete ContactSites for contact */
-	void deleteContactSites (CustomerSites contactSites);
-	
-	/*delete Customer details and site Details*/
-	
+
+	List<CustomerSites> getSiteDetails(Integer clientId);
+
+	void deleteContactSites(CustomerSites contactSites);
+
 	void deleteCustomerDetails(CustomerDetails clientId);
-	
 
 }

@@ -253,7 +253,7 @@ Trail </a> -->
 							</div>
 							<div class="form-group row">
 								<label for="fname"
-									class="col-sm-2 text-right control-label col-form-label">Client
+									class="col-sm-2 text-right control-label col-form-label">Customer
 									Company Name </label>
 								<div class="col-sm-4">
 									<input type="text" class="form-control clientCompanyName"

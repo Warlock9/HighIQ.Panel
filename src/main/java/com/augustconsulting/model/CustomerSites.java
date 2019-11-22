@@ -1,6 +1,4 @@
 
-/*Here We Manage ContactSites as CustomerSites*/
-
 package com.augustconsulting.model;
 
 import java.io.Serializable;
@@ -11,91 +9,106 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @SuppressWarnings("serial")
+
 @Entity
+
 @Table(name = "tbl_CustomerSites")
 
 public class CustomerSites implements Serializable {
 
-
 	@Id
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ClientSiteID")
+
+	@Column(name = "ClientSiteID")
 	private Integer clientSiteId;
 
 	@Id
-	@Column(name="ClientID",length = 10)
-	private String clientId;
-	
-	
+
+	@Column(name = "ClientID", length = 10)
+	private Integer clientId;
+
+	@Column(name = "ClientCompanyName", length = 10)
+	private String clientCompanyName;
+
 	@NotNull
 	@Column(name = "SiteName", length = 100)
 	private String siteName;
 
-	
 	@NotNull
+
 	@Column(name = "AddressLine1", length = 255)
 	private String addressLine1;
 
-	
 	@NotNull
+
 	@Column(name = "AddressLine2", length = 255)
 	private String addressLine2;
 
 	@NotNull
+
 	@Column(name = "AddressLine3", length = 255)
 	private String addressLine3;
 
-	
 	@NotNull
+
 	@Column(name = "AddressLine4", length = 255)
 	private String addressLine4;
 
 	@NotNull
+
 	@Column(name = "City", length = 100)
 	private String city;
 
 	@NotNull
+
 	@Column(name = "State", length = 100)
 	private String state;
 
 	@NotNull
+
 	@Column(name = "ZipCode", length = 20)
 	private String zipCode;
 
 	@NotNull
+
 	@Column(name = "Country", length = 100)
 	private String country;
 
-	
 	@NotNull
+
 	@Column(name = "ContactPerson", length = 25)
 	private String contactPerson;
 
 	@NotNull
+
 	@Column(name = "ContactNumber", length = 15)
 	private String contactNumber;
 
 	@NotNull
+
 	@Column(name = "EmailID", length = 30)
 	private String emailID;
 
-	@NotNull	
+	@NotNull
+
 	@Column(name = "CreatedDate", length = 15)
 	private Date createdDate;
 
 	@NotNull
+
 	@Column(name = "UpdatedDate", length = 15)
 	private Date updatedDate;
 
 	@NotNull
+
 	@Column(name = "Status", length = 5)
 	private int status;
-
-	
 
 	public Integer getClientSiteId() {
 		return clientSiteId;
@@ -105,13 +118,23 @@ public class CustomerSites implements Serializable {
 		this.clientSiteId = clientSiteId;
 	}
 
-
-	public String getClientId() {
+	public Integer getClientId() {
 		return clientId;
 	}
 
-	public void setClientId(String clientId) {
+	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
+	}
+	
+	
+	
+
+	public String getClientCompanyName() {
+		return clientCompanyName;
+	}
+
+	public void setClientCompanyName(String clientCompanyName) {
+		this.clientCompanyName = clientCompanyName;
 	}
 
 	public String getSiteName() {
@@ -210,8 +233,6 @@ public class CustomerSites implements Serializable {
 		this.emailID = emailID;
 	}
 
-	
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -227,8 +248,6 @@ public class CustomerSites implements Serializable {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-
-	
 
 	public int getStatus() {
 		return status;
@@ -247,7 +266,5 @@ public class CustomerSites implements Serializable {
 				+ ", emailID=" + emailID + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", status="
 				+ status + "]";
 	}
-	
-	
 
 }

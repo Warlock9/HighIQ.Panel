@@ -35,7 +35,7 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	}
 
 	@Override
-	public void updateContactSites(String arraycontactSites,String clientId) {
+	public void updateContactSites(String arraycontactSites,Integer clientId,String customerCompanyName) {
 		// TODO Auto-generated method stub
 		try {
 			CustomerSites contactSites = new CustomerSites();
@@ -66,7 +66,9 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 					 contactSites.setClientSiteId(null);
 				}
 				
+				        
 				        contactSites.setClientId(clientId);
+				        contactSites.setClientCompanyName(customerCompanyName);
 						contactSites.setSiteName(siteName);
 	      				contactSites.setAddressLine1(addressLine1);
 	      				contactSites.setAddressLine2(addressLine2);
@@ -118,7 +120,7 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	}
 
 	@Override
-	public List<CustomerSites> getSiteDetails(String clientId) {
+	public List<CustomerSites> getSiteDetails(Integer clientId) {
 		// TODO Auto-generated method stub
 		return managecontactdao.getSiteDetails(clientId);
 	}

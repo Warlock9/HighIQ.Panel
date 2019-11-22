@@ -21,9 +21,11 @@ $(document).ready(function() {
 		if(name=='Bundle'){
 		
 			$(".componentSelect").show();
+			$(".componentHiding").remove();
 		}
 		else{
 			$(".componentSelect").hide();
+			$(".componentHiding").show();
 		}
 				
 	});
@@ -36,12 +38,20 @@ $(document).ready(function() {
 		// get the current row
 		var currentRow = $(this).closest("tr");
 		var skuCode = currentRow.find("td:eq(0)").text();
+		
 		var componentBundleName = currentRow.find("td:eq(1)").text();
 		
 		var type = currentRow.find("td:eq(2)").text();
 		if(currentRow.find("td:eq(2)").text() == "Bundle")
 			{
+				$.post("getComponents.do",{
+					skuCode:skuCode
+					
+				 }, function(res) {
+					 $('.dynamic').append(res);
+				 })
 			$(".componentSelect").show();
+			$(".componentHiding").remove();
 			}
 		var status ;
 		if(currentRow.find("td:eq(3)").text() == "Inactive")
@@ -51,6 +61,7 @@ $(document).ready(function() {
 		else{
 			status = "1";
 		}
+	
 		var createdDate = currentRow.find("td:eq(4)").text();
 
 		$("html, body").animate({

@@ -61,7 +61,7 @@
 }
 
 .selectBox select {
-  width: 100%;
+  width: 101%;
   font-weight: bold;
 }
 
@@ -74,6 +74,7 @@
 }
 
 #checkboxes {
+width: 101%; 
   display: none;
   border: 1px #dadada solid;
 }
@@ -275,49 +276,46 @@
 
 										</div>
 									</div>
-									<div class="form-group row componentSelect">
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">Select
+									<div class="form-group row dynamic">
+										
+										<input type="hidden" value="" name="ComponentList" class="componentHiding"
+																/>
+                                         <label for="lname"
+											class="col-sm-2 text-right control-label col-form-label componentSelect">Select
 											Component </label>
-										<%-- <div class="col-sm-3">
-
-											<c:forEach items="${setDetails}" var="md">
-												<c:choose>
-													<c:when test="${md.type == 'Component'}">
-														<select name="Component"
-															class="form-control custom-select component" required>
-															<option value="">Select</option>
-															<option value="${md.skuCode}">${md.componentBundleName}</option>
-
-														</select>
-													</c:when>
-												</c:choose>
-											</c:forEach>
-										</div> --%>
-
-										<div class="multiselect">
-
+											<div class="col-sm-3">
+										<div class="multiselect componentSelect">
+                                           
 											<div class="selectBox" onclick="showCheckboxes()">
 												<select name="Component"
 													class="form-control custom-select component" required>
-													<option>Select an option</option>
+													<option>Select Components</option>
 												</select>
 												<div class="overSelect"></div>
 											</div>
 											<div id="checkboxes">
-
+												
 												<c:forEach items="${setDetails}" var="md">
+
 													<c:choose>
 														<c:when test="${md.type == 'Component'}">
-															<label> <input type="checkbox" name="ComponentList"
-																value="${md.skuCode}" /> ${md.componentBundleName}
-															</label>
-														</c:when>
-													</c:choose>
-												</c:forEach>
+															
+																	<label> <input  type="checkbox"
+																		name="ComponentList" value="${md.skuCode}" />
+																		${md.componentBundleName}
+																	</label>
+																
 
+														</c:when>
+
+													</c:choose>
+
+												</c:forEach>
+                                                
 											</div>
 										</div>
+										</div>
+										
 									</div>
 
 									<div class="form-group row">
@@ -402,9 +400,11 @@
 													<td style="display: none;">${md.createdDate}</td>
 
 													<td>
+													
+													<%-- <input type="hidden" name="fetch" value="${skuCode}"/> --%>
 														<%-- <c:if test="${editAccess=='1'}"> --%>
 														<button type="button"
-															class="btn btn-success btn-sm btnSelect">Edit</button> <%-- </c:if> --%>
+															class="btn btn-success btn-sm btnSelect" value="${skuCode}">Edit</button> <%-- </c:if> --%>
 														<%-- <c:if test="${deleteAccess=='1'}"> --%>
 														<button type="button" class="btn btn-danger btn-sm"
 															data-toggle="modal"

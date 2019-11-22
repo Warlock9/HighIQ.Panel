@@ -19,4 +19,12 @@ public interface ComponentBundleDao {
 	
 	public void insertDataToRelation(BundleComponentRelation rs);
 	
+	public List<BundleComponentRelation> fetchingDataFromRelation();
+	
+	public void deleteFromRelationDb(String sku);
+	
+	public List<String> getComponent(String skuCode);
+	
+	 public List<ComponentBundle> getComponentName(List li);
+	
 }

@@ -45,6 +45,7 @@ public String botManagerLandingPage(Model model,HttpServletRequest request, Http
 		 * if(st==null) { return new String("redirect:/"); }
 		 */
 	model.addAttribute("setDetails",services.fetchingDataFromDb());
+	model.addAttribute("relationDetails",services.fetchingDataFromRelation());
 	return new String("ComponentBundle");
 }
 
@@ -68,6 +69,22 @@ public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manag
 		}
 		services.insertingDataToDb(manageSet);
 	}else if(action.equals("update")){
+		if(manageSet.getType().equals("Bundle"))
+		{
+			System.out.println("rrrrrrrrrrriiiiiiissssssssabbbbbbbbb");
+			services.deleteFromRelationDb(manageSet.getSkuCode());
+			if(componentSkuList != null)
+			{
+				
+				for(String componentSku:componentSkuList) {
+					BundleComponentRelation rs = new BundleComponentRelation();
+					rs.setComponentSKUs(componentSku);
+					rs.setBundleSKU(manageSet.getSkuCode());
+					services.insertDataToRelation(rs);
+				}
+					
+			}
+		}
 		System.out.println("updaaaaaaaaaaaateeeeeeeeeeeeeeeeeeeeeeee");
 		manageSet.setCreatedDate(cdate);
 		services.updateDataToDb(manageSet);		
@@ -78,45 +95,34 @@ public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manag
 @PostMapping("/componentBundle.del")
 public String doDeleteAction(@RequestParam("action") String action,@RequestParam("id") String id) {
 	System.out.println("fdsafasdfsafasdfllllllllllllllllllllllllllll");
+	services.deleteFromRelationDb(id);
 	services.deleteFromDb(id);
 	return new String("redirect:/componentBundle");		
 }
 
 	
-	@PostMapping("/componentBundle.val")
-	public @ResponseBody String validatingDistributionSetName(
-			@RequestParam("distributionSetName") String distributionSetName) {
-		String msg = "0";
-		List<ComponentBundle> adl = services.validatingDistributionSetName(distributionSetName);
-		if (adl.size() > 0) {
-			msg = "1";
-		}
-		return msg;
-	}
-	 
-	/*
-	 * @RequestMapping(value = "/FetchComponent.du", method = RequestMethod.POST)
-	 * public @ResponseBody String doActionBot(@ModelAttribute("botparamerter")
-	 * ManageBotParameter botparameter,@ModelAttribute("botParameterMaster")
-	 * BotParameterMaster botParameterMaster,
-	 * 
-	 * @RequestParam("action") String action, @RequestParam("botId") String botId) {
-	 * String message=""; if (action.equals("onSelectBotId")) { StringBuilder sb =
-	 * new StringBuilder(); List<BotParameterMaster> li =
-	 * botParmaterService.fetchingParameterNameAndValues(botParameterMaster.
-	 * getBotType(), botId); if (li != null) { for(BotParameterMaster ab:li) {
-	 * sb.append("<div class=\"form-group row\">\r\n" +
-	 * "   <div class=\"col-sm-2\">\r\n" +
-	 * "      <input type=\"text\" class=\"form-control text-right  \" value='"+ab.
-	 * getParameterName()+"' id=\"fname\" name=\"parameterName[]\"  readonly>\r\n" +
-	 * "   </div>\r\n" + "   <div class=\"col-sm-5\">\r\n" +
-	 * "      <input type=\"text\" class=\"form-control\" id=\"fname\" name=\"parameterDescription[]\" value='"
-	 * +ab.getParameterDescription()+"'  readonly>\r\n" + "   </div>\r\n" +
-	 * "   <div class=\"col-sm-5\">\r\n" +
-	 * "      <input type=\"text\" class=\"form-control "+ab.getParameterName()
-	 * +" \" id=\"fname\" name=\"parameterValue[]\" value='"+ab.getParameterValue()
-	 * +"' >\r\n" + "   </div>\r\n" + "</div>"); } } message = sb.toString(); }
-	 * return message; }
-	 */
 
+/* get components by SKU */
+@PostMapping("/getComponents.do")
+public @ResponseBody String getComponents(@RequestParam("skuCode") String skuCode) {
+	String response = "";
+	List<String>li=services.getComponent(skuCode);
+	System.out.println(li);
+	List<ComponentBundle>com=services.getComponentName(li);
+	System.out.println(com+" ??????????");
+	StringBuilder sb = new StringBuilder();
+	sb.append("<label for=\"lname\"\r\n" + 
+			"class=\"col-sm-2 text-right control-label col-form-label\">Components In Bundle</label>\r\n" + 
+			"<div class=\"col-sm-3\">");
+	sb.append("<select readonly name=\"Component\"\r\n" + 
+			"class=\"form-control custom-select\" required>\r\n" + 
+			"<option>Components In Bundle</option>");
+	  for(ComponentBundle c:com) {
+		 sb.append("<option>"+c.getComponentBundleName()+"</option>");
+	  }
+	sb.append("</select>");
+	sb.append("</div>");
+	response=sb.toString();
+	return response;
+}
 }

@@ -57,4 +57,28 @@ public class ComponentBundleServiceImpl implements ComponentBundleService {
 		
 	}
 
+	@Override
+	public List<BundleComponentRelation> fetchingDataFromRelation() {
+		// TODO Auto-generated method stub
+		 return manageDao.fetchingDataFromRelation();
+	}
+
+	@Override
+	public void deleteFromRelationDb(String sku) {
+		 manageDao.deleteFromRelationDb(sku);
+		
+	}
+
+	@Override
+	public List<String> getComponent(String skuCode) {
+		// TODO Auto-generated method stub
+		return manageDao.getComponent(skuCode);
+	}
+
+	@Override
+	public List<ComponentBundle> getComponentName(List li) {
+		// TODO Auto-generated method stub
+		return manageDao.getComponentName(li);
+	}
+
 }

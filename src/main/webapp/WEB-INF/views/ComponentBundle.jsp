@@ -61,7 +61,7 @@
 }
 
 .selectBox select {
-  width: 101%;
+  width: 96%;
   font-weight: bold;
 }
 
@@ -78,7 +78,8 @@ width: 101%;
   display: none;
   border: 1px #dadada solid;
   overflow: scroll;
-  
+  width: 252px;
+  height: 105px;
   background-color: white;
 }
 

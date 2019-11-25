@@ -70,15 +70,11 @@ public class ComponentBundleServiceImpl implements ComponentBundleService {
 	}
 
 	@Override
-	public List<String> getComponent(String skuCode) {
+	public List<BundleComponentRelation> getComponent(String skuCode) {
 		// TODO Auto-generated method stub
 		return manageDao.getComponent(skuCode);
 	}
 
-	@Override
-	public List<ComponentBundle> getComponentName(List li) {
-		// TODO Auto-generated method stub
-		return manageDao.getComponentName(li);
-	}
+	
 
 }

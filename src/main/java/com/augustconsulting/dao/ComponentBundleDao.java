@@ -23,8 +23,8 @@ public interface ComponentBundleDao {
 	
 	public void deleteFromRelationDb(String sku);
 	
-	public List<String> getComponent(String skuCode);
+	public List<BundleComponentRelation> getComponent(String skuCode);
 	
-	 public List<ComponentBundle> getComponentName(List li);
+	
 	
 }

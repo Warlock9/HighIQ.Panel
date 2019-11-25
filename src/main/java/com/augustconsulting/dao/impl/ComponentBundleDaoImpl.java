@@ -84,24 +84,13 @@ public class ComponentBundleDaoImpl implements ComponentBundleDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> getComponent(String skuCode) {
+	public List<BundleComponentRelation> getComponent(String skuCode) {
 		// TODO Auto-generated method stub
-		return (List<String>) sessionFactory.getCurrentSession()
-		.createCriteria(BundleComponentRelation.class).setProjection(Projections.property("ComponentSKUs")).add(Restrictions.eq("BundleSKU", skuCode)).list();
+		return (List<BundleComponentRelation>) sessionFactory.getCurrentSession()
+		.createCriteria(BundleComponentRelation.class).add(Restrictions.eq("BundleSKU", skuCode)).list();
 	}
 
-	@Override
-	public List<ComponentBundle> getComponentName(@SuppressWarnings("rawtypes") List li) {
-		// TODO Auto-generated method stub
-		System.out.println(li+" :::::::::");
-		Session ss = sessionFactory.getCurrentSession();
-		String hql = "from ComponentBundle c where c.skuCode in (:skuCode)";
-		Query query1 = ss.createQuery(hql);
-		query1.setParameterList("skuCode", li);
-		@SuppressWarnings("unchecked")
-		List<ComponentBundle> li1 = query1.list();
-		return li1;
-	}	
+	
 
 	
 

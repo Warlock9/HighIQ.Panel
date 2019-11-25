@@ -23,7 +23,6 @@ public interface ComponentBundleService {
 	
 	public void deleteFromRelationDb(String sku);
 	
-	public List<String> getComponent(String skuCode);
-	
-	public List<ComponentBundle> getComponentName(List li);
+	public List<BundleComponentRelation> getComponent(String skuCode);
+
 }

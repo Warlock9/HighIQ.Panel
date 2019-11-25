@@ -10,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.augustconsulting.dao.ComponentBundleDao;
 import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
@@ -88,6 +87,13 @@ public class ComponentBundleDaoImpl implements ComponentBundleDao {
 		// TODO Auto-generated method stub
 		return (List<BundleComponentRelation>) sessionFactory.getCurrentSession()
 		.createCriteria(BundleComponentRelation.class).add(Restrictions.eq("BundleSKU", skuCode)).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ComponentBundle> validatingSkuCode(String skuCode) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createCriteria(ComponentBundle.class).add(Restrictions.eq("skuCode", skuCode)).list();
 	}
 
 	

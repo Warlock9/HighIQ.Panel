@@ -24,5 +24,7 @@ public interface ComponentBundleService {
 	public void deleteFromRelationDb(String sku);
 	
 	public List<BundleComponentRelation> getComponent(String skuCode);
+	
+	public List<ComponentBundle> validatingSkuCode(String skuCode);
 
 }

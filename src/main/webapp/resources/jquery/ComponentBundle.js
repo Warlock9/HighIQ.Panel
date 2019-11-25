@@ -83,18 +83,19 @@ $(document).ready(function() {
 		$(".skuCode").prop('readonly', true);
 	});
 
-	/*$('.btnAdd').mouseover(function(){
-		var costCenterNum = $('.id').val();
-		if(costCenterNum.length>0){
-			$.post('componentBundle.val',{costCenterNum:costCenterNum},function(res){
+	$('.btnAdd').mouseover(function(){
+		
+		var skuCode = $('.skuCode').val();
+		if(skuCode.length>0){
+			$.post('skuCodeValidation.val',{skuCode:skuCode},function(res){
 				if(res==1){
-					$('#duplicateIdSpan').html("Duplicate cost center number : "+costCenterNum);
+					$('#duplicateIdSpan').html("Duplicate skuCode number : "+skuCode);
 					$('#duplicateConfirmModal').modal();
-					$('.costCenterId').val("");
+					$('.skuCode').val("");
 				}
 			});
 		}
-	});	*/
+	});	
 });
 
 function getComponentSKUs(skuCode){

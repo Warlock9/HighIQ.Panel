@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
 import com.augustconsulting.service.ComponentBundleService;
@@ -184,5 +183,15 @@ public class ComponentBundleController {
 		sb.append("</div>");
 		response = sb.toString();
 		return response;
+	}
+	
+	@PostMapping("/skuCodeValidation.val")
+	public @ResponseBody String validateBotId(Model model, @RequestParam("skuCode") String skuCode){
+		String message="";
+		List<ComponentBundle> bd = services.validatingSkuCode(skuCode);
+		if(bd.size()>0) {
+			message="1";
+		}
+		return message;
 	}
 }

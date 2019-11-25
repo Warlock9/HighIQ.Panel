@@ -25,6 +25,6 @@ public interface ComponentBundleDao {
 	
 	public List<BundleComponentRelation> getComponent(String skuCode);
 	
-	
+	public List<ComponentBundle> validatingSkuCode(String skuCode);
 	
 }

@@ -14,6 +14,7 @@ $(document).ready(function() {
 		  }
 	});
 	
+	$(".btn-license").hide(); // disabling submit button	
 	//update button is disabled on page loading 
 	$(".btn-update").hide();
 	// code to read selected table row cell data (values).
@@ -39,6 +40,10 @@ $(document).ready(function() {
 		}, "fast"); // scrolling action to top of page
 
 		$(".salesId").val(salesId.trim());
+		
+		
+		
+		
 		$(".clientSiteId").val(clientSiteId.trim());
 		$(".sku").val(sku.trim());
 		$(".noOfRunners").val(noOfRunners.trim());
@@ -54,10 +59,20 @@ $(document).ready(function() {
 	//$(".card-title1").html("Edit Component/Bundle");
 		$(".btn-submit").hide(); // disabling submit button
 		$(".btn-update").show();//enabling the update button
-		//$(".id").css('pointer-events', 'none');
-		//$(".id").prop('readonly', true);
+		if(paymentStatus=="Yes" && salesId!="0" ){
+			$(".btn-license").show(); // enabling license button  
+		}
 	});
-
+/*enabling license button on payment status change*/
+	$('.paymentStatus').change(function(){
+	    var paymentStatus=	$(".paymentStatus").val();
+	    var salesId=  $(".salesId").val();
+	    if(paymentStatus=="Yes" && salesId!="0" ){
+	    	
+			$(".btn-license").show(); // enabling license button  
+		}
+		
+	});
 	/*$('.btnAdd').mouseover(function(){
 		var costCenterNum = $('.id').val();
 		if(costCenterNum.length>0){

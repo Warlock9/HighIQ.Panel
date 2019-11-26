@@ -146,7 +146,7 @@ public class ComponentBundleController {
 		sb.append("<label for=\"lname\"\r\n" + 
 				"											class=\"col-sm-2 text-right control-label col-form-label componentSelect\">Select\r\n" + 
 				"											Component </label>\r\n" + 
-				"										<div class=\"col-sm-3\">\r\n" + 
+				"										<div class=\"col-sm-3 componentSelect\">\r\n" + 
 				"											<div class=\"multiselect componentSelect\">\r\n" + 
 				"\r\n" + 
 				"												<div class=\"selectBox\" onclick=\"showCheckboxes()\">\r\n" + 

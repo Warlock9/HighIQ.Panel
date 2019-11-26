@@ -42,6 +42,7 @@ $(document).ready(function() {
 	// code to read selected table row cell data (values).
 	$(".myTable").on('click', '.btnSelect', function() {
 		// get the current row
+		$(".componentSelect").remove();
 		var currentRow = $(this).closest("tr");
 		var skuCode = currentRow.find("td:eq(0)").text();
 		
@@ -50,12 +51,14 @@ $(document).ready(function() {
 		var type = currentRow.find("td:eq(2)").text();
 		if(currentRow.find("td:eq(2)").text() == "Bundle")
 			{
-			    
+			
+			$(".componentSelect").hide();
 			getComponentSKUs(skuCode);
 			
-			$(".componentSelect").show();
+			//$(".componentSelect").show();
 			$(".componentHiding").remove();
 			}
+		
 		var status ;
 		if(currentRow.find("td:eq(3)").text() == "Inactive")
 			{

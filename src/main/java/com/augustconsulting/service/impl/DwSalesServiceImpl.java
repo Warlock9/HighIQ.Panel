@@ -93,75 +93,157 @@ public class DwSalesServiceImpl implements DwSalesService {
 	}
 
 	@Override
-	public void getFile(DWSales dSales) throws Exception {
+	public void getFileToMail(DWSales dSales,String toMail) throws Exception {
 		// TODO Auto-generated method stub
 
 		String licenseEndDate = String.valueOf(dSales.getLincenseEndDate()).replace("-", "");
 
 		String fLicenseEndDate = licenseEndDate.substring(2);
 
+		
 		Random rand = new Random();
-		String licenseKey = String.valueOf(dSales.getClientSiteId() + rand.nextInt(99999999) + dSales.getSku()
-				+ dSales.getNoOfRunners() + fLicenseEndDate);
+		 String clientSiteId=dSales.getClientSiteId();
+		 String sku=dSales.getSku();
+		 
+		 String botrunners=String.valueOf(dSales.getNoOfRunners());
+		 
+		  if(clientSiteId.length()==1) {
+			  clientSiteId="0000"+clientSiteId;
+		  }
+		  if(clientSiteId.length()==2) {
+			  clientSiteId="000"+clientSiteId;
+		  }
+		  if(clientSiteId.length()==3) {
+			  clientSiteId="00"+clientSiteId;
+		  }
+		  if(clientSiteId.length()==4) {
+			  clientSiteId="0"+clientSiteId;
+		  }
+			
+		
+		  // for sku code
+		  if(sku.length()==1) {
+			  sku="0000"+sku;
+		  }
+		  if(sku.length()==2) {
+			  sku="000"+sku;
+		  }
+		  if(sku.length()==3) {
+			  sku="00"+sku;
+		  }
+		  if(sku.length()==4) {
+			  sku="0"+sku;
+		  }
+		  
+		// for no of bot runners
+		  
+		  if(botrunners.length()==1) {
+			  botrunners="000"+botrunners;
+		  }
+		  if(botrunners.length()==2) {
+			  botrunners="00"+botrunners;
+		  }
+		  if(botrunners.length()==3) {
+			  botrunners="0"+botrunners;
+		  }
+		  
+		String licenseKey = String.valueOf(clientSiteId+ rand.nextInt(99999999)+sku+ botrunners + fLicenseEndDate);
 
+		System.out.println(licenseKey+" >>>>>>>>>>>>>>");
 		String encrptData = Security.encryptData(licenseKey);
+		//update key and status
 		dSales.setLicenseKey(encrptData);
+		dSales.setLicenseStatus("Generated");
 		dwSalesDao.updateDataToDb(dSales);
 
-		File f = createTemFileWriteLicenseKey(System.currentTimeMillis(), encrptData);
+		/* creating a License key file and send to email */
 
-		//Email send
-		
-		Properties props = new Properties();
-		props.put("mail.smtp.host", "imap.gmail.com"); // SMTP Host
-		props.put("mail.smtp.port", "465"); // TLS Port
-		props.put("mail.smtp.starttls.enable", "true"); // enable STARTTLS
-		props.put("mail.smtp.auth", "true"); // enable authentication
+		File licenseFile = createTemFileWriteLicenseKey(System.currentTimeMillis(), encrptData);
+		sendMail("imap.gmail.com", "465", "ankur.tiwari@highiq.ai", "a.n.k.u.r.23",
+				toMail, "License Key", licenseFile);
 
-		// SSL Factory
-		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+	}
 
-		// create Authenticator object to pass in Session.getInstance argument
-		Authenticator auth = new Authenticator() {
-			// override the getPasswordAuthentication method
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("ankur.tiwari@highiq.ai", "a.n.k.u.r.23");
-			}
-		};
+	@Override
+	public String sendMail(String host, String port, String fromMail, String password, String toMail, String subject,
+			File licenseFile) {
+		String exceptionMessage = "";
+		try {
 
-		Session session = Session.getInstance(props, auth);
-		MimeMessage msg = new MimeMessage(session);
-		// set message headers
-		msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-		msg.addHeader("format", "flowed");
-		msg.addHeader("Content-Transfer-Encoding", "8bit");
+			// Email send
 
-		msg.setFrom(new InternetAddress("ankur.tiwari@highiq.ai", "ankur.tiwari@highiq.ai"));
+			Properties props = new Properties();
+			props.put("mail.smtp.host", host); // SMTP Host
+			props.put("mail.smtp.port", port); // TLS Port
+			props.put("mail.smtp.starttls.enable", "true"); // enable STARTTLS
+			props.put("mail.smtp.auth", "true"); // enable authentication
 
-		msg.setReplyTo(InternetAddress.parse("prafulla.gupta@augustconsulting.net", false));
+			// SSL Factory
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
-		msg.setSubject("License Key", "UTF-8");
-    
-		msg.setSentDate(new Date());
+			// create Authenticator object to pass in Session.getInstance argument
+			Authenticator auth = new Authenticator() {
+				// override the getPasswordAuthentication method
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(fromMail, password);
+				}
+			};
 
-		// Create the message part
-		BodyPart messageBodyPart = new MimeBodyPart();
+			Session session = Session.getInstance(props, auth);
 
-		// Create a multipar message
-		Multipart multipart = new MimeMultipart();
-		DataSource source = new FileDataSource(f.getAbsolutePath());
-		messageBodyPart.setDataHandler(new DataHandler(source));
-		messageBodyPart.setFileName(f.getName());
-		multipart.addBodyPart(messageBodyPart);
+			MimeMessage msg = new MimeMessage(session);
+			// set message headers
+			msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+			msg.addHeader("format", "flowed");
+			msg.addHeader("Content-Transfer-Encoding", "8bit");
 
-		// Send the complete message parts
-		msg.setContent(multipart);
+			msg.setFrom(new InternetAddress(fromMail, fromMail));
 
-		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("prafulla.gupta@augustconsulting.net", false));
-		System.out.println("Message is ready");
-		Transport.send(msg);
-		System.out.println("EMail Sent Successfully!!");
-		f.getAbsoluteFile().delete();
+			msg.setReplyTo(InternetAddress.parse(toMail, false));
+
+			msg.setSubject(subject, "UTF-8");
+
+			msg.setText("", "UTF-8");
+
+			msg.setSentDate(new Date());
+
+			// Create the message part
+			BodyPart messageBodyPart = new MimeBodyPart();
+
+			// Create a multipar message
+			Multipart multipart = new MimeMultipart();
+			DataSource source = new FileDataSource(licenseFile.getAbsolutePath());
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			messageBodyPart.setFileName(licenseFile.getName());
+			multipart.addBodyPart(messageBodyPart);
+
+			// Send the complete message parts
+			msg.setContent(multipart);
+
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toMail, false));
+			System.out.println("Message is ready");
+			Transport.send(msg);
+			System.out.println("EMail Sent Successfully!!");
+			licenseFile.getAbsoluteFile().delete();
+
+		} catch (Exception ex) {
+			System.out.println("Mail fail");
+			ex.printStackTrace();
+			exceptionMessage = ex.getMessage();
+		}
+		return exceptionMessage;
+	}
+
+	@Override
+	public CustomerSites fetchingClientSiteEmailID(Integer clientSiteId) {
+		// TODO Auto-generated method stub
+		return dwSalesDao.fetchingClientSiteEmailID(clientSiteId);
+	}
+
+	@Override
+	public DWSales fetchingDataByLicenseKey(String key) {
+		// TODO Auto-generated method stub
+		return dwSalesDao.fetchingDataByLicenseKey(key);
 	}
 
 }

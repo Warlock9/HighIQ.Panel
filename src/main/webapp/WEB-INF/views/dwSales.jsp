@@ -439,9 +439,10 @@
 										</thead>
 										<tbody>
 											<c:set var="count" value="0" scope="page" />
-											<c:forEach items="${dwSaleDetails}" var="bs">
+											<c:forEach items="${dwSaleDetails}" var="bs" >
 												<tr>
 													<td style="display: none;">${bs.saleId}</td>
+													
 													<td>${bs.clientSiteId}</td>
 													<td>${bs.sku}</td>
 													<td>${bs.noOfRunners}</td>	
@@ -498,6 +499,7 @@
 												<!-- End Of Modal -->
 											<c:set var="count" value="${count + 1}" scope="page"/>
 											</c:forEach>
+											
 
 										</tbody>
 									</table>

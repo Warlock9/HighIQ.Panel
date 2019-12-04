@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.augustconsulting.model.CustomerSites;
 import com.augustconsulting.model.DWSales;
 import com.augustconsulting.service.DwSalesService;
 
@@ -29,6 +30,7 @@ public class DWSalesController {
 		return dwSalesLanding;
 	}
 	
+	
 	@PostMapping("/digitalWorkerSales.do")
 	public String doActions(@ModelAttribute("DWSales") DWSales dwSales, @RequestParam("action") String action,@RequestParam("createdDate") java.sql.Date createdDate) throws Exception {
 		System.out.println(dwSales.getSaleId());
@@ -43,9 +45,13 @@ public class DWSalesController {
 			dwSalesService.updateDataToDb(dwSales);		
 		}
 		else if(action.equals("license")) {
-	   System.out.println(dwSales.getSaleId()+" >>>>>.");
-			DWSales dSales=dwSalesService.fetchingDataFromDb(dwSales.getSaleId());
-			 dwSalesService.getFile(dSales);
+	     DWSales dSales=dwSalesService.fetchingDataFromDb(dwSales.getSaleId());
+	     
+	     /*getting customerSite email id*/
+	     
+	     CustomerSites emailId=dwSalesService.fetchingClientSiteEmailID(Integer.parseInt(dwSales.getClientSiteId()));
+	    
+		 dwSalesService.getFileToMail(dSales,emailId.getEmailID());
 		   
 		}
 		return new String("redirect:/digitalWorkerSales");

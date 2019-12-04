@@ -21,7 +21,10 @@ public interface DwSalesDao {
 	public List<CustomerSites> fetchingCLientSiteDetails();
 	
 	public List<ComponentBundle> fetchingSKU();
+	
+	public CustomerSites fetchingClientSiteEmailID(Integer clientSiteId);
 
+	public DWSales fetchingDataByLicenseKey(String key);
 	
  	
 }

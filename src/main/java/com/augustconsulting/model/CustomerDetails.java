@@ -27,7 +27,7 @@ public class CustomerDetails {
 
 	@NotNull
 
-	@Column(name = "ClientCompanyName", length = 10)
+	@Column(name = "ClientCompanyName", length = 255)
 	private String clientCompanyName;
 
 	@Column(name = "AddressLine1", length = 255)
@@ -60,7 +60,7 @@ public class CustomerDetails {
 
 	@NotNull
 
-	@Column(name = "ContactPerson", length = 25)
+	@Column(name = "ContactPerson", length = 255)
 	private String contactPerson;
 
 	@NotNull
@@ -70,7 +70,7 @@ public class CustomerDetails {
 
 	@NotNull
 
-	@Column(name = "EmailID", length = 30)
+	@Column(name = "EmailID", length = 255)
 	private String emailID;
 
 	@NotNull

@@ -82,7 +82,7 @@ public class CustomerSites implements Serializable {
 
 	@NotNull
 
-	@Column(name = "ContactPerson", length = 25)
+	@Column(name = "ContactPerson", length = 255)
 	private String contactPerson;
 
 	@NotNull
@@ -92,7 +92,7 @@ public class CustomerSites implements Serializable {
 
 	@NotNull
 
-	@Column(name = "EmailID", length = 30)
+	@Column(name = "EmailID", length = 255)
 	private String emailID;
 
 	@NotNull

@@ -4,8 +4,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -78,8 +76,18 @@ public class DwSalesDaoImpl implements DwSalesDao{
 		return (DWSales)sessionFactory.getCurrentSession().createCriteria(DWSales.class).add(Restrictions.eq("saleId", saleId)).uniqueResult();
 	}
 
+	@Override
+	public CustomerSites fetchingClientSiteEmailID(Integer clientSiteId) {
+		// TODO Auto-generated method stub
+		return (CustomerSites)sessionFactory.getCurrentSession().createCriteria(CustomerSites.class).add(Restrictions.eq("clientSiteId", clientSiteId)).uniqueResult();
+		
+	}
 
-	
-	
+	@Override
+	public DWSales fetchingDataByLicenseKey(String key) {
+		// TODO Auto-generated method stub
+		return (DWSales)sessionFactory.getCurrentSession().createCriteria(DWSales.class).add(Restrictions.eq("licenseKey", key)).uniqueResult();
+	}
+
 
 }

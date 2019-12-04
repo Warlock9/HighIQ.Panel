@@ -11,9 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 
 @Table(name = "tbl_DWSales")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+
 public class DWSales {
 
     @Id

@@ -27,4 +27,6 @@ public interface ComponentBundleService {
 	
 	public List<ComponentBundle> validatingSkuCode(String skuCode);
 
+	public String getComponentBundleName(String skuCode);
+
 }

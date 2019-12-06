@@ -414,7 +414,7 @@
 					<div class="col-12">
 						<div class="card">
 									<div class="card-body">
-								<h4 class="card-title">Manage Distribution Set List </h4>
+								<h4 class="card-title">Digital Worker Sales List </h4>
 								<div class="table-responsive">
 									<table id="zero_config"
 										class="table table-striped table-bordered myTable text-center">
@@ -429,7 +429,7 @@
 												<th><b>Payment Status</b></th>
 												<th><b>License Key</b></th>
 												<th><b>License Status</b></th>
-												<th><b>Customer Ip Address</b></th>
+												<th><b>Customer IP Address</b></th>
 												<th style="display: none;"><b>Created Date</b></th>
 												<th style="display: none;"><b>Updated Date</b></th>
 												

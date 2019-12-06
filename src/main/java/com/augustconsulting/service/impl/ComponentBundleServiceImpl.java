@@ -81,6 +81,12 @@ public class ComponentBundleServiceImpl implements ComponentBundleService {
 		return manageDao.validatingSkuCode(skuCode);
 	}
 
+	@Override
+	public String getComponentBundleName(String skuCode) {
+		// TODO Auto-generated method stub
+		return manageDao.getComponentBundleName(skuCode);
+	}
+
 	
 
 }

@@ -96,6 +96,13 @@ public class ComponentBundleDaoImpl implements ComponentBundleDao {
 		return sessionFactory.getCurrentSession().createCriteria(ComponentBundle.class).add(Restrictions.eq("skuCode", skuCode)).list();
 	}
 
+	@Override
+	public String getComponentBundleName(String skuCode) {
+		// TODO Auto-generated method stub
+		return (String)sessionFactory.getCurrentSession().createCriteria(ComponentBundle.class).setProjection(Projections.property("componentBundleName")).add(Restrictions.eq("skuCode", skuCode)).uniqueResult();
+		
+	}
+
 	
 
 	

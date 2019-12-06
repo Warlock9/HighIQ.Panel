@@ -4,12 +4,15 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.security.KeyException;
 import java.util.List;
 
 
 import com.augustconsulting.model.ComponentBundle;
 import com.augustconsulting.model.CustomerSites;
 import com.augustconsulting.model.DWSales;
+import com.augustconsulting.utility.Security;
 
 public interface DwSalesService {
 
@@ -51,6 +54,14 @@ public interface DwSalesService {
 		bw.close();
 		return temp;
 
+	}
+	
+	default int getSKUCodeFromKey(String licenseKey) throws KeyException, GeneralSecurityException, IOException {
+		
+		String skuCode=Security.decryptData(licenseKey);
+		System.out.println(skuCode.substring(14, 18));
+		return Integer.valueOf(skuCode.substring(14, 18));
+		
 	}
 
 }

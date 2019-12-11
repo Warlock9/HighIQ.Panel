@@ -253,10 +253,11 @@
 														<td>${cd.status}</td>
 														
 													<td>
+													<c:if test="${deleteAccess=='1'}">
 														<button type="button" class="btn btn-danger btn-sm"
 															data-toggle="modal"
 															data-target="#updateDeleteModal${cd.clientId}">Delete</button>
-
+                                                     </c:if>
 													</td>
 												</tr>
 												<!-- Start Of Modal  -->
@@ -293,8 +294,9 @@
 										</table>
 										<form target="_blank" class="form-horizontal" action="manageContactForNewContact">
 										
+										<c:if test="${createAccess=='1'}">
 										<button type="submit" class="btn btn-success" >Add New Contact</button>
-														
+													</c:if>	
 									</form>
 								
 								</div>

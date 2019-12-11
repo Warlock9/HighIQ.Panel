@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
 import com.augustconsulting.service.ComponentBundleService;
+import com.augustconsulting.service.UsersRoleService;
+import com.augustconsulting.utility.ViewAndOperationAccess;
 
 @Controller
 public class ComponentBundleController {
@@ -24,7 +26,9 @@ public class ComponentBundleController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	ComponentBundleService services;
+	private ComponentBundleService services;
+	@Autowired
+	private UsersRoleService userRoleService;
 
 	public ComponentBundleController() {
 		super();
@@ -34,11 +38,10 @@ public class ComponentBundleController {
 	@GetMapping("/componentBundle")
 	public String botManagerLandingPage(Model model, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*
-		 * String st = new ViewAndOperationAccess().gettingViewAndOperationAccess(model,
-		 * request,userRoleService, "ManageDistributionSet", "Manage Distribution Set");
-		 * if(st==null) { return new String("redirect:/"); }
-		 */
+		String st = new ViewAndOperationAccess().gettingViewAndOperationAccess(model, request,userRoleService, "ComponentBundle", "Manage Component Bundle");
+    	if(st==null) {
+			return new String("redirect:/");
+		}
 
 		model.addAttribute("setDetails", services.fetchingDataFromDb());
 		model.addAttribute("relationDetails", services.fetchingDataFromRelation());

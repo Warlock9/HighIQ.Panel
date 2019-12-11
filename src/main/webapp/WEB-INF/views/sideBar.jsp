@@ -17,27 +17,43 @@
 		<nav class="sidebar-nav">
 			<ul id="sidebarnav" class="p-t-30">
 
-				<!-- <li class="sidebar-item"><a
+				<li class="sidebar-item"><a
 					class="sidebar-link waves-effect waves-dark sidebar-link"
 					href="dashboard" aria-expanded="false"><i
 						class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
-				</li> -->
-				
+				</li>
+				<c:if test="${digitalWorkerViewAccess=='1'}">
 					<li class="sidebar-item"><a href="digitalWorkerSales"
-					class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
-						class="hide-menu"> Digital Worker Sales</span></a></li>
+						class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
+							class="hide-menu">Digital Worker Sales</span></a></li>
+				</c:if>
+				<c:if test="${manageCustomerViewAccess=='1'}">
+					<li class="sidebar-item"><a href="contactList"
+						class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
+							class="hide-menu"> Manage Customer </span></a></li>
 
-				<li class="sidebar-item"><a href="contactList"
-					class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
-						class="hide-menu"> Manage Customer </span></a></li>
+				</c:if>
+				<c:if test="${manageComponentViewAccess=='1'}">
+					<li class="sidebar-item"><a href="componentBundle"
+						class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
+							class="hide-menu"> Manage Component Bundle </span></a></li>
+				</c:if>
+				<c:if test="${usersViewAccess=='1'}">
+					<li class="sidebar-item"><a
+						class="sidebar-link waves-effect waves-dark sidebar-link"
+						href="manageUsers" aria-expanded="false"><i
+							class="mdi mdi-account-plus"></i><span class="hide-menu">Manage
+								Users</span></a></li>
+				</c:if>
+				<c:if test="${rolesViewAccess=='1'}">
+					<li class="sidebar-item"><a
+						class="sidebar-link waves-effect waves-dark sidebar-link"
+						href="usersRole" aria-expanded="false"><i
+							class="mdi mdi-account-key"></i><span class="hide-menu">Manage
+								User Roles</span></a></li>
+				</c:if>
 
-				<li class="sidebar-item"><a href="componentBundle"
-					class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span
-						class="hide-menu"> Manage Component Bundle </span></a></li>
 
-
-
-			
 
 
 

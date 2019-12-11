@@ -312,12 +312,14 @@ width: 101%;
 										<label for="lname"
 											class="col-sm-2 text-right control-label col-form-label"></label>
 										<div class="col-sm-3">
-											<%-- <c:if test="${createAccess=='1'}"> --%>
+											 <c:if test="${createAccess=='1'}">
 											<button type="submit" name="action" value="save"
 												class="btn btn-success btn-submit btnAdd">Add</button>
-											<%-- </c:if> --%>
+											 </c:if> 
+											<c:if test="${editAccess=='1'}"> 
 											<button type="button" class="btn btn-info btn-update"
 												data-toggle="modal" data-target="#updateConfirmModal">Update</button>
+												</c:if> 
 											<button type="button" onclick="reloadPage();"
 												class="btn btn-primary btn-reset">Reset</button>
 										</div>

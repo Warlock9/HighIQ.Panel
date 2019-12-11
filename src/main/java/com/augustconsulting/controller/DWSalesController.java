@@ -1,5 +1,8 @@
 package com.augustconsulting.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.augustconsulting.model.CustomerSites;
 import com.augustconsulting.model.DWSales;
 import com.augustconsulting.service.DwSalesService;
+import com.augustconsulting.service.UsersRoleService;
+import com.augustconsulting.utility.ViewAndOperationAccess;
 
 @Controller
 public class DWSalesController {
@@ -22,8 +27,15 @@ public class DWSalesController {
 	@Autowired
 	private DwSalesService dwSalesService;
 	
-	@GetMapping({"/","/digitalWorkerSales"})
-	public String landingDwSales(Model model) {
+	@Autowired
+	private UsersRoleService userRoleService;
+	
+	@GetMapping("/digitalWorkerSales")
+	public String landingDwSales(Model model,HttpServletRequest request, HttpServletResponse response) {
+		String st = new ViewAndOperationAccess().gettingViewAndOperationAccess(model, request,userRoleService, "digitalWorkerSales", "Digital Worker Sales");
+    	if(st==null) {
+			return new String("redirect:/");
+		}
 		model.addAttribute("clientSite",dwSalesService.fetchingCLientSiteDetails());
 		model.addAttribute("skuCode",dwSalesService.fetchingSKU());
 		model.addAttribute("dwSaleDetails", dwSalesService.fetchingDataFromDb());

@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.augustconsulting.model.CustomerSites;
 import com.augustconsulting.model.CustomerDetails;
 import com.augustconsulting.service.ManageContactsService;
+import com.augustconsulting.service.UsersRoleService;
+import com.augustconsulting.utility.ViewAndOperationAccess;
 
 @Controller
 
@@ -38,10 +40,16 @@ public class ManageContactsController {
 	@Autowired
 	private ManageContactsService manageContactService;
 
+	@Autowired
+	private UsersRoleService userRoleService;
 	@GetMapping("/contactList")
 
 	public String viewCustomerDetails(Model model, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String st = new ViewAndOperationAccess().gettingViewAndOperationAccess(model, request,userRoleService, "manageContactsList", "Manage Customer");
+    	if(st==null) {
+			return new String("redirect:/");
+		}
 
 		model.addAttribute("customerDetailList", manageContactService.getAllcontactDetails());
 		return new String(landingPageViewList);

@@ -10,6 +10,7 @@
     response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 %>
 
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -22,7 +23,7 @@
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16"
 	href="${contextPath}/resources/assets/images/favicon.png">
-<title>HighIQ.ai - DWSales</title>
+<title>HighIQ.ai - Manage User Roles</title>
 <!-- Custom CSS -->
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/resources/assets/libs/select2/dist/css/select2.min.css">
@@ -45,9 +46,12 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/assets/extra-libs/multicheck/multicheck.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="${contextPath}/resources/jquery/dwSales.js"></script>
+<script src="${contextPath}/resources/jquery/UsersRole.js"></script>
 <!-- Custom CSS -->
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -115,7 +119,6 @@
 					<!-- Right side toggle and nav items -->
 					<!-- ============================================================== -->
 					<ul class="navbar-nav float-right"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle waves-effect waves-dark"> Welcome - ${userFirstName} ${userLastName}</a></li>
-
 						<!-- ============================================================== -->
 						<!-- User profile and search -->
 						<!-- ============================================================== -->
@@ -129,7 +132,8 @@
 							
 									
 								 
-								<a href="logOut.do?logOut=logOut" class="dropdown-item" href="javascript:void(0)"><i
+								<a href="logOut.do?logOut=logOut" class="dropdown-item"
+									href="javascript:void(0)"><i
 									class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
 							</div></li>
 						<!-- ============================================================== -->
@@ -160,12 +164,12 @@
 			<div class="page-breadcrumb">
 				<div class="row">
 					<div class="col-12 d-flex no-block align-items-center">
-						<h4 class="page-title">Digital Worker Sales</h4>
+						<h4 class="page-title">Manage User Roles</h4>
 						<div class="ml-auto text-right">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Digital Worker Sales</li>
+									<li class="breadcrumb-item active" aria-current="page">Manage User Roles</li>
 								</ol>
 							</nav>
 						</div>
@@ -186,331 +190,209 @@
 					<div class="col-12">
 						<div class="card">
 
-							<form class="form-horizontal" action="digitalWorkerSales.do"
-								method="POST">
+							<form class="form-horizontal" action="usersRoleSelect.do" method="POST">
 
 								<div class="card-body">
-									<h4 class="card-title card-title1">Add DW Sales</h4>
- 
-         
-                               
-                                 <div style="display: none;" class="form-group row">
-										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label"></label>
-										<div class="col-sm-3">
-											<input  type="text" name="saleId" value=0 class="form-control salesId" 
-												 placeholder="" >
-										</div>
-										
-									</div> 
-									
-									<div style="display: none;" class="form-group row">
-										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">Created Date</label>
-										<div class="col-sm-3">
-											<input type="date" name="createdDate" value="2019-02-01" class="form-control createdDate" 
-												 placeholder=""  >
-										</div>
-										
-									</div>
-									<div class="form-group row">
-										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">Customer And Site Name </label>
-										<div class="col-sm-3">
-											<select required name="clientSiteId" class="select1 form-control custom-select clientSiteId" >
-													<option value="">Select</option>
-														 <c:forEach items="${clientSite}" var="cSiteId">
-														
-												           	<option value="${cSiteId.clientSiteId}">${cSiteId.clientCompanyName}-${cSiteId.siteName}</option>
-													
-														</c:forEach> 
-															
-													
-													
-											</select>
-										</div>
-										<label for="fname"
-											class="col-sm-2 text-right control-label col-form-label">SKU Purchased</label>
-										<div class="col-sm-3">
-											
-												
-												<select name="sku" class="select1 form-control custom-select sku" required >
-													<option value="">Select</option>
-													 <c:forEach items="${skuCode}" var="sku">
-														
-												           	<option value="${sku.skuCode}">${sku.componentBundleName}</option>
-													
-														</c:forEach>  
-													
-											</select>
-										</div>
-										
-										
-									</div>
-									<div class="form-group row">
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">Number Of Runners</label>
-										<div class="col-sm-3">
-											<input required type="number" name="noOfRunners"
-												class="form-control assign-to noOfRunners"
-												placeholder="Number Of Runners Here" >
-										</div>
-										
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">Payment Status</label>
-										<div class="col-sm-3">
-											
-												
-												<select name="paymentStatus" class="select1 form-control custom-select paymentStatus" required >
-													<option value="">Select</option>
-														
-														<option value="Yes">Yes</option>
-														<option value="No">No</option>
-												</select>
-										</div>
-										
-										
-									</div>
-									
-									<div class="form-group row">
-									<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">License Issue Date</label>
-										<div class="col-sm-3">
-											<input required type="date" name="licenseIssueDate"
-												class="form-control assign-to licenseIssueDate"
-												placeholder="License Issue Date Here" >
-										</div>
-									<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">License End Date</label>
-										<div class="col-sm-3">
-											<input required type="date" name="lincenseEndDate"
-												class="form-control assign-to licenseEndDate"
-												placeholder="License End Date Here" >
-										</div>
-										
-										
-										
-									</div>
-									
-									<div class="form-group row">
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">License Key</label>
-										<div class="col-sm-3">
-											<input required type="text" name="licenseKey"
-												class="form-control assign-to licenseKey" readonly	placeholder="License Key Here" >
-										</div>
-										
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">License Status</label>
-										<div class="col-sm-3">
-											<input type="text" name="licenseStatus"
-												class="form-control assign-to licenseStatus"
-												placeholder="License Status Here" readonly>
-										</div>
-									</div>
-									
-									<div class="form-group row">
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label">Customer IP Address</label>
-										<div class="col-sm-3">
-											<input type="text" name="clientIpAddress"
-												class="form-control assign-to clientIpAddress"
-												placeholder="Customer IP Address Here"  readonly>
-										</div>
-										
-									</div>
+									<h4 class="card-title">Select User Role</h4>
 
-									
-								
-									
 									<div class="form-group row">
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label"></label>
+
+										<label for="fname"
+											class="col-sm-2 text-right control-label col-form-label">Select
+											Role</label>
 										<div class="col-sm-3">
-									 <c:if test="${createAccess=='1'}"> 
-											<button type="submit" name="action" value="save"
-												class="btn btn-success btn-submit">Add</button>
-										 </c:if>
-										
-										 <c:if test="${editAccess=='1'}">
-											<button type="button" class="btn btn-info btn-update"
-												data-toggle="modal" data-target="#updateConfirmModal">Update</button>
-												</c:if>
-											<button type="button" onclick="reloadPage();"
-												class="btn btn-primary btn-reset">Reset</button>
+											<select name="role[]" class="select1 form-control custom-select rolDropDown" onchange="this.form.submit()" required>								
+												<option value="">Select Role</option>
+												<c:forEach items="${distinctRoleDist}" var="dl">
+													<option  data-value="${dl}" value="${dl}" ${selectedRole == dl ? 'selected' : ''} >${dl}</option>
+												</c:forEach>
+											</select>
 										</div>
-										
-										<label for="lname"
-											class="col-sm-2 text-right control-label col-form-label"></label>
+
 										<div class="col-sm-3">
-										
-												<button type="button" data-toggle="modal" data-target="#generateLicenseModal"
-												class="btn btn-success btn-license">Generate License Key</button>
-											
+										<c:if test="${deleteAccess=='1'}">
+											<button type="button" class="btn btn-danger btn-submit" data-toggle="modal" data-target="#updateDeleteModal">Delete</button>
+										</c:if>
 										</div>
 									</div>
 								</div>
-								
-								
-								
-								<!-- Start Of Modal  -->
-
-								<div class="modal fade" id="updateConfirmModal" tabindex="-1"
-									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true ">
-									<div class="modal-dialog" role="document ">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true ">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<div class="card-body col-sm-12 text-center">Do you
-													really want to update ?</div>
-												<div class="card-body col-sm-12 text-center">
-													<button type="submit" name="action" value="update"
-														class="btn btn-sm btn-primary">Yes</button>
-													<button type="button" class="btn btn-sm btn-secondary"
-														data-dismiss="modal">No</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+									<!-- Start Of Modal  -->
+													<div class="modal fade" id="updateDeleteModal${bd.botId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+						                                    <div class="modal-dialog" role="document ">
+						                                        <div class="modal-content">
+						                                            <div class="modal-header">
+						                                                <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+						                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                                                    <span aria-hidden="true ">&times;</span>
+						                                                </button>
+						                                            </div>
+						                                            <div class="modal-body">
+																		<div class="card-body col-sm-12 text-center">Do you really want to delete ?</div>
+																		<div class="card-body col-sm-12 text-center">						
+																			<button type="submit" name="role[]" value="${selectedRole}" class="btn btn-sm btn-primary">Yes</button>
+																			<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">No</button>																		
+																		</div>
+																	</div>
+						                                        </div>
+						                                    </div>
+						                                </div>
 								<!-- End Of Modal -->
-								
-								<!--Start License Model  -->
-								<div class="modal fade" id="generateLicenseModal" tabindex="-1"
-									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true ">
-									<div class="modal-dialog" role="document ">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true ">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<div class="card-body col-sm-12 text-center">Do you
-													really want to Generated a License ?</div>
-												<div class="card-body col-sm-12 text-center">
-													<button type="submit" name="action" value="license"
-														class="btn btn-sm btn-primary">Yes</button>
-													<button type="button" class="btn btn-sm btn-secondary"
-														data-dismiss="modal">No</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--  End of License Model-->
 							</form>
 						</div>
 					</div>
 					
 					<div class="col-12">
 						<div class="card">
-									<div class="card-body">
-								<h4 class="card-title">Digital Worker Sales List </h4>
-								<div class="table-responsive">
-									<table id="zero_config"
-										class="table table-striped table-bordered myTable text-center">
-										<thead>
-											<tr>
-												<th style="display: none;"><b>Sales ID</b></th>
-												<th><b>Customer Site ID</b></th>
-												<th><b>SKU</b></th>
-												<th><b>No Of Runners</b></th>
-												<th><b>License Issue Date</b></th>
-												<th><b>License End Date</b></th>
-												<th><b>Payment Status</b></th>
-												<th><b>License Key</b></th>
-												<th><b>License Status</b></th>
-												<th><b>Customer IP Address</b></th>
-												<th style="display: none;"><b>Created Date</b></th>
-												<th style="display: none;"><b>Updated Date</b></th>
-												
-											 <!--  <th><b>Windows Authentication</b></th> -->
-												<th><b></b></th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:set var="count" value="0" scope="page" />
-											<c:forEach items="${dwSaleDetails}" var="bs" >
-												<tr>
-													<td style="display: none;">${bs.saleId}</td>
-													
-													<td>${bs.clientSiteId}</td>
-													<td>${bs.sku}</td>
-													<td>${bs.noOfRunners}</td>	
-													<td>${bs.licenseIssueDate}</td>
-													<td>${bs.lincenseEndDate}</td>
-													<td>${bs.paymentStatus}</td>
-													<td>${bs.licenseKey}</td>	
-													<td>${bs.licenseStatus}</td>	
-													<td>${bs.clientIpAddress}</td>	
-													<td style="display: none;">${bs.createdDate}</td>	
-													<td style="display: none;">${bs.updatedDate}</td>	
-																	
-													<td>	
-													<c:if test="${editAccess=='1'}">
-														<button type="button"
-															class="btn btn-success btn-sm btnSelect" >Edit</button>		
-																					</c:if>
-														 <c:if test="${deleteAccess=='1'}">															
-														<button type="button" class="btn btn-danger btn-sm"
-															data-toggle="modal"
-															data-target="#updateDeleteModal${bs.saleId}">Delete</button>		
-															</c:if>									
-													</td>
-												</tr>
-												<!-- Start Of Modal  -->
-												<div class="modal fade" id="updateDeleteModal${bs.saleId}"
-													tabindex="-1" role="dialog"
-													aria-labelledby="exampleModalLabel" aria-hidden="true ">
-													<div class="modal-dialog" role="document ">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-																<button type="button" class="close" data-dismiss="modal"
-																	aria-label="Close">
-																	<span aria-hidden="true ">&times;</span>
-																</button>
-															</div>
-															<form action="digitalWorkerSales.del" method="POST">
-																<div class="modal-body">
-																	<div class="card-body col-sm-12 text-center">Do
-																		you really want to delete ?</div>
-																	<input type="hidden" name="id" value="${bs.saleId}" />
-																	<div class="card-body col-sm-12 text-center">
-																		<button type="submit" name="action" value="delete"
-																			class="btn btn-sm btn-primary">Yes</button>
-																		<button type="button" class="btn btn-sm btn-secondary"
-																			data-dismiss="modal">No</button>
-																	</div>
-																</div>
-															</form>
-														</div>
-													</div>
-												</div>
-												<!-- End Of Modal -->
-											<c:set var="count" value="${count + 1}" scope="page"/>
-											</c:forEach>
+							<div class="card-body">
+								<h5 class="card-title card-title1">Add User Role</h5>
+								<form class="form-horizontal" action="usersRole.do" method="POST">
+									<div class="form-group row">
+
+										<label for="fname" class="col-sm-1 text-right control-label col-form-label">User Role</label>
+										<div class="col-sm-3">
+											<input type="text" name="role" class="form-control role" value="${selectedRole}"  ${selectedRole != null? 'readonly' : ''} placeholder="Enter Role Here" required>
 											
+										</div>
+										
+										<%-- <label for="fname"
+											class="col-sm-2 text-right control-label col-form-label">Special Access</label>
+										<div class="col-sm-3">
+											<select name="specialAccess" class="select1 form-control custom-select specialAccessDropDown" required>
+												<option value="">Select Special Access</option>
+													<option value="None" ${selectedSpecialAccess == 'None' ? 'selected' : ''} >None</option>
+													<option value="Cost Center Manager" ${selectedSpecialAccess == 'Cost Center Manager' ? 'selected' : ''} >Cost Center Manager</option>
+													<option value="Bot Manager" ${selectedSpecialAccess == 'Bot Manager' ? 'selected' : ''} >Bot Manager</option>
+											</select>
+										</div> --%>
+									</div>
 
-										</tbody>
-									</table>
-								</div>
+									<div class="table-responsive">
+										<table id=""
+											class="table table-striped table-bordered myTable text-center">
+											<thead>
+												<tr>
+													<th><b>Access Name</b></th>
+													<th><b>View Access</b></th>
+													<th><b>Create Access</b></th>
+													<th><b>Edit Access</b></th>
+													<th><b>Delete Access</b></th>
+													<!-- <th><b>Approve Access</b></th> -->
+												</tr>
+											</thead>
+											<tbody class="dynamicDiv">
+												<c:set var="count" value="0" scope="page" />
+												<c:forEach items="${retrievedRoles}" var="al">
+												<c:set var="count" value="${count + 1}" scope="page"/>
+													<tr>
+														<td>${al.accessName}
+															<input type="hidden" name="accessName[]" value="${al.accessName}" />
+															<input type="hidden" name="id[]" value="${al.id}" />
+														</td>
+														<td>
+															<label class="customcheckbox"> 
+															<c:choose>
+	  															<c:when test="${al.viewAccess==1}">
+	  																<input type="checkbox" class="listCheckbox hidCheckBox" name="viewAccess[]" value="1" id="viewAccess${count}" checked>
+	 																<input type="hidden" name="viewAccess[]" size="viewAccess${count}" value="0" disabled/>
+	 															</c:when>
+	 															<c:otherwise>
+	 															  	<input type="checkbox" class="listCheckbox hidCheckBox" name="viewAccess[]" value="1" id="viewAccess${count}" > 													
+	    															<input type="hidden" name="viewAccess[]" size="viewAccess${count}" value="0" />
+	  															</c:otherwise>
+															</c:choose>
+																<span class="checkmark" style="margin-left:60px"></span>
+															</label>														
+														</td>
+														
+														
+														<td>
+															<label class="customcheckbox">
+															<c:choose>
+	  															<c:when test="${al.createAccess==1}">
+	  																<input type="hidden" name="createAccess[]" size="createAccess${count}" value="0" disabled/>
+																	<input type="checkbox" class="listCheckbox hidCheckBox"name="createAccess[]" value="1" id="createAccess${count}" checked>
+	 															</c:when>
+	 															<c:otherwise>
+	 															  	<input type="hidden" name="createAccess[]" size="createAccess${count}" value="0" />
+																	<input type="checkbox" class="listCheckbox hidCheckBox"name="createAccess[]" value="1" id="createAccess${count}">
+	  															</c:otherwise>
+															</c:choose>																													
+																<span class="checkmark" style="margin-left:60px"></span>
+															</label>
+														
+														</td>
+														
+														<td>
+															<label class="customcheckbox">
+															<c:choose>
+	  															<c:when test="${al.editAccess==1}">
+	  																<input type="hidden" name="editAccess[]" size="editAccess${count}" value="0" disabled/>
+																	<input type="checkbox" class="listCheckbox hidCheckBox" name="editAccess[]" value="1" id="editAccess${count}" checked>
+	 															</c:when>
+	 															<c:otherwise>
+	 															  	<input type="hidden" name="editAccess[]" size="editAccess${count}" value="0" />
+																	<input type="checkbox" class="listCheckbox hidCheckBox" name="editAccess[]" value="1" id="editAccess${count}">
+	  															</c:otherwise>
+															</c:choose>																													
+																<span class="checkmark" style="margin-left:60px"></span>												
+															</label>														
+														</td>
+																												
+														<td>
+															<label class="customcheckbox"> 
+															<c:choose>
+	  															<c:when test="${al.deleteAccess==1}">
+	  																<input type="hidden" name="deleteAccess[]" size="deleteAccess${count}" value="0" disabled/>
+																<input type="checkbox" class="listCheckbox hidCheckBox" name="deleteAccess[]" value="1" id="deleteAccess${count}" checked>
+	 															</c:when>
+	 															<c:otherwise>
+	 															  	<input type="hidden" name="deleteAccess[]" size="deleteAccess${count}" value="0" />
+																<input type="checkbox" class="listCheckbox hidCheckBox" name="deleteAccess[]" value="1" id="deleteAccess${count}">
+	  															</c:otherwise>
+															</c:choose>																													
+																<span class="checkmark" style="margin-left:60px"></span>
+															</label>
+														</td>
+														
+														<%-- <td>
+															<label class="customcheckbox"> 														
+															<c:choose>
+	  															<c:when test="${al.approveAccess==1}">
+	  																<input type="hidden" name="approveAccess[]" size="approveAccess${count}" value="0" disabled/>
+																	<input type="checkbox" class="listCheckbox hidCheckBox" name="approveAccess[]" value="1" id="approveAccess${count}" checked>
+	 															</c:when>
+	 															<c:otherwise>
+	 															  	<input type="hidden" name="approveAccess[]" size="approveAccess${count}" value="0" />
+																	<input type="checkbox" class="listCheckbox hidCheckBox" name="approveAccess[]" value="1" id="approveAccess${count}">
+	  															</c:otherwise>
+															</c:choose>																													
+															<span class="checkmark" style="margin-left:60px"></span>
+															</label>
+														</td> --%>
+													</tr>
 
+												</c:forEach>
+
+											</tbody>
+										</table>
+									</div>
+									<div class="form-group row">
+										<div class="card-body">	
+										<c:choose>		
+											<c:when test="${selectedRole==null}">
+												<button type="submit" name="action" value="save" class="btn btn-success" id="btn-success" >Save</button>
+											</c:when>
+											<c:otherwise>
+										      	 <button type="submit" name="action" value="save" class="btn btn-info btn-update" data-toggle="modal" data-target="#updateConfirmModal">Update</button>
+											</c:otherwise>
+										</c:choose>	
+												<button type="reset" onclick="location.href='usersRole';" class="btn btn-primary btn-reset">Reset</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
-				
 				</div>
 				<!-- ============================================================== -->
 				<!-- End PAge Content -->
@@ -523,8 +405,8 @@
 				<!-- End Right sidebar -->
 				<!-- ============================================================== -->
 			</div>
-			<!-- Start Of Modal  -->
-				      <div class="modal fade" id="duplicateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
+					<!-- Modal -->
+                                <div class="modal fade" id="duplicateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true ">
                                     <div class="modal-dialog" role="document ">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -541,8 +423,8 @@
 											</div>
                                         </div>
                                     </div>
-                       </div>
-				<!-- End Of Modal -->
+                                </div>
+                   <!-- Modal --
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -550,8 +432,7 @@
 			<!-- footer -->
 			<!-- ============================================================== -->
 			<footer class="footer text-center">
-					All Rights Reserved by <a href="dashboard">HighIQ.ai</a>.
-
+					All Rights Reserved by <a href="dashboard">HighIQ.ai</a>
 			</footer>
 			<!-- ============================================================== -->
 			<!-- End footer -->

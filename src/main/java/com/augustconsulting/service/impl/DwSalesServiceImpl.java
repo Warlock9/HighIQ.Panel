@@ -159,7 +159,7 @@ public class DwSalesServiceImpl implements DwSalesService {
 		/* creating a License key file and send to email */
 
 		File licenseFile = createTemFileWriteLicenseKey(System.currentTimeMillis(), encrptData);
-		sendMail("imap.gmail.com", "465", "ankur.tiwari@highiq.ai", "a.n.k.u.r.23",
+		sendMail("imap.gmail.com", "465", "ankurtiwari69@gmail.com", "a.n.k.u.r.25",
 				toMail, "License Key", licenseFile);
 
 	}

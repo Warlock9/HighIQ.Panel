@@ -529,10 +529,10 @@ Trail </a> -->
 
 												</select></td>
 												<td>
-												<c:if test="${deleteAccess=='1'}">
+												<%-- <c:if test="${deleteAccess=='1'}"> --%>
 													<button type="button"
 														class="btn btn-danger btn-sm btnDelete">Delete</button>
-                                                   </c:if>
+                                                  <%--  </c:if> --%>
 												</td>
 											</tr>
 

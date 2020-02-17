@@ -41,25 +41,29 @@ $(".myTable1").on('click', '.btnDelete', function() {
 		var clientSiteId = currentRow.find("td:eq(0)").text();
 		var clientId = currentRow.find("td:eq(1)").text();
 		var action = 'delete';
-		$.post("contactSiteDelete.do", {
-			action : action,
-			clientSiteId : clientSiteId,
-			clientId : clientId
-		}, function(res) {
-			if (res == 1) {
-				currentRow.remove();
-			
-				var x=0;
-				$('.myTable1 tbody tr').each(function() { 
-						x++;
-						$(this).find("td:eq(0)").text(x);
-						$(this).attr('class', 'dynamicRow'+x);
-				});
+		if(clientSiteId==""){
+			currentRow.remove();
+		}else{
+			$.post("contactSiteDelete.do", {
+				action : action,
+				clientSiteId : clientSiteId,
+				clientId : clientId
+			}, function(res) {
+				if (res == 1) {
+					currentRow.remove();
 				
-			
-			}
-			
-		});
+					var x=0;
+					$('.myTable1 tbody tr').each(function() { 
+							x++;
+							$(this).find("td:eq(0)").text(x);
+							$(this).attr('class', 'dynamicRow'+x);
+					});
+					
+				
+				}
+				
+			});
+		}
 	} else {
 		return;
 	}

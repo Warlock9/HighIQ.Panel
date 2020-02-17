@@ -42,12 +42,14 @@ public class ManageContactsController {
 
 	@Autowired
 	private UsersRoleService userRoleService;
+
 	@GetMapping("/contactList")
 
 	public String viewCustomerDetails(Model model, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String st = new ViewAndOperationAccess().gettingViewAndOperationAccess(model, request,userRoleService, "manageContactsList", "Manage Customer");
-    	if(st==null) {
+		String st = new ViewAndOperationAccess().gettingViewAndOperationAccess(model, request, userRoleService,
+				"manageContactsList", "Manage Customer");
+		if (st == null) {
 			return new String("redirect:/");
 		}
 
@@ -77,8 +79,8 @@ public class ManageContactsController {
 		if (action.equals("update")) {
 			manageContactService.updateManageContactHeader(contacts);
 			clientId = contacts.getClientId();
-			customerCompanyName=contacts.getClientCompanyName();
-			manageContactService.updateContactSites(arrayContactSites, clientId,customerCompanyName);
+			customerCompanyName = contacts.getClientCompanyName();
+			manageContactService.updateContactSites(arrayContactSites, clientId, customerCompanyName);
 			message = "1";
 		}
 
@@ -97,7 +99,6 @@ public class ManageContactsController {
 
 		String message = "0";
 
-		System.out.println(contactSites.getClientId() + " ?????????????");
 		if (action.equals("delete")) {
 
 			manageContactService.deleteContactSites(contactSites);

@@ -32,6 +32,8 @@ public interface DwSalesService {
 	
 	public DWSales fetchingDataByLicenseKey(String key);
 
+	long getActiveLicences();
+
 
 	// Get License File to mail
 	public void getFileToMail(DWSales dSales,String customerSiteMailID) throws Exception;

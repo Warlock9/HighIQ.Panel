@@ -22,5 +22,9 @@ public interface ManageContactsDao {
 	void deleteContactSites(CustomerSites contactSites);
 
 	void deleteCustomerDetails(CustomerDetails clientId);
+	
+	long getTotalRegisterCustomerCount();
+	
+	
 
 }

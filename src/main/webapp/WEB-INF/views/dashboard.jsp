@@ -225,52 +225,58 @@
 								</div>
 								<div class="dynamicForms">
 									<div class="form-group row dynamicDiv">
-										<div class="col-sm-2">
+										<div class="col-sm-4">
 											<div class="bg-dark p-10 text-white text-center">
-											<!-- 	<i class="mdi mdi-clipboard-text m-b-5 font-16"></i> -->
-												<h4 class="m-b-0 m-t-5"></h4>
-												<!-- <small class="font-light">No Of Invoices Actioned
-													Today</small> -->
+												<i class="mdi mdi-clipboard-text m-b-5 font-16"></i>
+											<h4 class="m-b-0 m-t-5">${totalRegisterCustomer}</h4>
+												 <small class="font-light">No of register customer </small>
 											</div>
 										</div>
-										<div class="col-sm-2">
+										<div class="col-sm-4">
+											<div class="bg-dark p-10 text-white text-center">
+												<i class="mdi mdi-account-card-details m-b-5 font-16"></i>
+												<h4 class="m-b-0 m-t-5">${totalActiveLicense}</h4>
+												<small class="font-light">No of active license  </small>
+											</div>
+										</div>
+										<div class="col-sm-4">
 											<div class="bg-dark p-10 text-white text-center">
 												<!-- <i class="mdi mdi-account-card-details m-b-5 font-16"></i> -->
-												<h4 class="m-b-0 m-t-5"></h4>
+												<h4 class="m-b-0 m-t-5">${totalActiveLicense}</h4>
 												<!-- <small class="font-light">Total Valid Vendors </small> -->
 											</div>
 										</div>
-										<div class="col-sm-2">
+										<!-- <div class="col-sm-2">
 											<div class="bg-dark p-10 text-white text-center">
-												<!-- <i class="mdi mdi-file-delimited m-b-5 font-16"></i> -->
+												<i class="mdi mdi-file-delimited m-b-5 font-16"></i>
 												<h4 class="m-b-0 m-t-5"></h4>
-												<!-- <small class="font-light">Invoices Pending Approval</small> -->
+												<small class="font-light">Invoices Pending Approval</small>
 											</div>
 										</div>
 										<div class="col-sm-2">
 											<div class="bg-dark p-10 text-white text-center">
-												<!-- <i class="mdi mdi-camera-timer m-b-5 font-16"></i> -->
+												<i class="mdi mdi-camera-timer m-b-5 font-16"></i>
 												<h4 class="m-b-0 m-t-5"></h4>
-												<!-- <small class="font-light">Average Time For Approval
-													(dd:hh:mm)</small> -->
+												<small class="font-light">Average Time For Approval
+													(dd:hh:mm)</small>
 											</div>
 										</div>
 										<div class="col-sm-2">
 											<div class="bg-dark p-10 text-white text-center">
-												<!-- <i class="mdi mdi-timetable m-b-5 font-16"></i> -->
+												<i class="mdi mdi-timetable m-b-5 font-16"></i>
 												<h4 class="m-b-0 m-t-5"></h4>
-												<!-- <small class="font-light">Invoices Pending Data
-													Correction</small> -->
+												<small class="font-light">Invoices Pending Data
+													Correction</small>
 											</div>
 										</div>
 										<div class="col-sm-2">
 											<div class="bg-dark p-10 text-white text-center">
-												<!-- <i class="mdi mdi-av-timer m-b-5 font-16"></i> -->
+												<i class="mdi mdi-av-timer m-b-5 font-16"></i>
 												<h4 class="m-b-0 m-t-5"></h4>
-												<!-- <small class="font-light">Average Time For Data
-													Correction (dd:hh:mm)</small> -->
+												<small class="font-light">Average Time For Data
+													Correction (dd:hh:mm)</small>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
@@ -278,7 +284,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+			<!-- 	<div class="row">
 					<div class="col-md-6">
 						<div class="card">
 							<div class="card-body">
@@ -346,10 +352,10 @@
 						</div>
 					</div>
 
-				</div>
+				</div> -->
 				<!-- End Charts -->
 				<!-- Line Chart -->
-				<div class="row">
+				<%-- <div class="row">
 					<div class="col-md-6">
 						<div class="card">
 							<div class="card-body myCharts">
@@ -454,7 +460,7 @@
 						</div>
 					</div>
 
-				</div>
+				</div> --%>
 				<!--End Of Line Chart  -->
 			</div>
 			<!-- ============================================================== -->

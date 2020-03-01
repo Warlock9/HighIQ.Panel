@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.augustconsulting.model.ManageUsers;
+import com.augustconsulting.service.DwSalesService;
+import com.augustconsulting.service.ManageContactsService;
 import com.augustconsulting.service.ManageUsersService;
 import com.augustconsulting.service.UsersRoleService;
 import com.augustconsulting.utility.ViewAndOperationAccess;
@@ -28,6 +30,11 @@ public class MainController {
 	@Autowired
 	private UsersRoleService userRoleService;
 	
+	@Autowired
+	private DwSalesService dwSales;
+	
+	@Autowired
+	private ManageContactsService contactService;
 
 	private static String result = "";
 	
@@ -48,7 +55,8 @@ public class MainController {
 		if(st==null) {
 			return new String("redirect:/");
 		}
-		
+		model.addAttribute("totalRegisterCustomer", contactService.getTotalRegisterCustomerCount());
+		model.addAttribute("totalActiveLicense",dwSales.getActiveLicences());
     	return new String("dashboard");
 	}
 	

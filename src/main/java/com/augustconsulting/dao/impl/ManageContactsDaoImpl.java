@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,7 +37,7 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 	}
 
 	@Override
-	public CustomerDetails getAllcontactDetails(Integer contactId) { 
+	public CustomerDetails getAllcontactDetails(Integer contactId) {
 		return sessionFactory.getCurrentSession().get(CustomerDetails.class, contactId);
 	}
 
@@ -53,14 +54,14 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 	@SuppressWarnings("unchecked")
 
 	@Override
-	public List<CustomerDetails> getAllcontactDetails() { 
+	public List<CustomerDetails> getAllcontactDetails() {
 		return (List<CustomerDetails>) sessionFactory.getCurrentSession().createCriteria(CustomerDetails.class).list();
 	}
 
 	@SuppressWarnings("unchecked")
 
 	@Override
-	public List<CustomerSites> getSiteDetails(Integer clientId) { 
+	public List<CustomerSites> getSiteDetails(Integer clientId) {
 		return sessionFactory.getCurrentSession().createCriteria(CustomerSites.class)
 				.add(Restrictions.eq("clientId", clientId)).list();
 	}
@@ -76,20 +77,28 @@ public class ManageContactsDaoImpl implements ManageContactsDao {
 
 	}
 
-	
-	@Override public void deleteCustomerDetails(CustomerDetails clientId) { 
-  Session ss =
-  sessionFactory.getCurrentSession(); String hql =
-  "delete from CustomerDetails where clientId =:clientId"; String hql1 =
-  "delete from CustomerSites where clientId =:clientId";
-  
-  Query q = ss.createQuery(hql); Query q1 = ss.createQuery(hql1);
-  
-  q.setLong("clientId", clientId.getClientId()); q1.setLong("clientId",
-  clientId.getClientId());
-  
-  q.executeUpdate(); q1.executeUpdate();
-  
-  }
+	@Override
+	public void deleteCustomerDetails(CustomerDetails clientId) {
+		Session ss = sessionFactory.getCurrentSession();
+		String hql = "delete from CustomerDetails where clientId =:clientId";
+		String hql1 = "delete from CustomerSites where clientId =:clientId";
+
+		Query q = ss.createQuery(hql);
+		Query q1 = ss.createQuery(hql1);
+
+		q.setLong("clientId", clientId.getClientId());
+		q1.setLong("clientId", clientId.getClientId());
+
+		q.executeUpdate();
+		q1.executeUpdate();
+
+	}
+
+	@Override
+	public long getTotalRegisterCustomerCount() {
+		return (long) sessionFactory.getCurrentSession().createCriteria(CustomerSites.class)
+				.add(Restrictions.eq("status", 1)).setProjection(Projections.rowCount()).uniqueResult();
+
+	}
 
 }

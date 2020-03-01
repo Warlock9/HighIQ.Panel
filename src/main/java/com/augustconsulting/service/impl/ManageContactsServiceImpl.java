@@ -109,25 +109,21 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 
 	@Override
 	public CustomerDetails getAllcontactDetails(Integer contactId) {
-		// TODO Auto-generated method stub
 		return managecontactdao.getAllcontactDetails(contactId);
 	}
 
 	@Override
 	public List<CustomerDetails> getAllcontactDetails() {
-		// TODO Auto-generated method stub
 		return managecontactdao.getAllcontactDetails();
 	}
 
 	@Override
 	public List<CustomerSites> getSiteDetails(Integer clientId) {
-		// TODO Auto-generated method stub
 		return managecontactdao.getSiteDetails(clientId);
 	}
 
 	@Override
 	public void deleteContactSites(CustomerSites contactSites) {
-		// TODO Auto-generated method stub
 		 managecontactdao.deleteContactSites(contactSites);
 	}
 
@@ -135,8 +131,13 @@ public class ManageContactsServiceImpl implements ManageContactsService {
 	
 	@Override
 	public void deleteCustomerDetails(CustomerDetails clientId) {
-		// TODO Auto-generated method stub
 		managecontactdao.deleteCustomerDetails(clientId);
+	}
+
+	@Override
+	public long getTotalRegisterCustomerCount() {
+		
+		return managecontactdao.getTotalRegisterCustomerCount();
 	}
 
 }

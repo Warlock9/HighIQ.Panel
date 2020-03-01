@@ -26,5 +26,7 @@ public interface DwSalesDao {
 
 	public DWSales fetchingDataByLicenseKey(String key);
 	
+	long getActiveLicences();
+	
  	
 }

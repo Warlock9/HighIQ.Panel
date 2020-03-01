@@ -236,14 +236,18 @@ public class DwSalesServiceImpl implements DwSalesService {
 
 	@Override
 	public CustomerSites fetchingClientSiteEmailID(Integer clientSiteId) {
-		// TODO Auto-generated method stub
 		return dwSalesDao.fetchingClientSiteEmailID(clientSiteId);
 	}
 
 	@Override
 	public DWSales fetchingDataByLicenseKey(String key) {
-		// TODO Auto-generated method stub
 		return dwSalesDao.fetchingDataByLicenseKey(key);
+	}
+
+	@Override
+	public long getActiveLicences() {
+		
+		return dwSalesDao.getActiveLicences();
 	}
 
 }

@@ -57,6 +57,8 @@ public class MainController {
 		}
 		model.addAttribute("totalRegisterCustomer", contactService.getTotalRegisterCustomerCount());
 		model.addAttribute("totalActiveLicense",dwSales.getActiveLicences());
+		model.addAttribute("totalActiveLicenseCurrentMonth",dwSales.getGeneratedLincenseCurrentMonth());
+
     	return new String("dashboard");
 	}
 	

@@ -241,9 +241,9 @@
 										</div>
 										<div class="col-sm-4">
 											<div class="bg-dark p-10 text-white text-center">
-												<!-- <i class="mdi mdi-account-card-details m-b-5 font-16"></i> -->
-												<h4 class="m-b-0 m-t-5">${totalActiveLicense}</h4>
-												<!-- <small class="font-light">Total Valid Vendors </small> -->
+												<i class="mdi mdi-account-card-details m-b-5 font-16"></i>
+												<h4 class="m-b-0 m-t-5">${totalActiveLicenseCurrentMonth}</h4>
+												<small class="font-light">No of generated license</small>
 											</div>
 										</div>
 										<!-- <div class="col-sm-2">

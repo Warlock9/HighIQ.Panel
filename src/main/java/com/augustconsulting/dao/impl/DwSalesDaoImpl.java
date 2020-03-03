@@ -1,5 +1,6 @@
 package com.augustconsulting.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -91,6 +92,14 @@ public class DwSalesDaoImpl implements DwSalesDao {
 				add(Restrictions.eq("licenseStatus", "Pending")).
 				add(Restrictions.eq("licenseStatus", "Active")).
 				add(Restrictions.eq("licenseStatus", "Generated")).setProjection(Projections.rowCount()).uniqueResult();
+	}
+
+	@Override
+	public long getGeneratedLincenseCurrentMonth() {
+		return (long)sessionFactory.getCurrentSession().createCriteria(DWSales.class).
+				add(Restrictions.eq("licenseStatus", "Active")).
+				add(Restrictions.eq("licenseStatus", "Generated")).add(Restrictions.eq("licenseIssueDate", new Date())).
+				setProjection(Projections.rowCount()).uniqueResult();
 	}
 
 }

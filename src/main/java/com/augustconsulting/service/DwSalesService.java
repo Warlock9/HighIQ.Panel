@@ -33,6 +33,8 @@ public interface DwSalesService {
 	public DWSales fetchingDataByLicenseKey(String key);
 
 	long getActiveLicences();
+	
+	long getGeneratedLincenseCurrentMonth();
 
 
 	// Get License File to mail

@@ -250,4 +250,9 @@ public class DwSalesServiceImpl implements DwSalesService {
 		return dwSalesDao.getActiveLicences();
 	}
 
+	@Override
+	public long getGeneratedLincenseCurrentMonth() {
+		return dwSalesDao.getGeneratedLincenseCurrentMonth();
+	}
+
 }

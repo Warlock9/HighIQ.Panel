@@ -28,5 +28,8 @@ public interface DwSalesDao {
 	
 	long getActiveLicences();
 	
+	long getGeneratedLincenseCurrentMonth();
+
+	
  	
 }

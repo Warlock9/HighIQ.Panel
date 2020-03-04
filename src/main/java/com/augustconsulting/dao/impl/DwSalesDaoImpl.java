@@ -88,17 +88,17 @@ public class DwSalesDaoImpl implements DwSalesDao {
 	@Override
 	public long getActiveLicences() {
 		
-		return (long)sessionFactory.getCurrentSession().createCriteria(DWSales.class).
+		return (long)sessionFactory.getCurrentSession().createCriteria(DWSales.class).add(Restrictions.disjunction().
 				add(Restrictions.eq("licenseStatus", "Pending")).
 				add(Restrictions.eq("licenseStatus", "Active")).
-				add(Restrictions.eq("licenseStatus", "Generated")).setProjection(Projections.rowCount()).uniqueResult();
+				add(Restrictions.eq("licenseStatus", "Generated"))).setProjection(Projections.rowCount()).uniqueResult();
 	}
 
 	@Override
 	public long getGeneratedLincenseCurrentMonth() {
-		return (long)sessionFactory.getCurrentSession().createCriteria(DWSales.class).
+		return (long)sessionFactory.getCurrentSession().createCriteria(DWSales.class).add(Restrictions.disjunction().
 				add(Restrictions.eq("licenseStatus", "Active")).
-				add(Restrictions.eq("licenseStatus", "Generated")).add(Restrictions.eq("licenseIssueDate", new Date())).
+				add(Restrictions.eq("licenseStatus", "Generated")).add(Restrictions.eq("licenseIssueDate", new Date()))).
 				setProjection(Projections.rowCount()).uniqueResult();
 	}
 

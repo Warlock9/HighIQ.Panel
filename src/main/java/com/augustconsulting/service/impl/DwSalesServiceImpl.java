@@ -157,9 +157,9 @@ public class DwSalesServiceImpl implements DwSalesService {
 		dwSalesDao.updateDataToDb(dSales);
 
 		/* creating a License key file and send to email */
-
+System.out.println(toMail+" >");
 		File licenseFile = createTemFileWriteLicenseKey(System.currentTimeMillis(), encrptData);
-		sendMail("imap.gmail.com", "465", "ankurtiwari69@gmail.com", "a.n.k.u.r.25",
+		sendMail("imap.gmail.com", "465", "alok.tiwari@highiq.ai", "Bhanusha#123",
 				toMail, "License Key", licenseFile);
 
 	}

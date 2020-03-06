@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.augustconsulting.model.BundleComponentRelation;
 import com.augustconsulting.model.ComponentBundle;
 import com.augustconsulting.service.ComponentBundleService;
+import com.augustconsulting.service.DateConversionService;
 import com.augustconsulting.service.UsersRoleService;
 import com.augustconsulting.utility.ViewAndOperationAccess;
 
@@ -29,7 +30,9 @@ public class ComponentBundleController {
 	private ComponentBundleService services;
 	@Autowired
 	private UsersRoleService userRoleService;
-
+	@Autowired
+	private DateConversionService dateService;
+	
 	public ComponentBundleController() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -50,7 +53,7 @@ public class ComponentBundleController {
 
 	@PostMapping("/ComponentBundle.do")
 	public String doActions(@ModelAttribute("ComponentBundle") ComponentBundle manageSet,
-			@RequestParam("action") String action, @RequestParam("cDate") java.sql.Date cdate,
+			@RequestParam("action") String action, 
 			@RequestParam("ComponentList") List<String> componentSkuList) {
 		System.out.println("fsdakjffffffffffff");
 
@@ -84,6 +87,7 @@ public class ComponentBundleController {
 				}
 			}
 			System.out.println("updaaaaaaaaaaaateeeeeeeeeeeeeeeeeeeeeeee");
+			java.sql.Date cdate = dateService.StringToSqlDateConversion("2019-02-04");
 			manageSet.setCreatedDate(cdate);
 			services.updateDataToDb(manageSet);
 		}

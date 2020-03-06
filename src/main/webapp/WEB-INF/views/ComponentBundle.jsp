@@ -249,8 +249,8 @@
 												pattern="^[A-Za-z0-9 ]+$" title="symbols not allowed"
 												placeholder="Component or Bundle Name Here" required>
 
-											<input type="date" style="display: none;" name="cDate"
-												value="2019-02-04" class="form-control cDate">
+											<!-- <input type="date" style="display: none;" name="cDate"
+												value="2019-02-04" class="form-control cDate"> -->
 										</div>
 
 									</div>
@@ -316,7 +316,7 @@
 													class="btn btn-success btn-submit btnAdd">Add</button>
 											</c:if>
 											<c:if test="${editAccess=='1'}">
-												<button type="button" class="btn btn-info btn-update"
+												<button type="button" class="btn btn-info btn-update" 
 													data-toggle="modal" data-target="#updateConfirmModal">Update</button>
 											</c:if>
 											<button type="button" onclick="reloadPage();"

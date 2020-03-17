@@ -236,13 +236,12 @@
 												
 												<select name="sku" class="select1 form-control custom-select sku" required >
 													<option value="">Select</option>
-													 <c:forEach items="${skuCode}" var="sku">
-														
+													    <c:forEach items="${skuCode}" var="sku">
 												           	<option value="${sku.skuCode}">${sku.componentBundleName}</option>
 													
-														</c:forEach>  
-													
+												</c:forEach> 													
 											</select>
+											
 										</div>
 										
 										
@@ -424,7 +423,9 @@
 											<tr>
 												<th style="display: none;"><b>Sales ID</b></th>
 												<th><b>Customer Site ID</b></th>
+												<th style="display: none;"><b></b></th>
 												<th><b>SKU</b></th>
+												<th style="display: none;"><b></b></th>
 												<th><b>No Of Runners</b></th>
 												<th><b>License Issue Date</b></th>
 												<th><b>License End Date</b></th>
@@ -441,33 +442,44 @@
 										</thead>
 										<tbody>
 											<c:set var="count" value="0" scope="page" />
-											<c:forEach items="${dwSaleDetails}" var="bs" >
+											<c:forEach items="${dwSaleDetails}" var="bs">
 												<tr>
 													<td style="display: none;">${bs.saleId}</td>
+
+													<td  style="display: none;">${bs.clientSiteId}</td>
 													
-													<td>${bs.clientSiteId}</td>
-													<td>${bs.sku}</td>
-													<td>${bs.noOfRunners}</td>	
+														<!--clientCompanyName and siteName is only for showing purpose not perform any operation for edit  -->
+													 <c:forEach items="${clientSite}" var="cSiteId">
+													 <c:if test="${cSiteId.clientSiteId==bs.clientSiteId }">
+													    <td>${cSiteId.clientCompanyName}-${cSiteId.siteName}</td>
+													    </c:if>
+													 </c:forEach>
+													
+													<!--component bundle name is only for showing purpose not perform any operation for edit  -->
+													<c:forEach items="${skuCode}" var="componentB">
+                                                        <c:if test="${componentB.skuCode==bs.sku }">
+															<td >${componentB.componentBundleName}</td>
+														</c:if>
+													</c:forEach>
+													 <td style="display: none;">${bs.sku}</td>
+													<td>${bs.noOfRunners}</td>
 													<td>${bs.licenseIssueDate}</td>
 													<td>${bs.lincenseEndDate}</td>
 													<td>${bs.paymentStatus}</td>
-													<td>${bs.licenseKey}</td>	
-													<td>${bs.licenseStatus}</td>	
-													<td>${bs.clientIpAddress}</td>	
-													<td style="display: none;">${bs.createdDate}</td>	
-													<td style="display: none;">${bs.updatedDate}</td>	
-																	
-													<td>	
-													<c:if test="${editAccess=='1'}">
-														<button type="button"
-															class="btn btn-success btn-sm btnSelect" >Edit</button>		
-																					</c:if>
-														 <c:if test="${deleteAccess=='1'}">															
-														<button type="button" class="btn btn-danger btn-sm"
-															data-toggle="modal"
-															data-target="#updateDeleteModal${bs.saleId}">Delete</button>		
-															</c:if>									
-													</td>
+													<td>${bs.licenseKey}</td>
+													<td>${bs.licenseStatus}</td>
+													<td>${bs.clientIpAddress}</td>
+													<td style="display: none;">${bs.createdDate}</td>
+													<td style="display: none;">${bs.updatedDate}</td>
+
+													<td><c:if test="${editAccess=='1'}">
+															<button type="button"
+																class="btn btn-success btn-sm btnSelect">Edit</button>
+														</c:if> <c:if test="${deleteAccess=='1'}">
+															<button type="button" class="btn btn-danger btn-sm"
+																data-toggle="modal"
+																data-target="#updateDeleteModal${bs.saleId}">Delete</button>
+														</c:if></td>
 												</tr>
 												<!-- Start Of Modal  -->
 												<div class="modal fade" id="updateDeleteModal${bs.saleId}"
@@ -499,9 +511,10 @@
 													</div>
 												</div>
 												<!-- End Of Modal -->
-											<c:set var="count" value="${count + 1}" scope="page"/>
+												<c:set var="count" value="${count + 1}" scope="page" />
 											</c:forEach>
-											
+
+
 
 										</tbody>
 									</table>

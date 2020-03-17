@@ -24,15 +24,16 @@ $(document).ready(function() {
 		var salesId = currentRow.find("td:eq(0)").text();//primary key
 		
 		var clientSiteId = currentRow.find("td:eq(1)").text();
-		var sku = currentRow.find("td:eq(2)").text();
-		var noOfRunners = currentRow.find("td:eq(3)").text();
-		var licenseIssueDate = currentRow.find("td:eq(4)").text();
-		var licenseEndDate = currentRow.find("td:eq(5)").text();
-		var paymentStatus = currentRow.find("td:eq(6)").text();
-		var licenseKey = currentRow.find("td:eq(7)").text();
-		var licenseStatus = currentRow.find("td:eq(8)").text();
-		var clientIpAddress = currentRow.find("td:eq(9)").text();
-		var createdDate = currentRow.find("td:eq(10)").text();
+		var sku = currentRow.find("td:eq(4)").text();
+		
+		var noOfRunners = currentRow.find("td:eq(5)").text();
+		var licenseIssueDate = currentRow.find("td:eq(6)").text();
+		var licenseEndDate = currentRow.find("td:eq(7)").text();
+		var paymentStatus = currentRow.find("td:eq(8)").text();
+		var licenseKey = currentRow.find("td:eq(9)").text();
+		var licenseStatus = currentRow.find("td:eq(10)").text();
+		var clientIpAddress = currentRow.find("td:eq(11)").text();
+		var createdDate = currentRow.find("td:eq(12)").text();
 	
 
 		$("html, body").animate({
